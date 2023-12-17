@@ -1,16 +1,50 @@
+import fs from 'fs';
+import path from 'path';
+import Link from 'next/link';
+import matter from 'gray-matter';
 
-import Image from 'next/image'
-import Link from 'next/link'
+export async function getStaticProps() {
+    const postsDirectory = path.join(process.cwd(), 'posts');
+    const filenames = fs.readdirSync(postsDirectory);
+    
+    const posts = filenames.map(filename => {
+      const filePath = path.join(postsDirectory, filename);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data: frontMatter } = matter(fileContents);
+  
+      return {
+        slug: filename.replace(/\.md$/, ''),
+        title: frontMatter.title,
+        date: frontMatter.date,
+      };
+    });
 
-export default function Blog() {
+    // Sort posts by date
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+    return {
+      props: {
+        posts,
+      },
+    };
+  }
+
+// React component for the blog homepage
+const BlogIndex = ({ posts }) => {
   return (
-    <>
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-      </div>
+    <div>
+      <h1>Blog Posts</h1>
+      <ul>
+        {posts.map(post => (
+          <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`}>
+                {post.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-      <div>
-      </div>
-    </>
-
-  )
-}
+export default BlogIndex;

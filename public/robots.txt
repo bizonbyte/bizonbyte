@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bizonbyte.nl
+
+# Sitemaps
+Sitemap: https://bizonbyte.nl/sitemap.xml
