@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaTwitter, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa'; // Import FaLinkedin
 
 const Footer = () => {
   return (
@@ -20,6 +20,10 @@ const Footer = () => {
           </a>
           <a href="https://github.com/bizonbyte" target="_blank" className="text-gray-700 hover:text-white transition-colors duration-300" aria-label="GitHub">
             <FaGithub size={20} />
+          </a>
+          {/* Add LinkedIn Icon */}
+          <a href="https://linkedin.com/company/bizonbyte" target="_blank" className="text-gray-700 hover:text-blue-700 transition-colors duration-300" aria-label="LinkedIn">
+            <FaLinkedin size={20} />
           </a>
         </div>
       </div>
