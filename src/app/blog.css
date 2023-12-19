@@ -1,5 +1,6 @@
 #blog-post {
     line-height: 1.8em;
+    max-width: 32vw;
 }
 
 #blog-post img {
