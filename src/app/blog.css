@@ -4,7 +4,7 @@
 }
 
 #blog-post img {
-    max-width: 40vw;
+    max-width: 50%;
     border-radius: 8px;
     margin: 48px 0;
 }
@@ -21,5 +21,9 @@ hr {
 @media screen and (max-width: 768px) {
     #blog-post {
         max-width: 100vw;
+    }
+
+    #blog-post img {
+        max-width: 80%;
     }
 }
