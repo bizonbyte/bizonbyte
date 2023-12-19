@@ -7,7 +7,6 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
 import { useRouter } from 'next/navigation';
-import RootLayout from '@/app/layout';
 
 const markdownPostsDirectory = path.join(process.cwd(), 'posts');
 
@@ -60,6 +59,6 @@ export default function Post({ contentHtml }) {
   }
 
   return (
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <div id="blog-post" class="w-full min-h-screen py-14" dangerouslySetInnerHTML={{ __html: contentHtml }} />
   )
 }

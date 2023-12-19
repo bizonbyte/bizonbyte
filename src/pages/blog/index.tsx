@@ -32,13 +32,12 @@ export async function getStaticProps() {
 // React component for the blog homepage
 const BlogIndex = ({ posts }) => {
   return (
-    <div>
-      <h1>Blog Posts</h1>
+    <div class="w-full min-h-screen py-14">
       <ul>
         {posts.map(post => (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-                {post.title}
+                {post.date} - {post.title}
             </Link>
           </li>
         ))}

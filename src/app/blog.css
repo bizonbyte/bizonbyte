@@ -1,0 +1,17 @@
+#blog-post {
+    line-height: 1.8em;
+}
+
+#blog-post img {
+    max-width: 40vw;
+    border-radius: 8px;
+    margin: 48px 0;
+}
+
+h2 {
+    margin-top: 24px;
+}
+
+hr {
+    margin: 24px 0;
+}
