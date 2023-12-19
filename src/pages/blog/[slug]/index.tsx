@@ -7,6 +7,7 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
 import { useRouter } from 'next/navigation';
+import Head from 'next/head'
 
 const markdownPostsDirectory = path.join(process.cwd(), 'posts');
 
@@ -31,11 +32,10 @@ export async function getStaticProps({ params }) {
     .use(rehypeStringify)
     .process(matterResult.content);
     const contentHtml = processedContent.toString();
-    console.log(contentHtml);
-
 
     return {
       props: {
+        title: matterResult.data.title,
         contentHtml,
         // Add other post data here
       },
@@ -47,7 +47,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function Post({ contentHtml }) {
+export default function Post({ title, contentHtml }) {
   const router = useRouter();
 
   // If the markdown file doesn't exist, display 404 page
@@ -59,6 +59,11 @@ export default function Post({ contentHtml }) {
   }
 
   return (
-      <div id="blog-post" class="w-full min-h-screen py-14" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div id="blog-post" className="w-full min-h-screen py-14" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    </>
   )
 }

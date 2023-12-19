@@ -3,7 +3,7 @@ import { FaTwitter, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa'; /
 
 const Footer = () => {
   return (
-    <footer className="bg-[#000000] text-gray-500 -sm py-6 mt-10">
+    <footer className="text-gray-500 -sm py-6 mt-10">
       <div className="container mx-auto flex flex-col items-center">
         <div className="mb-2">
           &copy; 2023 BizonByte | All Rights Reserved

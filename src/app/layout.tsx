@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, ReactNode } from 'react';
+import type { Metadata } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from './components/Footer';
@@ -21,6 +22,10 @@ export default function RootLayout({ children }: Props) {
 
   return (
     <html lang="en">
+      <head>
+        <title>BizonByte | Leading AI & Tech Solutions in the Netherlands</title>
+        <meta name='description' content='Empowering businesses and individuals in the Netherlands with innovative AI and technology solutions. Dive into the future of digital transformation with us.' />
+      </head>
       <body className={inter.className}>
         <main className="flex min-h-screen flex-col items-center justify-between px-24 pt-16">
           <div className="z-10 w-full flex items-center justify-between font-mono text-sm">
