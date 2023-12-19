@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import matter from 'gray-matter';
+import { FaArrowRight } from 'react-icons/fa'; 
 
 export async function getStaticProps() {
     const postsDirectory = path.join(process.cwd(), 'posts');
@@ -32,12 +33,13 @@ export async function getStaticProps() {
 // React component for the blog homepage
 const BlogIndex = ({ posts }) => {
   return (
-    <div class="w-full min-h-screen py-14">
+    <div className="w-full min-h-screen py-14">
+      <hr/>
       <ul>
         {posts.map(post => (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-                {post.date} - {post.title}
+                <FaArrowRight className="inline mr-2 mb-[2px]"/> {post.date} - {post.title}
             </Link>
           </li>
         ))}
