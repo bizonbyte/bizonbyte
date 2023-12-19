@@ -30,3 +30,62 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+a:hover {
+  color: #FA5700;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: black;
+  transition: all 0.3s linear;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  /* Hide desktop links and show hamburger menu on smaller screens */
+  .lg\\:flex {
+    display: none;
+  }
+
+  .lg\\:hidden {
+    display: block;
+  }
+}
