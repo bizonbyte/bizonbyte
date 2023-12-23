@@ -25,10 +25,11 @@ export default function RootLayout({ children }: Props) {
       <head>
         <title>BizonByte | Leading AI & Tech Solutions in the Netherlands</title>
         <meta name='description' content='Empowering businesses and individuals in the Netherlands with innovative AI and technology solutions. Dive into the future of digital transformation with us.' />
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
       </head>
       <body className={inter.className}>
-        <main className="flex min-h-screen flex-col items-center justify-between px-24 pt-16">
-          <div className="z-10 w-full flex items-center justify-between font-mono text-sm">
+        <main className="min-h-screen items-center justify-between">
+          <div className="z-10 w-full flex items-center justify-between font-mono text-sm px-16 md:px-24 py-16">
             {/* Logo */}
             <Link href="/">
               <Image src="/logo.svg" alt="Bizon Logo" width={84} height={37} priority />

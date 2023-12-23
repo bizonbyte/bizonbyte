@@ -79,3 +79,10 @@ h1 {
     display: block;
   }
 }
+
+.brand-logo svg {
+  fill: #9CA3AF
+}
+.brand-logo svg:hover {
+  fill: #fff
+}
