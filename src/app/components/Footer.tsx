@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="text-gray-500 -sm py-6 mt-10">
       <div className="container mx-auto flex flex-col items-center">
         <div className="mb-2">
-          &copy; 2023 BizonByte | All Rights Reserved
+          &copy; 2023 Bizonbyte | All Rights Reserved
         </div>
         <address className="mb-2">
           Amsterdam, The Netherlands

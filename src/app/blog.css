@@ -4,10 +4,10 @@
 }
 
 #blog-post img {
-    max-width: 50%;
-    border-radius: 8px;
-    margin: 48px 0;
+    border-radius: 6px;
+    margin: 16px 0;
 }
+
 
 h2 {
     margin-top: 24px;
