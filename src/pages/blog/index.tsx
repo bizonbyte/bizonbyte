@@ -37,6 +37,7 @@ const BlogIndex = ({ posts }) => {
     <>
       <Head>
         <title>Bizonbyte | Blog</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <div className="w-full min-h-screen py-14">
         <hr/>

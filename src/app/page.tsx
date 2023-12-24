@@ -76,17 +76,17 @@ export default function Home() {
         </div>
       </section>
       <section className="methodologies-section py-16">
-        <div className="container mx-auto px-6 xl:px-72 xl:ml-16">
+        <div className="container mx-auto px-6 xl:px-72">
           <div className="flex flex-col md:flex-row items-center justify-between">
 
             {/* Lottie Animation */}
-            <div className="md:w-1/2">
-              <dotlottie-player src="https://lottie.host/7456caee-747d-4baf-9508-339b285b4a97/3vB6UJ4om2.json" background="transparent" speed="1" style={{ width: "30vw", height: "30vh" }} loop autoplay>
+            <div className="md:w-1/3">
+              <dotlottie-player src="https://lottie.host/7456caee-747d-4baf-9508-339b285b4a97/3vB6UJ4om2.json" background="transparent" speed="1" style={{ width: "100%", height: "auto" }} loop autoplay>
               </dotlottie-player>
             </div>
 
             {/* Text Content */}
-            <div className="md:w-1/2 text-center md:text-left">
+            <div className="md:w-3/5 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
               <p className="text-lg mb-8">
                 Discover how our Agile and Scrum practices empower our teams to deliver innovative,
@@ -118,12 +118,12 @@ export default function Home() {
             </div>
 
             {/* Lottie Animation */}
-            <div className="md:w-1/2">
+            <div className="md:w-2/5">
               <dotlottie-player 
                 src="https://lottie.host/904a79dc-88e2-41e9-800b-bf230662a6b8/jWwqPjNakM.json" 
                 background="transparent" 
-                speed="1" 
-                style={{ width: '30vw', height: '30vh' }} 
+                speed="0.6" 
+                style={{ width: '100%', height: 'auto' }} 
                 loop 
                 autoplay>
               </dotlottie-player>

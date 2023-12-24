@@ -25,6 +25,7 @@ export default function RootLayout({ children }: Props) {
       <head>
         <title>Bizonbyte | Leading AI & Tech Solutions in the Netherlands</title>
         <meta name='description' content='Empowering businesses and individuals in the Netherlands with innovative AI and technology solutions. Dive into the future of digital transformation with us.' />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module" async></script>
       </head>
       <body className={inter.className}>
