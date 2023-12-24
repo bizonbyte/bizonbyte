@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Spinner from './Spinner';
 
 export default function ContactForm() {
     const [name, setName] = useState('');
@@ -8,9 +9,10 @@ export default function ContactForm() {
     const [message, setMessage] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
     const [isError, setIsError] = useState(false);
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (event: React.SyntheticEvent) => {
+        setIsSubmitting(true);
         event.preventDefault();
 
         const formData = {
@@ -22,27 +24,29 @@ export default function ContactForm() {
 
 
         try {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        const data = await response.json();
-        if (response.ok) {
-            setStatusMessage('Message sent successfully!');
-            setIsError(false);
-            // Optionally clear the form here
-        } else {
-            setStatusMessage(data.message || 'Failed to send message.');
+            const data = await response.json();
+            if (response.ok) {
+                setStatusMessage('Message sent successfully!');
+                setIsError(false);
+                // Optionally clear the form here
+            } else {
+                setStatusMessage(data.message || 'Failed to send message.');
+                setIsError(true);
+            }
+        } catch (error) {
+            setStatusMessage('An error occurred.');
             setIsError(true);
         }
-    } catch (error) {
-        setStatusMessage('An error occurred.');
-        setIsError(true);
-    }
+
+        setIsSubmitting(false);
     };
 
     return (
@@ -67,7 +71,9 @@ export default function ContactForm() {
                 <textarea id="message" name="message" required onChange={(e) => setMessage(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows="4"></textarea>
             </div>
 
-            <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">Send</button>
+            <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">
+                {isSubmitting ? <Spinner /> : <Spinner/>}
+            </button>
 
             {statusMessage && (
                 <div className={`mt-2 p-2 rounded-md text-center font-semibold ${isError ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
