@@ -4,9 +4,7 @@ date: "2023-12-01"
 author: Dario Mory
 ---
 
-# Ongemiddeld: Een no-nonsense gids om op te vallen
-
-![Creative Brainstorming](/blog/creative_brainstorming.png)
+![Creative Brainstorming](/blog/ongemiddeld.png)
 
 Hallo, geweldige lezer! Laten we ter zake komen: gemiddeld zijn is zo vorig seizoen. Als je de boel niet op stelten zet, ben je aan het watertrappelen. Laten we eens kijken hoe jij de persoon kunt zijn over wie iedereen blijft praten (op een goede manier!).
 

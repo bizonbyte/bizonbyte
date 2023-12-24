@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 ::selection {
   background-color: hsl(25deg 100% 50% / 20%);
   color: #ff5900;
@@ -78,4 +82,11 @@ h1 {
   .lg\\:hidden {
     display: block;
   }
+}
+
+.brand-logo svg {
+  fill: #9CA3AF
+}
+.brand-logo svg:hover {
+  fill: #fff
 }

@@ -20,6 +20,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
+// @ts-ignore
 export async function getStaticProps({ params }) {
   const fullPath = path.join(markdownPostsDirectory, `${params.slug}.md`);
   try {
@@ -36,6 +37,7 @@ export async function getStaticProps({ params }) {
     return {
       props: {
         title: matterResult.data.title,
+        date: matterResult.data.date,
         contentHtml,
         // Add other post data here
       },
@@ -47,23 +49,33 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function Post({ title, contentHtml }) {
+// @ts-ignore
+export default function Post({ title, date, contentHtml }) {
   const router = useRouter();
 
   // If the markdown file doesn't exist, display 404 page
   if (!contentHtml) {
-    if (typeof window !== 'undefined') {
-      router.replace('/404');
-    }
+    router.replace('/404');
     return null;
   }
+
+  // Format date to a more human-readable format (e.g., "January 1, 2023")
+  const formattedDate = new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <div id="blog-post" className="w-full min-h-screen py-14" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <div id="blog-post" className="w-full min-h-screen py-14" >
+        <h1>{title}</h1>
+        <div className="mt-2 text-gray-300">{formattedDate}</div>
+        <div dangerouslySetInnerHTML={{ __html: contentHtml }}/>
+      </div>
     </>
   )
 }
