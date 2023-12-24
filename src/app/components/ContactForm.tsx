@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import Spinner from './Spinner';
 
 export default function ContactForm() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [subject, setSubject] = useState('');
-    const [message, setMessage] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
     const [statusMessage, setStatusMessage] = useState('');
     const [isError, setIsError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,14 +16,6 @@ export default function ContactForm() {
     const handleSubmit = async (event: React.SyntheticEvent) => {
         setIsSubmitting(true);
         event.preventDefault();
-
-        const formData = {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-        };
-
 
         try {
             const response = await fetch('/api/contact', {
@@ -36,7 +30,7 @@ export default function ContactForm() {
             if (response.ok) {
                 setStatusMessage('Message sent successfully!');
                 setIsError(false);
-                // Optionally clear the form here
+                setFormData({ name: '', email: '', subject: '', message: '' }); // Reset all fields in one line
             } else {
                 setStatusMessage(data.message || 'Failed to send message.');
                 setIsError(true);
@@ -50,25 +44,25 @@ export default function ContactForm() {
     };
 
     return (
-        <form id="contact" onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md mx-auto">
+        <form id="contact" onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md w-full">
             <div className="flex flex-col">
                 <label htmlFor="name" className="mb-1 font-semibold">Name:</label>
-                <input type="text" id="name" name="name" required onChange={(e) => setName(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
+                <input type="text" id="name" name="name" required onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
 
             <div className="flex flex-col">
                 <label htmlFor="email" className="mb-1 font-semibold">Email:</label>
-                <input type="email" id="email" name="email" required onChange={(e) => setEmail(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
+                <input type="email" id="email" name="email" required onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
 
             <div className="flex flex-col">
                 <label htmlFor="subject" className="mb-1 font-semibold">Subject:</label>
-                <input type="text" id="subject" name="subject" required onChange={(e) => setSubject(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
+                <input type="text" id="subject" name="subject" required onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
 
             <div className="flex flex-col">
                 <label htmlFor="message" className="mb-1 font-semibold">Message:</label>
-                <textarea id="message" name="message" required onChange={(e) => setMessage(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows={4}></textarea>
+                <textarea id="message" name="message" required onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows={4}></textarea>
             </div>
 
             <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">

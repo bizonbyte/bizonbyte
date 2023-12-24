@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import ContactForm from './components/ContactForm'
 
 export default function Home() {
@@ -76,47 +78,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="methodologies-section py-16">
-        <div className="container mx-auto px-6 xl:px-72">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-
-            {/* Lottie Animation */}
-            <div className="md:w-1/3">
-              <dotlottie-player src="https://lottie.host/7456caee-747d-4baf-9508-339b285b4a97/3vB6UJ4om2.json" background="transparent" speed="1" style={{ width: "100%", height: "auto" }} loop autoplay>
-              </dotlottie-player>
-            </div>
-
-            {/* Text Content */}
-            <div className="md:w-3/5 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
-              <p className="text-lg mb-8">
-                Discover how our Agile and Scrum practices empower our teams to deliver innovative,
-                efficient, and effective solutions.
-              </p>
-              <Link href="/methodologies" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
-                  Learn More
-              </Link>
-            </div>
-
-          </div>
-        </div>
-      </section>
       <section className="technology-section py-16">
         <div className="container mx-auto px-6 xl:px-72">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            
-            {/* Text Content */}
-            <div className="md:w-1/2 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Technology Solutions</h2>
-              <p className="text-lg mb-8">
-                Leveraging state-of-the-art technology in AI, machine learning, and big data analysis,
-                we deliver innovative solutions that drive business growth. Our commitment to cutting-edge 
-                technology and continuous improvement positions us at the forefront of digital transformation.
-              </p>
-              <Link href="/technology" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
-                Explore Our Tech
-              </Link>
-            </div>
 
             {/* Lottie Animation */}
             <div className="md:w-2/5">
@@ -130,10 +94,89 @@ export default function Home() {
               </dotlottie-player>
             </div>
 
+
+            {/* Text Content */}
+            <div className="md:w-1/2 text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Technology Solutions</h2>
+              <p className="text-lg mb-8">
+                Leveraging state-of-the-art technology in AI, machine learning, and big data analysis,
+                we deliver innovative solutions that drive business growth. Our commitment to cutting-edge
+                technology and continuous improvement positions us at the forefront of digital transformation.
+              </p>
+              <Link href="/technology" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
+                Explore Our Tech
+              </Link>
+            </div>
           </div>
         </div>
       </section>
-      <ContactForm/>
+      <section className="methodologies-section py-16">
+        <div className="container mx-auto px-6 xl:px-72">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            {/* Text Content */}
+            <div className="md:w-3/5 text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
+              <p className="text-lg mb-8">
+                Discover how our Agile and Scrum practices empower our teams to deliver innovative,
+                efficient, and effective solutions.
+              </p>
+              <Link href="/methodologies" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
+                Learn More
+              </Link>
+            </div>
+            {/* Lottie Animation */}
+            <div className="md:w-1/3">
+              <dotlottie-player src="https://lottie.host/7456caee-747d-4baf-9508-339b285b4a97/3vB6UJ4om2.json" background="transparent" speed="1" style={{ width: "100%", height: "auto" }} loop autoplay>
+              </dotlottie-player>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-12 bg-[#00000033]">
+        <style jsx global>{`
+  .brand-logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) invert(1); /* White color filter */
+    transition: filter 0.3s;
+  }
+
+  .brand-logo:hover {
+    filter: none; /* Original color on hover */
+  }
+`}</style>
+
+        <div className="flex justify-center items-center flex-wrap gap-16 mx-16">
+          <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24" style={{ backgroundImage: `url('/brands/openai.svg')` }}></div>
+          <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24" style={{ backgroundImage: `url('/brands/django.svg')` }}></div>
+          <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24" style={{ backgroundImage: `url('/brands/typescript.svg')` }}></div>
+          <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-14 h-14" style={{ backgroundImage: `url('/brands/aws.svg')` }}></div>
+          <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24" style={{ backgroundImage: `url('/brands/kubernetes.svg')` }}></div>
+          {/* Add more logos as needed */}
+        </div>
+
+      </section>
+      <section className="contact-section py-16">
+        <div className="container mx-auto px-6 xl:px-72">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+
+            <div className="md:w-2/5 relative right-24 bottom-16">
+              <dotlottie-player 
+                src="https://lottie.host/b4b844f5-bdca-480d-b19d-ff04a27d4213/CFrtNTFf04.json" 
+                background="transparent" 
+                speed="0.6" 
+                style={{ width: '100%', height: 'auto' }} 
+                loop 
+                autoplay>
+              </dotlottie-player>
+            </div>
+
+            <ContactForm/>
+
+          </div>
+        </div>
+      </section>
     </section>
   )
 }
