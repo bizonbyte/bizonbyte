@@ -72,7 +72,7 @@ export default function ContactForm() {
             </div>
 
             <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">
-                {isSubmitting ? <Spinner /> : <Spinner/>}
+                {isSubmitting ? <Spinner /> : 'Send'}
             </button>
 
             {statusMessage && (
