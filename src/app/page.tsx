@@ -15,7 +15,7 @@ export default function Home() {
           <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
             Discover Our Solutions
           </a>
-          <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:text-green-400 hover:bg-[#00241C] hover:border-green-400 focus:ring-4 focus:ring-green-100">
+          <a href="#contact" className="scroll-smooth inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:text-green-400 hover:bg-[#00241C] hover:border-green-400 focus:ring-4 focus:ring-green-100">
             Contact Our Team
           </a>
         </div>

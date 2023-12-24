@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 ::selection {
   background-color: hsl(25deg 100% 50% / 20%);
   color: #ff5900;

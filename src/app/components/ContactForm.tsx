@@ -50,7 +50,7 @@ export default function ContactForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md mx-auto">
+        <form id="contact" onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md mx-auto">
             <div className="flex flex-col">
                 <label htmlFor="name" className="mb-1 font-semibold">Name:</label>
                 <input type="text" id="name" name="name" required onChange={(e) => setName(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
