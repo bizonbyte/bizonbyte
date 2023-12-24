@@ -1,12 +1,21 @@
 
-    export default async function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+type ResponseData = {
+  message: string
+}
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
         console.log('hi handler')
         if (req.method === 'POST') {
             const { name, email, message } = req.body;
             const slackMessage = `New contact form submission:\n- Name: ${name}\n- Email: ${email}\n- Message: ${message}`;
             console.log(`slack webhook: ${process.env.SLACK_WEBHOOK_URL}`)
 
-            fetch(process.env.SLACK_WEBHOOK_URL, {
+            fetch(process.env.SLACK_WEBHOOK_URL || '', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: slackMessage }),

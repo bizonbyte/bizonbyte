@@ -20,6 +20,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
+// @ts-ignore
 export async function getStaticProps({ params }) {
   const fullPath = path.join(markdownPostsDirectory, `${params.slug}.md`);
   try {
@@ -48,14 +49,13 @@ export async function getStaticProps({ params }) {
   }
 }
 
+// @ts-ignore
 export default function Post({ title, date, contentHtml }) {
   const router = useRouter();
 
   // If the markdown file doesn't exist, display 404 page
   if (!contentHtml) {
-    if (typeof window !== 'undefined') {
-      router.replace('/404');
-    }
+    router.replace('/404');
     return null;
   }
 

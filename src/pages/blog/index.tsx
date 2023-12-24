@@ -22,6 +22,7 @@ export async function getStaticProps() {
     });
 
     // Sort posts by date
+    // @ts-ignore
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
   
     return {
@@ -32,6 +33,7 @@ export async function getStaticProps() {
   }
 
 // React component for the blog homepage
+// @ts-ignore
 const BlogIndex = ({ posts }) => {
   return (
     <>
@@ -42,7 +44,9 @@ const BlogIndex = ({ posts }) => {
       <div className="w-full min-h-screen py-14">
         <hr/>
         <ul>
-          {posts.map(post => (
+          {
+          // @ts-ignore
+          posts.map(post => (
             <li key={post.slug}>
               <Link href={`/blog/${post.slug}`}>
                   <FaArrowRight className="inline mr-2 mb-[2px]"/> {post.date} - {post.title}

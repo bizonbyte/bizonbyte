@@ -7,14 +7,22 @@ export default function ContactForm() {
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.SyntheticEvent) => {
         event.preventDefault();
-        const formData = {
-            name: event.target.name.value,
-            subject: event.target.subject.value,
-            email: event.target.email.value,
-            message: event.target.message.value,
+        const target = event.target as typeof event.target & {
+            name: { value: string };
+            email: { value: string };
+            subject: { value: string };
+            message: { value: string };
         };
+
+        const formData = {
+            name: target.name.value,
+            email: target.email.value,
+            subject: target.subject.value,
+            message: target.message.value,
+        };
+
 
         fetch('/api/contact', {
             method: 'POST',
