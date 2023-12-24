@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <section className="w-full bg-[#00000033] hero-section">
+    <section className="w-full hero-section">
       <div className="grid max-w-screen-xl px-8 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
@@ -28,7 +28,7 @@ export default function Home() {
             autoplay></dotlottie-player>
         </div>
       </div>
-      <section className="py-12">
+      <section className="py-12 bg-[#00000033]">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8 justify-items-center mx-16">
             {/* Example brand logos */}

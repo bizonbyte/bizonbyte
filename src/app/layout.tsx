@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Props) {
       </head>
       <body className={inter.className}>
         <main className="min-h-screen items-center justify-between">
-          <div className="z-10 w-full flex items-center justify-between text-md px-16 md:px-24 py-16">
+          <div className="z-10 bg-[#00000033] w-full flex items-center justify-between text-md px-16 md:px-24 py-16">
             {/* Logo */}
             <Link href="/">
               <Image src="/logo.svg" alt="Bizon Logo" width={84} height={37} priority />
