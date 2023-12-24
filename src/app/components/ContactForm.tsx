@@ -68,7 +68,7 @@ export default function ContactForm() {
 
             <div className="flex flex-col">
                 <label htmlFor="message" className="mb-1 font-semibold">Message:</label>
-                <textarea id="message" name="message" required onChange={(e) => setMessage(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows="4"></textarea>
+                <textarea id="message" name="message" required onChange={(e) => setMessage(e.target.value)} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows={4}></textarea>
             </div>
 
             <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">
