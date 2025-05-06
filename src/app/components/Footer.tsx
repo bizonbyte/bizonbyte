@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaTwitter, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -13,12 +14,12 @@ const Footer = () => {
         <address className="mb-2">
           Amsterdam, The Netherlands
         </address>
-        <a
+        <Link
           href="/terms-of-service"
           className="mb-4 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-300"
         >
           Terms of Service
-        </a>
+        </Link>
         <div className="flex space-x-4">
           <a
             href="https://twitter.com/bizonbyte"
