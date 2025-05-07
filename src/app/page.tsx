@@ -93,7 +93,7 @@ export default function Home() {
             {/* Text Content */}
             <div className="md:w-1/2 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Technology Solutions</h2>
-              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
                 Leveraging state-of-the-art technology in AI, machine learning, and big data analysis, we deliver innovative solutions enriched with Python, GPT, and Django capabilities. Our commitment to cutting-edge, no-code/low-code technologies and continuous improvement positions us at the forefront of digital transformation.
               </p>
               {/* <Link href="/technology" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors"> */}
@@ -109,7 +109,7 @@ export default function Home() {
             {/* Text Content */}
             <div className="md:w-3/5 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
-              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
                 Through Agile and Scrum methodologies, our consultancy delivers customized solutions and development strategies. Our approach integrates innovation with efficiency, catalyzing digital transformation and fostering business growth.
               </p>
               {/* <Link href="/methodologies" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
