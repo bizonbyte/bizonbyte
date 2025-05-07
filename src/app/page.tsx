@@ -11,7 +11,7 @@ export default function Home() {
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
             Leading AI & Machine Learning Solutions
           </h1>
-          <p className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
+          <p style={{ lineHeight: '1.85rem' }} className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
             Headquartered in the Netherlands, we specialize in consulting and development of cutting-edge AI, machine learning, and data analysis solutions for businesses. Our robust expertise in technology innovation and development consulting empowers you to stay competitive in the rapidly evolving digital landscape.
           </p>
           <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
@@ -93,7 +93,7 @@ export default function Home() {
             {/* Text Content */}
             <div className="md:w-1/2 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Technology Solutions</h2>
-              <p className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
                 Leveraging state-of-the-art technology in AI, machine learning, and big data analysis, we deliver innovative solutions enriched with Python, GPT, and Django capabilities. Our commitment to cutting-edge, no-code/low-code technologies and continuous improvement positions us at the forefront of digital transformation.
               </p>
               {/* <Link href="/technology" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors"> */}
@@ -109,7 +109,7 @@ export default function Home() {
             {/* Text Content */}
             <div className="md:w-3/5 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
-              <p className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-4 rounded-[12px]">
                 Through Agile and Scrum methodologies, our consultancy delivers customized solutions and development strategies. Our approach integrates innovation with efficiency, catalyzing digital transformation and fostering business growth.
               </p>
               {/* <Link href="/methodologies" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
