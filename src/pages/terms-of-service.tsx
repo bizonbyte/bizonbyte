@@ -30,7 +30,7 @@ const TermsOfService = () => {
 
       <h2 className="text-xl font-semibold mb-2">5. Limitation of Liability</h2>
       <p className="mb-4">
-        In no event shall Bizonbyte or [Your Legal Name or Company Name] be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the services.
+        In no event shall Bizonbyte be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the services.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">6. Governing Law</h2>
