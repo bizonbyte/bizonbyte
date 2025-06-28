@@ -6,30 +6,23 @@ import ContactForm from './components/ContactForm'
 export default function Home() {
   return (
     <section className="w-full hero-section">
-      <div className="grid max-w-screen-xl px-16 py-8 mx-auto my-16 lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
-            Leading AI & Machine Learning Solutions
-          </h1>
-          <p style={{ lineHeight: '1.85rem' }} className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
-            Headquartered in the Netherlands, we specialize in consulting and development of cutting-edge AI, machine learning, and data analysis solutions for businesses. Our robust expertise in technology innovation and development consulting empowers you to stay competitive in the rapidly evolving digital landscape.
-          </p>
-          <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
-            Discover Our Solutions
-          </a>
-          <a href="#contact" className="scroll-smooth inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:text-green-400 hover:bg-[#00241C] hover:border-green-400 focus:ring-4 focus:ring-green-100">
-            Contact Our Team
-          </a>
-        </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <dotlottie-player
-            src="https://lottie.host/f1a47e84-bfe0-44df-843e-73b541c513c5/EDMc8naIZU.json"
-            background="transparent"
-            speed="1"
-            style={{ width: '30vw', height: '30vh' }}
-            loop
-            autoplay></dotlottie-player>
-        </div>
+                             <div className="grid px-16 py-8 my-16 mx-auto max-w-[90%] w-[90%] lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+                  <div className="w-full lg:col-span-12 text-center">
+            <h1 className="mb-8 text-4xl font-extrabold tracking-tight leading-tight md:text-5xl xl:text-6xl text-white max-w-4xl mx-auto">
+              Leading AI & Machine Learning Solutions
+            </h1>
+            <p style={{ lineHeight: '1.85rem' }} className="mb-10 md:text-lg lg:text-xl p-8 rounded-[12px] max-w-4xl mx-auto">
+              Headquartered in the Netherlands, we specialize in consulting and development of cutting-edge AI, machine learning, and data analysis solutions for businesses. Our robust expertise in technology innovation and development consulting empowers you to stay competitive in the rapidly evolving digital landscape.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="#" className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 transition-all duration-200">
+                Discover Our Solutions
+              </a>
+              <a href="#contact" className="scroll-smooth inline-flex items-center justify-center px-8 py-4 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:text-green-400 hover:bg-[#00241C] hover:border-green-400 focus:ring-4 focus:ring-green-100 transition-all duration-200">
+                Contact Our Team
+              </a>
+            </div>
+          </div>
       </div>
       <section className="py-12 bg-[#00000033]">
         <div className="max-w-screen-xl mx-auto px-4">
