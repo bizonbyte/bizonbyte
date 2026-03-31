@@ -78,6 +78,9 @@ Bij BizonByte hebben we Nederlandse organisaties herhaaldelijk door deze transit
 
 ---
 
-![Meme GIF](/blog/meme_e06abc99_80826f.mp4)
+<video controls autoplay muted loop playsinline style="max-width: 100%; height: auto;">
+  <source src="/blog/meme_e06abc99_80826f.mp4" type="video/mp4" />
+  Je browser ondersteunt deze video niet.
+</video>
 
 _Als je AI PoC er veelbelovend uitziet, maar crasht in de productie._
