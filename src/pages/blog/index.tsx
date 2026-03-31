@@ -41,7 +41,8 @@ const BlogIndex = ({ posts }) => {
         <title>Bizonbyte | Blog</title>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
-      <div className="w-full min-h-screen py-14">
+      <section id="blog-index" className="w-full min-h-screen">
+        <h1>Blog</h1>
         <hr/>
         <ul>
           {
@@ -54,7 +55,7 @@ const BlogIndex = ({ posts }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </section>
     </>
   );
 };

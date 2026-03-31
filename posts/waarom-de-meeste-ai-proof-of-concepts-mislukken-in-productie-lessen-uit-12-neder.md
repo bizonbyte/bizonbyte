@@ -4,8 +4,6 @@ date: "2026-03-31"
 author: "Bizonbyte Team"
 ---
 
-# Waarom de meeste AI Proof-of-Concepts mislukken in productie: Lessen uit 12 Nederlandse implementaties
-
 ![A visual metaphor showing a small prototype model next to a complex industrial machine, representing the gap between AI proof-of-concept and production systems](/blog/why-most-ai-proof-of-concepts-fail-production-less-img-1-a-visual-metaphor-showing-a-small-prototype-m.png)
 
 De demo werkte prachtig. Stakeholders applaudisseerden. Zes maanden later verdween het project stilletjes van de roadmap. Als dit je bekend in de oren klinkt, ben je niet de enige. In heel Nederland ontdekken organisaties dat het bouwen van een indrukwekkend AI proof-of-concept en het implementeren van een betrouwbaar productiesysteem fundamenteel verschillende uitdagingen zijn.
@@ -78,7 +76,7 @@ Bij BizonByte hebben we Nederlandse organisaties herhaaldelijk door deze transit
 
 ---
 
-<video controls autoplay muted loop playsinline style="max-width: 100%; height: auto;">
+<video autoplay muted loop playsinline preload="auto" style="max-width: 100%; height: auto;">
   <source src="/blog/meme_e06abc99_80826f.mp4" type="video/mp4" />
   Je browser ondersteunt deze video niet.
 </video>

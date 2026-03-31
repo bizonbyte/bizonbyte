@@ -2,14 +2,38 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import rehypeSanitize from 'rehype-sanitize'
+import rehypeRaw from 'rehype-raw'
+import { defaultSchema } from 'hast-util-sanitize'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
 import { useRouter } from 'next/navigation';
 import Head from 'next/head'
+import { useEffect } from 'react';
 
 const markdownPostsDirectory = path.join(process.cwd(), 'posts');
+const sanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames || []), 'video', 'source'],
+  attributes: {
+    ...defaultSchema.attributes,
+    video: [
+      ...(defaultSchema.attributes?.video || []),
+      'controls',
+      'autoplay',
+      'muted',
+      'loop',
+      'playsinline',
+      'style',
+    ],
+    source: [
+      ...(defaultSchema.attributes?.source || []),
+      'src',
+      'type',
+    ],
+  },
+}
 
 export async function getStaticPaths() {
   const filenames = fs.readdirSync(markdownPostsDirectory);
@@ -28,8 +52,9 @@ export async function getStaticProps({ params }) {
     const matterResult = matter(fileContents);
     const processedContent = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeSanitize)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeStringify)
     .process(matterResult.content);
     const contentHtml = processedContent.toString();
@@ -53,6 +78,28 @@ export async function getStaticProps({ params }) {
 export default function Post({ title, date, contentHtml }) {
   const router = useRouter();
 
+  useEffect(() => {
+    const postRoot = document.getElementById('blog-post');
+    if (!postRoot) return;
+
+    const videos = postRoot.querySelectorAll('video');
+    videos.forEach((video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // Ignore autoplay rejections and keep page rendering stable.
+        });
+      }
+    });
+  }, [contentHtml]);
+
   // If the markdown file doesn't exist, display 404 page
   if (!contentHtml) {
     router.replace('/404');
@@ -71,11 +118,11 @@ export default function Post({ title, date, contentHtml }) {
       <Head>
         <title>{title}</title>
       </Head>
-      <div id="blog-post" className="w-full min-h-screen py-14" >
+      <article id="blog-post" className="w-full min-h-screen">
         <h1>{title}</h1>
-        <div className="mt-2 text-gray-300">{formattedDate}</div>
+        <div className="blog-post-date">{formattedDate}</div>
         <div dangerouslySetInnerHTML={{ __html: contentHtml }}/>
-      </div>
+      </article>
     </>
   )
 }
