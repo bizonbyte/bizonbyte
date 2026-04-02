@@ -6,12 +6,12 @@ import ContactForm from './components/ContactForm'
 export default function Home() {
   return (
     <section className="w-full hero-section">
-                             <div className="grid px-16 py-8 my-16 mx-auto max-w-[90%] w-[90%] lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+                             <div className="grid px-4 md:px-16 py-8 my-8 md:my-16 mx-auto w-full max-w-full md:max-w-[90%] md:w-[90%] lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                   <div className="w-full lg:col-span-12 text-center">
             <h1 className="mb-8 text-4xl font-extrabold tracking-tight leading-tight md:text-5xl xl:text-6xl text-white max-w-4xl mx-auto">
               Leading AI & Machine Learning Solutions
             </h1>
-            <p style={{ lineHeight: '1.85rem' }} className="mb-10 md:text-lg lg:text-xl p-8 rounded-[12px] max-w-4xl mx-auto">
+            <p style={{ lineHeight: '1.85rem' }} className="mb-10 md:text-lg lg:text-xl px-4 py-6 sm:p-8 rounded-[12px] max-w-4xl mx-auto">
               Headquartered in the Netherlands, we specialize in consulting and development of cutting-edge AI, machine learning, and data analysis solutions for businesses. Our robust expertise in technology innovation and development consulting empowers you to stay competitive in the rapidly evolving digital landscape.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -25,8 +25,8 @@ export default function Home() {
           </div>
       </div>
       <section className="py-12 bg-[#00000033]">
-        <div className="max-w-screen-xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8 justify-items-center mx-16">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8 justify-items-center mx-0 md:mx-8 lg:mx-16">
             <a href="https://www.ns.nl" target="_blank" rel="noopener noreferrer" className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
               <svg height="50" width="75" viewBox="-2.04189744 -2.04189744 178.37648488 72.14704288" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M76.19003 32.7088C72.73763 29.33945 68.00393 27.23954 62.8194 27.23954L26.08874 27.23954L39.67292 13.61977L74.23248 13.61977C75.69174 13.6435 77.05609 14.28415 78.01707 15.24513L98.07894 35.36632C101.53134 38.7238 106.25317 40.83558 111.47329 40.83558L148.23955 40.83558L134.63165 54.45535L100.10767 54.45535C98.62468 54.40789 97.28406 53.77911 96.31122 52.78254L76.19003 32.7088zM86.68959 62.43976C90.10639 65.89216 94.85196 68.06325 100.10767 68.06325L140.23141 68.06325L174.29269 34.03756L140.23141 0L121.00001 0L148.23955 27.23954L111.47329 27.23954C110.0259 27.23954 108.67351 26.65821 107.7243 25.73282L87.6387 5.64723C84.19817 2.15924 79.46447 0.01187 74.23248 0L34.04952 0L0 34.03756L34.04952 68.06325L53.29268 68.06325L26.08874 40.83558L62.8194 40.83558C64.27866 40.83558 65.59556 41.41691 66.5684 42.36602L86.68959 62.43976" style={{ fill: "#fff", fillOpacity: 1, fillRule: "evenodd", stroke: "none" }}/></svg>
             </a>
@@ -38,10 +38,10 @@ export default function Home() {
             </a>
             <a href="https://www.uber.com" target="_blank" rel="noopener noreferrer" className="brand-logo opacity-50 hover:text-white hover:opacity-100 hover:transition-all cursor-pointer">
               <svg height="50" width="100" viewBox="0 0 97 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0208 0.859681V11.8158C16.0208 15.4744 14.3957 16.9937 10.5803 16.9937C6.76642 16.9937 5.13991 15.4744 5.13991 11.8158V0.379761H1.46656C1.14464 0.379761 0.984375 0.539949 0.984375 0.859681V11.9956C0.984375 18.1138 4.89952 20.253 10.5803 20.253C16.2626 20.253 20.1763 18.1138 20.1763 11.9956V0.379761H16.503C16.1824 0.379761 16.0208 0.539949 16.0208 0.859681Z" fill="currentColor"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M69.2766 3.55875C69.5775 3.55875 69.7181 3.45892 69.8179 3.2387L70.8821 0.619553C70.9425 0.460023 70.8821 0.379761 70.7218 0.379761H55.9258C54.5411 0.379761 54.0195 0.799649 54.0195 1.73924V18.7532C54.0195 19.5532 54.4202 19.913 55.4844 19.913H69.2766C69.5775 19.913 69.7181 19.8129 69.8179 19.5934L70.8821 16.9738C70.9425 16.8139 70.8821 16.734 70.7218 16.734H58.0949V13.2752C58.0949 12.0755 58.7571 11.5355 60.5424 11.5355H66.0236C66.3259 11.5355 66.4651 11.4361 66.5663 11.2162L67.5897 8.69688C67.6501 8.53672 67.5897 8.45706 67.4294 8.45706H58.0949V3.55875H69.2766Z" fill="currentColor"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M39.3809 16.7742H32.1312V13.1952C32.1312 11.9956 32.7933 11.456 34.5815 11.456H39.3809C41.6892 11.456 42.3317 12.3355 42.3317 14.1352C42.3317 15.9345 41.6892 16.7742 39.3809 16.7742ZM32.1312 3.51862H38.6175C40.7867 3.51862 41.3884 4.33196 41.3884 6.0177C41.3884 7.70372 40.7867 8.51712 38.6175 8.51712H32.1312V3.51862ZM43.2356 9.61654C44.841 8.77682 45.5031 7.19748 45.5031 5.33814C45.5031 1.01953 41.9704 0.379761 38.3167 0.379761H29.9649C28.5801 0.379761 28.0586 0.799649 28.0586 1.73924V18.7532C28.0586 19.5532 28.4592 19.913 29.5234 19.913H39.8026C43.677 19.913 46.4478 18.4136 46.4478 14.5149C46.4478 12.1757 45.4441 10.1963 43.2356 9.61654Z" fill="currentColor"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M88.8654 9.4365H82.0402V3.51895H88.8654C91.4155 3.51895 91.9778 4.49835 91.9778 6.47774C91.9778 8.47694 91.4155 9.4365 88.8654 9.4365ZM96.534 19.5731L92.1381 12.0556C94.3269 11.496 96.0926 10.0567 96.0926 6.3978C96.0926 1.65964 93.1418 0.379761 88.2637 0.379761H79.8725C78.4864 0.379761 77.9648 0.799649 77.9648 1.73924V19.4332C77.9648 19.7528 78.1251 19.913 78.447 19.913H82.0402V14.2151C82.0402 13.0155 82.7024 12.4755 84.4891 12.4755H88.1035L92.0776 19.5934C92.1985 19.793 92.3194 19.913 92.6203 19.913H96.3541C96.6156 19.913 96.6156 19.6928 96.534 19.5731Z" fill="currentColor"></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M16.0208 0.859681V11.8158C16.0208 15.4744 14.3957 16.9937 10.5803 16.9937C6.76642 16.9937 5.13991 15.4744 5.13991 11.8158V0.379761H1.46656C1.14464 0.379761 0.984375 0.539949 0.984375 0.859681V11.9956C0.984375 18.1138 4.89952 20.253 10.5803 20.253C16.2626 20.253 20.1763 18.1138 20.1763 11.9956V0.379761H16.503C16.1824 0.379761 16.0208 0.539949 16.0208 0.859681Z" fill="currentColor"></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M69.2766 3.55875C69.5775 3.55875 69.7181 3.45892 69.8179 3.2387L70.8821 0.619553C70.9425 0.460023 70.8821 0.379761 70.7218 0.379761H55.9258C54.5411 0.379761 54.0195 0.799649 54.0195 1.73924V18.7532C54.0195 19.5532 54.4202 19.913 55.4844 19.913H69.2766C69.5775 19.913 69.7181 19.8129 69.8179 19.5934L70.8821 16.9738C70.9425 16.8139 70.8821 16.734 70.7218 16.734H58.0949V13.2752C58.0949 12.0755 58.7571 11.5355 60.5424 11.5355H66.0236C66.3259 11.5355 66.4651 11.4361 66.5663 11.2162L67.5897 8.69688C67.6501 8.53672 67.5897 8.45706 67.4294 8.45706H58.0949V3.55875H69.2766Z" fill="currentColor"></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M39.3809 16.7742H32.1312V13.1952C32.1312 11.9956 32.7933 11.456 34.5815 11.456H39.3809C41.6892 11.456 42.3317 12.3355 42.3317 14.1352C42.3317 15.9345 41.6892 16.7742 39.3809 16.7742ZM32.1312 3.51862H38.6175C40.7867 3.51862 41.3884 4.33196 41.3884 6.0177C41.3884 7.70372 40.7867 8.51712 38.6175 8.51712H32.1312V3.51862ZM43.2356 9.61654C44.841 8.77682 45.5031 7.19748 45.5031 5.33814C45.5031 1.01953 41.9704 0.379761 38.3167 0.379761H29.9649C28.5801 0.379761 28.0586 0.799649 28.0586 1.73924V18.7532C28.0586 19.5532 28.4592 19.913 29.5234 19.913H39.8026C43.677 19.913 46.4478 18.4136 46.4478 14.5149C46.4478 12.1757 45.4441 10.1963 43.2356 9.61654Z" fill="currentColor"></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M88.8654 9.4365H82.0402V3.51895H88.8654C91.4155 3.51895 91.9778 4.49835 91.9778 6.47774C91.9778 8.47694 91.4155 9.4365 88.8654 9.4365ZM96.534 19.5731L92.1381 12.0556C94.3269 11.496 96.0926 10.0567 96.0926 6.3978C96.0926 1.65964 93.1418 0.379761 88.2637 0.379761H79.8725C78.4864 0.379761 77.9648 0.799649 77.9648 1.73924V19.4332C77.9648 19.7528 78.1251 19.913 78.447 19.913H82.0402V14.2151C82.0402 13.0155 82.7024 12.4755 84.4891 12.4755H88.1035L92.0776 19.5934C92.1985 19.793 92.3194 19.913 92.6203 19.913H96.3541C96.6156 19.913 96.6156 19.6928 96.534 19.5731Z" fill="currentColor"></path>
               </svg>
             </a>
             <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
@@ -67,7 +67,7 @@ export default function Home() {
         </div>
       </section>
       <section className="technology-section py-16 my-16">
-        <div className="container mx-auto px-6 xl:px-72">
+        <div className="container mx-auto px-4 md:px-6 xl:px-72">
           <div className="flex flex-col md:flex-row items-center justify-between">
 
             {/* Lottie Animation */}
@@ -86,7 +86,7 @@ export default function Home() {
             {/* Text Content */}
             <div className="md:w-1/2 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Technology Solutions</h2>
-              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] px-4 py-6 sm:p-8 rounded-[12px]">
                 Leveraging state-of-the-art technology in AI, machine learning, and big data analysis, we deliver innovative solutions enriched with Python, GPT, and Django capabilities. Our commitment to cutting-edge, no-code/low-code technologies and continuous improvement positions us at the forefront of digital transformation.
               </p>
               {/* <Link href="/technology" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors"> */}
@@ -97,12 +97,12 @@ export default function Home() {
         </div>
       </section>
       <section className="methodologies-section py-16 my-16">
-        <div className="container mx-auto px-6 xl:px-72">
+        <div className="container mx-auto px-4 md:px-6 xl:px-72">
           <div className="flex flex-col md:flex-row items-center justify-between">
             {/* Text Content */}
             <div className="md:w-3/5 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Methodologies</h2>
-              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] p-8 rounded-[12px]">
+              <p style={{ lineHeight: '1.85rem' }} className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] px-4 py-6 sm:p-8 rounded-[12px]">
                 Through Agile and Scrum methodologies, our consultancy delivers customized solutions and development strategies. Our approach integrates innovation with efficiency, catalyzing digital transformation and fostering business growth.
               </p>
               {/* <Link href="/methodologies" className="inline-block bg-primary-700 text-white px-6 py-3 rounded hover:bg-primary-800 transition-colors">
@@ -132,7 +132,7 @@ export default function Home() {
   }
 `}</style>
 
-        <div className="flex justify-center items-center flex-wrap gap-16 mx-16">
+        <div className="flex justify-center items-center flex-wrap gap-16 mx-0 md:mx-8 lg:mx-16">
           <a
             href="https://openai.com"
             target="_blank"
@@ -172,10 +172,10 @@ export default function Home() {
 
       </section>
       <section className="contact-section py-16 my-16">
-        <div className="container mx-auto px-6 xl:px-72">
+        <div className="container mx-auto px-4 md:px-6 xl:px-72">
           <div className="flex flex-col md:flex-row items-center justify-between">
 
-            <div className="md:w-2/5 relative right-24 bottom-16">
+            <div className="md:w-2/5 relative right-0 md:right-24 bottom-0 md:bottom-16">
               <dotlottie-player 
                 src="https://lottie.host/b4b844f5-bdca-480d-b19d-ff04a27d4213/CFrtNTFf04.json" 
                 background="transparent" 
