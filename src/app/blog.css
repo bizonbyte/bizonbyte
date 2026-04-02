@@ -3,12 +3,21 @@
     max-width: 54rem;
     margin: 0 auto;
     padding: 2.5rem 1.25rem 3.5rem;
-    color: #f3f7f6;
+    color: #f7fcfb;
     font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.125rem;
     line-height: 1.9;
     letter-spacing: 0.01em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.52);
+    background: linear-gradient(
+        180deg,
+        rgba(2, 12, 10, 0.72) 0%,
+        rgba(2, 12, 10, 0.6) 55%,
+        rgba(2, 12, 10, 0.68) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.9rem;
+    backdrop-filter: blur(1.5px);
 }
 
 #blog-post > h1 {
@@ -131,7 +140,8 @@
 }
 
 #blog-post p {
-    color: #edf4f2;
+    color: #f3faf8;
+    margin: 0;
 }
 
 #blog-post h2,
@@ -140,16 +150,39 @@
     color: #ffffff;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    margin-top: 2.3rem;
-    margin-bottom: 0.8rem;
+    margin-top: 2.2rem;
+    margin-bottom: 0.85rem;
 }
 
 #blog-post h2 {
     font-size: clamp(1.7rem, 3vw, 2.2rem);
+    margin-top: 3.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 0.9rem;
+    letter-spacing: -0.015em;
+    background: linear-gradient(90deg, #ffffff 0%, #e8fff8 55%, #b8f3e4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-wrap: balance;
+}
+
+#blog-post h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.18em;
+    bottom: 0.12em;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #FA5700 0%, #18a680 100%);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 #blog-post h3 {
     font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    margin-top: 2.3rem;
 }
 
 #blog-post h4 {
@@ -173,15 +206,15 @@
 }
 
 #blog-post li + li {
-    margin-top: 0.45rem;
+    margin-top: 0.5rem;
 }
 
 #blog-post blockquote {
     border-left: 4px solid #18a680;
     margin: 1.5rem 0;
     padding: 0.25rem 1rem;
-    color: #d6ebe6;
-    background: rgba(0, 0, 0, 0.2);
+    color: #e3f2ee;
+    background: rgba(0, 0, 0, 0.34);
     border-radius: 0 0.4rem 0.4rem 0;
 }
 
@@ -244,7 +277,35 @@
 #blog-post hr {
     margin: 2rem 0;
     border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+/* Cohesive vertical rhythm for article body */
+#blog-post > div:last-child > p + p,
+#blog-post > div:last-child > p + ul,
+#blog-post > div:last-child > p + ol,
+#blog-post > div:last-child > ul + p,
+#blog-post > div:last-child > ol + p,
+#blog-post > div:last-child > blockquote + p,
+#blog-post > div:last-child > p + blockquote {
+    margin-top: 1.15rem;
+}
+
+#blog-post > div:last-child > h2 + p,
+#blog-post > div:last-child > h3 + p,
+#blog-post > div:last-child > h4 + p {
+    margin-top: 0.55rem;
+}
+
+#blog-post > div:last-child > p + h2 {
+    margin-top: 3rem;
+}
+
+#blog-post > div:last-child > p + h3,
+#blog-post > div:last-child > p + h4,
+#blog-post > div:last-child > ul + h2,
+#blog-post > div:last-child > ol + h2 {
+    margin-top: 2.35rem;
 }
 
 #blog-index {
@@ -291,10 +352,21 @@
         font-size: 1.02rem;
         line-height: 1.8;
         padding: 2rem 1rem 2.5rem;
+        background: rgba(2, 12, 10, 0.74);
+        border-radius: 0.75rem;
     }
 
     #blog-post > h1 {
         font-size: clamp(1.7rem, 8vw, 2.2rem);
+    }
+
+    #blog-post h2 {
+        margin-top: 2.5rem;
+        padding-left: 0.75rem;
+    }
+
+    #blog-post > div:last-child > p + h2 {
+        margin-top: 2.45rem;
     }
 
     #blog-post .blog-post-date {
