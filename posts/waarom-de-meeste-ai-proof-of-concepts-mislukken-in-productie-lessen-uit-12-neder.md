@@ -72,11 +72,11 @@ Als uw organisatie AI-initiatieven plant, overweeg dan om naast technische haalb
 
 Voor projecten die zich al in de PoC-fase bevinden, kan een eerlijke evaluatie van de productievereisten voordat er verdere middelen worden ingezet, aanzienlijke verspilling van investeringen voorkomen.
 
-Bij BizonByte hebben we Nederlandse organisaties herhaaldelijk door deze transitie geloodst. Als u niet zeker weet of uw AI-initiatief klaar is voor productie - of als u de veelvoorkomende valkuilen wilt vermijden - kan een gerichte technische beoordeling duidelijkheid verschaffen voordat de kosten escaleren.
+Bij Bizonbyte hebben we Nederlandse organisaties herhaaldelijk door deze transitie geloodst. Als u niet zeker weet of uw AI-initiatief klaar is voor productie - of als u de veelvoorkomende valkuilen wilt vermijden - kan een gerichte technische beoordeling duidelijkheid verschaffen voordat de kosten escaleren.
 
 ---
 
-<video autoplay muted loop playsinline preload="auto" style="max-width: 100%; height: auto;">
+<video autoplay muted loop playsinline webkit-playsinline preload="auto" style="max-width: 100%; height: auto;">
   <source src="/blog/meme_e06abc99_80826f.mp4" type="video/mp4" />
   Je browser ondersteunt deze video niet.
 </video>

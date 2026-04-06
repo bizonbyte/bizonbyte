@@ -25,6 +25,8 @@ const sanitizeSchema = {
       'muted',
       'loop',
       'playsinline',
+      'webkit-playsinline',
+      'preload',
       'style',
     ],
     source: [
@@ -134,7 +136,7 @@ export default function Post({ title, date, contentHtml, readingTime, author }) 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'  ,
   });
 
   return (

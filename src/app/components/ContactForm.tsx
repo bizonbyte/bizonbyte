@@ -65,7 +65,7 @@ export default function ContactForm() {
                 <textarea id="message" name="message" required onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows={4}></textarea>
             </div>
 
-            <button type="submit" className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 mt-2">
+            <button type="submit" className="bg-[#00241C] text-white p-2 rounded-md border border-green-900 hover:bg-[#003529] hover:border-green-700 mt-2 transition-colors duration-200">
                 {isSubmitting ? <Spinner /> : 'Send'}
             </button>
 
