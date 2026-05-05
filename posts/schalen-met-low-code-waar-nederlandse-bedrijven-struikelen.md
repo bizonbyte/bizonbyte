@@ -16,7 +16,7 @@ De meeste organisaties gebruiken low-code om de oplevering te versnellen. De pit
 
 In het derde jaar verandert het beeld. Een middelgroot logistiek bedrijf in Rotterdam heeft misschien veertig Mendix-applicaties gebouwd door twaalf verschillende teams. Sommige volgen naamconventies. Sommige hebben documentatie. De meeste hebben geen van beide. De oorspronkelijke bouwers zijn verder gegaan en niemand kan met zekerheid zeggen welke apps klantgegevens aanraken, welke verbinding maken met het ERP, of welke kapot zouden gaan als de authenticatieprovider zou veranderen.
 
-Dit is geen platformprobleem. [[[§§3§]], [[[§§4§]], en [[[§§5§]]] bieden allemaal tooling voor governance. Het probleem is dat organisaties governance behandelen als optionele overhead in plaats van schaalbare infrastructuur. Ze budgetteren voor ontwikkelingssnelheid, maar niet voor het register, het beoordelingsproces of de architectuurstandaarden die een groeiende portfolio coherent houden.
+Dit is geen platformprobleem. [Mendix](https://www.mendix.com/), [OutSystems](https://www.outsystems.com/), en [Microsoft Power Platform](https://powerplatform.microsoft.com/) bieden allemaal tooling voor governance. Het probleem is dat organisaties governance behandelen als optionele overhead in plaats van schaalbare infrastructuur. Ze budgetteren voor ontwikkelingssnelheid, maar niet voor het register, het beoordelingsproces of de architectuurstandaarden die een groeiende portfolio coherent houden.
 
 De struikelpartij vindt plaats wanneer iemand uiteindelijk een audit moet uitvoeren, moet refactoren of moet integreren in dat portfolio. De kosten om te begrijpen wat er bestaat overstijgen de kosten om het opnieuw op te bouwen. Op dat moment verdampt de oorspronkelijke tijdsbesparing.
 
