@@ -12,8 +12,8 @@ interface SectionProps {
 }
 
 const spacingClass: Record<Spacing, string> = {
-  tight: 'py-12 md:py-16',
-  default: 'py-20 md:py-28',
+  tight: 'pb-10 pt-6 md:pb-14 md:pt-8',
+  default: 'pb-16 pt-8 md:pb-20 md:pt-10',
 };
 
 /**

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Spinner from './Spinner';
+import { trackEvent } from './Analytics';
 
 const inputClassName =
   'mt-2 w-full rounded-lg border border-hairline bg-surface-900/70 px-4 py-3 text-sm text-text-primary placeholder:text-text-faint/70 outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20';
@@ -12,6 +13,7 @@ export default function ContactForm() {
     email: '',
     subject: '',
     message: '',
+    website: '',
   });
   const [statusMessage, setStatusMessage] = useState('');
   const [isError, setIsError] = useState(false);
@@ -30,16 +32,19 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       if (response.ok) {
-        setStatusMessage('Message sent successfully!');
+        trackEvent('contact_form_submit_success');
+        setStatusMessage('Thanks — we received your message and will reply within one business day.');
         setIsError(false);
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', website: '' });
       } else {
+        trackEvent('contact_form_submit_error', { status: response.status });
         setStatusMessage(data.message || 'Failed to send message.');
         setIsError(true);
       }
     } catch {
+      trackEvent('contact_form_submit_error', { status: 'network_error' });
       setStatusMessage('An error occurred.');
       setIsError(true);
     } finally {
@@ -50,6 +55,7 @@ export default function ContactForm() {
   return (
     <form
       id="contact-form"
+      data-analytics-view="contact_form_view"
       onSubmit={handleSubmit}
       className="w-full rounded-xl border border-hairline bg-surface-900/70 p-6 shadow-[0_20px_60px_rgb(0_0_0_/_0.2)] md:p-8"
     >
@@ -92,6 +98,19 @@ export default function ContactForm() {
           className={inputClassName}
         />
       </label>
+
+      <div className="absolute h-px w-px overflow-hidden whitespace-nowrap" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={formData.website}
+          onChange={(event) => setFormData({ ...formData, website: event.target.value })}
+        />
+      </div>
 
       <label className="mt-5 block text-sm font-medium text-text-primary">
         A little more context

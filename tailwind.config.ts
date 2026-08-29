@@ -62,11 +62,11 @@ const config: Config = {
       },
       fontSize: {
         // Modular scale. Tracking tightens as size grows.
-        'display-xl': ['clamp(2.35rem, 5.2vw, 4rem)', { lineHeight: '1.04', letterSpacing: '-0.035em' }],
-        'display-lg': ['clamp(2rem, 4vw, 2.85rem)', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
-        'display-md': ['clamp(1.6rem, 2.8vw, 2.2rem)', { lineHeight: '1.16', letterSpacing: '-0.022em' }],
-        'display-sm': ['clamp(1.25rem, 2vw, 1.6rem)', { lineHeight: '1.22', letterSpacing: '-0.015em' }],
-        lede: ['clamp(1rem, 1.45vw, 1.18rem)', { lineHeight: '1.78', letterSpacing: '-0.005em' }],
+        'display-xl': ['clamp(2.2rem, 4.8vw, 3.75rem)', { lineHeight: '1.04', letterSpacing: '-0.035em' }],
+        'display-lg': ['clamp(1.9rem, 3.7vw, 2.65rem)', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
+        'display-md': ['clamp(1.5rem, 2.5vw, 2.1rem)', { lineHeight: '1.16', letterSpacing: '-0.022em' }],
+        'display-sm': ['clamp(1.2rem, 1.8vw, 1.5rem)', { lineHeight: '1.22', letterSpacing: '-0.015em' }],
+        lede: ['clamp(0.98rem, 1.35vw, 1.1rem)', { lineHeight: '1.78', letterSpacing: '-0.005em' }],
         eyebrow: ['0.75rem', { lineHeight: '1.2', letterSpacing: '0.16em' }],
       },
       maxWidth: {

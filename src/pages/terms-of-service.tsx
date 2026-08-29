@@ -5,7 +5,7 @@ const TermsOfService = () => {
     <div className="container mx-auto px-4 md:px-6 py-16">
       <h1 className="text-2xl font-bold mb-4">Terms of Service</h1>
       <p className="mb-4">
-        Welcome to Bizonbyte! These Terms of Service outline the rules and regulations for using our website, products and services.
+        Welcome to bizonbyte.nl! These Terms of Service outline the rules and regulations for using our website, products and services.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">1. Acceptance of Terms</h2>
@@ -30,7 +30,7 @@ const TermsOfService = () => {
 
       <h2 className="text-xl font-semibold mb-2">5. Limitation of Liability</h2>
       <p className="mb-4">
-        In no event shall Bizonbyte be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the services.
+        In no event shall bizonbyte.nl be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the services.
       </p>
 
       <h2 className="text-xl font-semibold mb-2">6. Governing Law</h2>
@@ -40,7 +40,7 @@ const TermsOfService = () => {
 
       <h2 className="text-xl font-semibold mb-2">7. Contact Information</h2>
       <p className="mb-4">
-        If you have any questions about these Terms of Service, please contact us at support@bizonbyte.com.
+        If you have any questions about these Terms of Service, please contact us at admin@bizonbyte.nl.
       </p>
     </div>
   );

@@ -50,9 +50,9 @@ const BlogIndex = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>Blog — Bizonbyte | AI & Technology Insights</title>
-        <meta name="description" content="In-depth articles on AI, machine learning, and digital transformation from the Bizonbyte team in the Netherlands." />
-        <meta property="og:title" content="Blog — Bizonbyte" />
+        <title>Blog — bizonbyte.nl | AI & Technology Insights</title>
+        <meta name="description" content="In-depth articles on AI, machine learning, and digital transformation from the bizonbyte.nl team in the Netherlands." />
+        <meta property="og:title" content="Blog — bizonbyte.nl" />
         <meta property="og:description" content="In-depth articles on AI, machine learning, and digital transformation." />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />

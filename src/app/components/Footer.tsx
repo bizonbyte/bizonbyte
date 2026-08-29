@@ -9,16 +9,28 @@ const Footer = () => {
     <footer className="w-full self-stretch border-t border-primary-900/45 bg-surface-950/65 text-gray-300">
       <div className="mx-auto flex w-full max-w-container flex-col items-center gap-3 px-5 py-10 sm:px-8 lg:px-12">
         <div className="text-sm tracking-wide text-gray-300 text-center">
-          &copy; {currentYear} Bizonbyte | All Rights Reserved
+          &copy; {currentYear} bizonbyte.nl | All Rights Reserved
         </div>
         <address className="not-italic text-sm text-gray-400 text-center">
           Amsterdam, The Netherlands
         </address>
+        <a
+          href="mailto:admin@bizonbyte.nl"
+          className="text-sm text-gray-300 transition-colors duration-200 hover:text-primary-300"
+        >
+          admin@bizonbyte.nl
+        </a>
         <Link
           href="/terms-of-service"
           className="text-sm text-gray-300 underline decoration-white/25 underline-offset-4 transition-colors duration-200 hover:text-primary-300 hover:decoration-primary-300"
         >
           Terms of Service
+        </Link>
+        <Link
+          href="/privacy-policy"
+          className="text-sm text-gray-300 underline decoration-white/25 underline-offset-4 transition-colors duration-200 hover:text-primary-300 hover:decoration-primary-300"
+        >
+          Privacy & cookies
         </Link>
         <div className="flex items-center gap-3 pt-1">
           <a

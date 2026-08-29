@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Production setup
+
+The contact form sends two transactional emails through Loops: one to bizonbyte.nl and one confirmation to the person who submitted the form. Create and publish both Loops templates with these variables:
+
+- Owner notification: `name`, `email`, `subject`, `message`, `requestId`
+- Visitor confirmation: `name`, `requestId`
+
+Copy `.env.example` to `.env.local` and set the Loops API key, both published transactional template IDs, and `CONTACT_TO_EMAIL`. Keep the API key server-side and rotate any key that has been shared in chat before using it in production. Slack is not used by the contact flow.
+
+Google Analytics uses measurement ID `G-4R7V57RQV0` and is denied by default until a visitor accepts the consent notice. Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` if the property changes.
+
+Before sending real mail, add the Loops DNS records shown in the Loops dashboard for `envelope.bizonbyte.nl`: the MX, SPF, DMARC, three DKIM CNAME records, and `_loops-verification` TXT record. Verify the domain in Loops, then add the same environment variables to the production host.
+
+The focused outbound page is available at `/logistics-automation` for Dutch logistics outreach. UTM parameters can be appended to that URL and are available to GA4 after consent.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

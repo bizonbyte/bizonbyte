@@ -35,10 +35,10 @@ export default function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-container items-center justify-between px-5 py-4 sm:px-8 lg:px-12 lg:py-5">
-        <Link href="/" aria-label="Bizonbyte — home" className="group flex h-16 w-[4.75rem] shrink-0 items-center">
+        <Link href="/" aria-label="bizonbyte.nl — home" className="group flex h-16 w-[4.75rem] shrink-0 items-center">
           <Image
             src="/logo.svg"
-            alt="Bizonbyte"
+            alt="bizonbyte.nl"
             width={76}
             height={65}
             priority
@@ -60,6 +60,8 @@ export default function SiteHeader() {
             href="https://calendly.com/bizonbyte/30min"
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="calendly_click"
+            data-analytics-location="header"
             className="button-primary min-h-10 rounded-lg px-4 py-2 text-sm"
           >
             <FaCalendarAlt aria-hidden="true" className="mr-2 h-3.5 w-3.5" />
@@ -96,6 +98,8 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
+              data-analytics-event="calendly_click"
+              data-analytics-location="mobile-header"
               className="button-primary mt-2 w-full rounded-lg px-4 py-3 text-base"
             >
               <FaCalendarAlt aria-hidden="true" className="mr-2 h-4 w-4" />

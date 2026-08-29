@@ -59,7 +59,7 @@ const contactPoints = [
 export default function Home() {
   return (
     <>
-      <Section spacing="default" className="hero-section relative overflow-hidden pt-16 md:pt-24 lg:pt-32">
+      <Section spacing="default" className="hero-section relative overflow-hidden pt-8 md:pt-10">
         <div className="hero-shell relative mx-auto max-w-5xl text-center">
           <p className="text-eyebrow font-semibold uppercase text-primary-300">
             Amsterdam · Custom software
@@ -68,13 +68,15 @@ export default function Home() {
             Software that fits <span className="block text-primary-300">the way you work.</span>
           </h1>
           <p className="prose-body mx-auto mt-8 max-w-[62ch] text-lede text-gray-300">
-            Bizonbyte is an IT consultancy based in Amsterdam. We design, build, and deploy tailor-made software — from web applications and integrations to data pipelines and AI-powered tools — in 6–12 weeks. No 6-month roadmaps. No offshore handoffs. You talk directly to the engineer building your solution.
+            bizonbyte.nl is an IT consultancy based in Amsterdam. We design, build, and deploy tailor-made software — from web applications and integrations to data pipelines and AI-powered tools — in 6–12 weeks. No 6-month roadmaps. No offshore handoffs. You talk directly to the engineer building your solution.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="https://calendly.com/bizonbyte/30min"
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-event="calendly_click"
+              data-analytics-location="hero"
               className="button-primary text-base focus-visible:outline-primary-300"
             >
               Book a free diagnostic call <span aria-hidden="true" className="ml-2">→</span>
@@ -234,7 +236,7 @@ export default function Home() {
               <div className="founder-avatar h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-primary-700/70">
               <Image
                 src="/founder.jpg"
-                alt="Dario Mory, founder of Bizonbyte"
+                alt="Dario Mory, founder of bizonbyte.nl"
                 width={96}
                 height={96}
                 className="h-full w-full object-cover object-top"
@@ -242,9 +244,9 @@ export default function Home() {
             </div>
             <div className="text-center md:text-left">
               <p className="font-display text-xl font-semibold text-white">Dario Mory</p>
-              <p className="mt-1 text-sm text-primary-300">Founder · Bizonbyte · Amsterdam</p>
+              <p className="mt-1 text-sm text-primary-300">Founder · bizonbyte.nl · Amsterdam</p>
               <p className="prose-body-muted mt-5 text-gray-300">
-                Previously led software development at KLM. Bizonbyte was founded on a simple idea: mid-market companies deserve software that actually fits their operations, built by people who understand both the technology and the business.
+                Previously led software development at KLM. bizonbyte.nl was founded on a simple idea: mid-market companies deserve software that actually fits their operations, built by people who understand both the technology and the business.
               </p>
               <div className="mt-5">
                 <a href="https://www.mory.dev/" target="_blank" rel="noopener noreferrer" className="text-sm text-text-muted transition-colors hover:text-primary-200">
@@ -264,6 +266,12 @@ export default function Home() {
             <p className="prose-body-muted mt-6 text-lg text-gray-300">
               We&apos;ll tell you in 30 minutes what the right technical solution is — and what it would cost. No sales deck. No commitment.
             </p>
+            <a
+              href="mailto:admin@bizonbyte.nl"
+              className="mt-5 inline-flex text-sm font-medium text-primary-300 transition-colors hover:text-primary-200"
+            >
+              admin@bizonbyte.nl
+            </a>
             <ul className="mt-8 space-y-4 text-sm text-text-muted">
               {contactPoints.map((point) => (
                 <li key={point} className="flex gap-3">
