@@ -2,8 +2,10 @@ import React, { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import Footer from './components/Footer';
 import Analytics from './components/Analytics';
+import LocaleAttribute from './components/LocaleAttribute';
 import SiteHeader from './components/SiteHeader';
 import { fontVariables, inter } from './fonts';
+import { getLanguageAlternates } from '@/lib/locale';
 import '@/app/globals.css';
 
 const description =
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   },
   description,
   icons: { icon: '/favicon.ico' },
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', languages: getLanguageAlternates('/') },
   openGraph: {
     type: 'website',
     locale: 'en_NL',
@@ -42,6 +44,7 @@ export default function RootLayout({ children }: Props) {
     <html lang="en" className={fontVariables}>
       <body className={`${inter.className} font-sans`}>
         <Analytics />
+        <LocaleAttribute />
         <SiteHeader />
         <main className="min-h-screen">{children}</main>
         <Footer />

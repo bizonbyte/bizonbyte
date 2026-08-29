@@ -1,8 +1,20 @@
+import Head from 'next/head';
 import Link from 'next/link';
+
+const siteUrl = 'https://bizonbyte.nl';
 
 export default function PrivacyPolicy() {
   return (
-    <article className="mx-auto w-full max-w-3xl px-5 py-16 text-text-secondary sm:px-8 md:py-24">
+    <>
+      <Head>
+        <title>Privacy & cookies — bizonbyte.nl</title>
+        <meta name="description" content="Information about contact data, cookies, and optional analytics on bizonbyte.nl." />
+        <link rel="canonical" href={`${siteUrl}/privacy-policy`} />
+        <link rel="alternate" hrefLang="en-NL" href={`${siteUrl}/privacy-policy`} />
+        <link rel="alternate" hrefLang="nl-NL" href={`${siteUrl}/nl/privacy-policy`} />
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}/privacy-policy`} />
+      </Head>
+      <article className="mx-auto w-full max-w-3xl px-5 py-16 text-text-secondary sm:px-8 md:py-24">
       <p className="text-eyebrow font-semibold uppercase text-primary-300">bizonbyte.nl</p>
       <h1 className="mt-4 font-display text-display-lg font-semibold text-white">Privacy & cookies</h1>
       <p className="prose-body mt-6 text-lg">
@@ -45,6 +57,7 @@ export default function PrivacyPolicy() {
       >
         Back to bizonbyte.nl
       </Link>
-    </article>
+      </article>
+    </>
   );
 }

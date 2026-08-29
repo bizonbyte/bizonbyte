@@ -1,8 +1,20 @@
 import React from 'react';
+import Head from 'next/head';
+
+const siteUrl = 'https://bizonbyte.nl';
 
 const TermsOfService = () => {
   return (
-    <div className="container mx-auto px-4 md:px-6 py-16">
+    <>
+      <Head>
+        <title>Terms of Service — bizonbyte.nl</title>
+        <meta name="description" content="Terms for using bizonbyte.nl and bizonbyte services." />
+        <link rel="canonical" href={`${siteUrl}/terms-of-service`} />
+        <link rel="alternate" hrefLang="en-NL" href={`${siteUrl}/terms-of-service`} />
+        <link rel="alternate" hrefLang="nl-NL" href={`${siteUrl}/nl/algemene-voorwaarden`} />
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}/terms-of-service`} />
+      </Head>
+      <div className="container mx-auto px-4 md:px-6 py-16">
       <h1 className="text-2xl font-bold mb-4">Terms of Service</h1>
       <p className="mb-4">
         Welcome to bizonbyte.nl! These Terms of Service outline the rules and regulations for using our website, products and services.
@@ -42,7 +54,8 @@ const TermsOfService = () => {
       <p className="mb-4">
         If you have any questions about these Terms of Service, please contact us at admin@bizonbyte.nl.
       </p>
-    </div>
+      </div>
+    </>
   );
 };
 

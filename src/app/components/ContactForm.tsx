@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import Spinner from './Spinner';
 import { trackEvent } from './Analytics';
+import type { Locale } from '@/lib/locale';
 
 const inputClassName =
   'mt-2 w-full rounded-lg border border-hairline bg-surface-900/70 px-4 py-3 text-sm text-text-primary placeholder:text-text-faint/70 outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20';
 
-export default function ContactForm() {
+export default function ContactForm({ locale = 'en' }: { locale?: Locale }) {
+  const dutch = locale === 'nl';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,17 +37,19 @@ export default function ContactForm() {
       const data = await response.json().catch(() => ({}));
       if (response.ok) {
         trackEvent('contact_form_submit_success');
-        setStatusMessage('Thanks — we received your message and will reply within one business day.');
+        setStatusMessage(dutch
+          ? 'Bedankt — we hebben je bericht ontvangen en reageren binnen één werkdag.'
+          : 'Thanks — we received your message and will reply within one business day.');
         setIsError(false);
         setFormData({ name: '', email: '', subject: '', message: '', website: '' });
       } else {
         trackEvent('contact_form_submit_error', { status: response.status });
-        setStatusMessage(data.message || 'Failed to send message.');
+        setStatusMessage(data.message || (dutch ? 'Het bericht kon niet worden verzonden.' : 'Failed to send message.'));
         setIsError(true);
       }
     } catch {
       trackEvent('contact_form_submit_error', { status: 'network_error' });
-      setStatusMessage('An error occurred.');
+      setStatusMessage(dutch ? 'Er is iets misgegaan.' : 'An error occurred.');
       setIsError(true);
     } finally {
       setIsSubmitting(false);
@@ -61,7 +65,7 @@ export default function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="text-sm font-medium text-text-primary">
-          Name
+          {dutch ? 'Naam' : 'Name'}
           <input
             type="text"
             name="name"
@@ -74,7 +78,7 @@ export default function ContactForm() {
         </label>
 
         <label className="text-sm font-medium text-text-primary">
-          Email
+          {dutch ? 'E-mail' : 'Email'}
           <input
             type="email"
             name="email"
@@ -88,7 +92,7 @@ export default function ContactForm() {
       </div>
 
       <label className="mt-5 block text-sm font-medium text-text-primary">
-        What do you need help with?
+        {dutch ? 'Waar heb je hulp bij nodig?' : 'What do you need help with?'}
         <input
           type="text"
           name="subject"
@@ -113,7 +117,7 @@ export default function ContactForm() {
       </div>
 
       <label className="mt-5 block text-sm font-medium text-text-primary">
-        A little more context
+        {dutch ? 'Iets meer context' : 'A little more context'}
         <textarea
           name="message"
           required
@@ -129,7 +133,7 @@ export default function ContactForm() {
         disabled={isSubmitting}
         className="button-primary mt-6 w-full px-5 py-3 text-sm disabled:cursor-wait disabled:opacity-70 focus-visible:outline-primary-300"
       >
-        {isSubmitting ? <Spinner /> : 'Send your message'}
+        {isSubmitting ? <Spinner /> : dutch ? 'Verstuur je bericht' : 'Send your message'}
       </button>
 
       {statusMessage && (

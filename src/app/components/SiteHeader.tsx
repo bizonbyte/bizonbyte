@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useRouter as useCompatRouter } from 'next/compat/router';
 import { FaBars, FaCalendarAlt, FaTimes } from 'react-icons/fa';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-];
+import LanguageToggle from './LanguageToggle';
+import { isDutchPath } from '@/lib/locale';
 
 /**
  * The single site header. Used by both the App Router layout and the Pages
@@ -18,6 +17,21 @@ const navLinks = [
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const appPathname = usePathname();
+  const compatRouter = useCompatRouter();
+  const pathname = appPathname || compatRouter?.asPath?.split(/[?#]/)[0] || '/';
+  const dutch = isDutchPath(pathname);
+  const navLinks = dutch
+    ? [
+        { href: '/nl', label: 'Home' },
+        { href: '/nl/prijzen', label: 'Prijzen' },
+        { href: '/nl/blog', label: 'Blog' },
+      ]
+    : [
+        { href: '/', label: 'Home' },
+        { href: '/pricing', label: 'Pricing' },
+        { href: '/blog', label: 'Blog' },
+      ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -35,7 +49,7 @@ export default function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-container items-center justify-between px-5 py-4 sm:px-8 lg:px-12 lg:py-5">
-        <Link href="/" aria-label="bizonbyte.nl — home" className="group flex h-16 w-[4.75rem] shrink-0 items-center">
+        <Link href={dutch ? '/nl' : '/'} aria-label="bizonbyte.nl — home" className="group flex h-16 w-[4.75rem] shrink-0 items-center">
           <Image
             src="/logo.svg"
             alt="bizonbyte.nl"
@@ -56,6 +70,9 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <span data-analytics-event="language_toggle" data-analytics-location="header">
+            <LanguageToggle />
+          </span>
           <Link
             href="https://calendly.com/bizonbyte/30min"
             target="_blank"
@@ -65,7 +82,7 @@ export default function SiteHeader() {
             className="button-primary min-h-10 rounded-lg px-4 py-2 text-sm"
           >
             <FaCalendarAlt aria-hidden="true" className="mr-2 h-3.5 w-3.5" />
-            Book a call
+            {dutch ? 'Plan een gesprek' : 'Book a call'}
           </Link>
         </nav>
 
@@ -93,6 +110,13 @@ export default function SiteHeader() {
                 {link.label}
               </Link>
             ))}
+            <span
+              className="self-start"
+              data-analytics-event="language_toggle"
+              data-analytics-location="mobile-header"
+            >
+              <LanguageToggle />
+            </span>
             <Link
               href="https://calendly.com/bizonbyte/30min"
               target="_blank"
@@ -103,7 +127,7 @@ export default function SiteHeader() {
               className="button-primary mt-2 w-full rounded-lg px-4 py-3 text-base"
             >
               <FaCalendarAlt aria-hidden="true" className="mr-2 h-4 w-4" />
-              Book a call
+              {dutch ? 'Plan een gesprek' : 'Book a call'}
             </Link>
           </nav>
         </div>

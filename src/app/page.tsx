@@ -4,6 +4,7 @@ import ContactForm from './components/ContactForm';
 import ClientLogos from './components/ClientLogos';
 import Section from './components/Section';
 import Surface from './components/Surface';
+import StructuredData from './components/StructuredData';
 
 const buildItems = [
   {
@@ -59,6 +60,18 @@ const contactPoints = [
 export default function Home() {
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ProfessionalService',
+          name: 'bizonbyte.nl',
+          url: 'https://bizonbyte.nl/',
+          description: 'Custom software, integrations, and operational automation for Dutch companies.',
+          areaServed: 'NL',
+          address: { '@type': 'PostalAddress', addressLocality: 'Amsterdam', addressCountry: 'NL' },
+          email: 'admin@bizonbyte.nl',
+        }}
+      />
       <Section spacing="default" className="hero-section relative overflow-hidden pt-8 md:pt-10">
         <div className="hero-shell relative mx-auto max-w-5xl text-center">
           <p className="text-eyebrow font-semibold uppercase text-primary-300">
@@ -90,6 +103,10 @@ export default function Home() {
           </div>
           <p className="mt-7 text-xs font-medium uppercase tracking-[0.12em] text-text-muted">
             Amsterdam <span aria-hidden="true" className="px-2 text-accent-400">·</span> 6–12 weeks <span aria-hidden="true" className="px-2 text-accent-400">·</span> Direct engineer contact
+          </p>
+          <p className="mt-4 text-sm text-text-muted">
+            Builds start at <span className="font-semibold text-primary-200">€5,000</span>; production workflow platforms are typically <span className="font-semibold text-primary-200">€30,000–€60,000</span>.{' '}
+            <Link href="/pricing" className="font-medium text-primary-300 transition-colors hover:text-primary-200">See transparent pricing →</Link>
           </p>
         </div>
       </Section>
@@ -130,6 +147,14 @@ export default function Home() {
           <p className="mt-7 text-sm italic text-text-muted">
             Every project ends with working software in your environment — not a slide deck.
           </p>
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
+            <Link href="/pricing" className="text-primary-300 transition-colors hover:text-primary-200">
+              See how we price projects <span aria-hidden="true">→</span>
+            </Link>
+            <Link href="/custom-vs-standard-software" className="text-primary-300 transition-colors hover:text-primary-200">
+              Custom or standard software? <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </Section>
 
@@ -219,6 +244,12 @@ export default function Home() {
                 className="text-sm font-medium text-primary-300 transition-colors hover:text-primary-200"
               >
                 Read our article on why most AI proof-of-concepts fail in production <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/case-studies/invoice-automation"
+                className="mt-4 block text-sm font-medium text-primary-300 transition-colors hover:text-primary-200"
+              >
+                Read the anonymized invoice automation case study <span aria-hidden="true">→</span>
               </Link>
             </div>
           </Surface>

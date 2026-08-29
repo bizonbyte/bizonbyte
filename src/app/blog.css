@@ -358,13 +358,34 @@
 .blog-card {
     display: block;
     position: relative;
-    padding: 1.4rem 1.5rem;
+    padding: 0;
     border-radius: 0.75rem;
     border: 1px solid var(--hairline);
     background: linear-gradient(135deg, rgb(var(--surface-800-rgb) / 0.7), rgb(var(--surface-950-rgb) / 0.55));
     backdrop-filter: blur(2px);
+    overflow: hidden;
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.blog-card-media {
+    position: relative;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: rgb(var(--surface-900-rgb));
+}
+
+.blog-card-media img {
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.blog-card:hover .blog-card-media img {
+    transform: scale(1.035);
+}
+
+.blog-card-content {
+    padding: 1.4rem 1.5rem;
 }
 
 .blog-card:hover {

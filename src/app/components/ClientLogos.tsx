@@ -20,11 +20,11 @@ const clients = [
   ) },
 ];
 
-export default function ClientLogos() {
+export default function ClientLogos({ locale = 'en' }: { locale?: 'en' | 'nl' }) {
   return (
     <div>
       <p className="mb-8 text-center text-eyebrow font-semibold uppercase text-gray-500">
-        Selected clients
+        {locale === 'nl' ? 'Geselecteerde klanten' : 'Selected clients'}
       </p>
       <ul className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 md:gap-x-20">
         {clients.map((client) => (

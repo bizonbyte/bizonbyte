@@ -281,6 +281,124 @@ body > * {
   max-width: 68ch;
 }
 
+/* A branded, lightweight 404 mascot keeps a missing route inside the same
+   visual world as the rest of the site. */
+.not-found-shell {
+  position: relative;
+  display: flex;
+  min-height: min(42rem, calc(100vh - 10rem));
+  align-items: center;
+  overflow: hidden;
+  padding: 5rem 1.25rem 6rem;
+}
+
+.not-found-glow {
+  position: absolute;
+  inset: 10% 10% auto;
+  height: 30rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(24 166 128 / 0.16), rgb(24 166 128 / 0.03) 48%, transparent 72%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.not-found-inner {
+  position: relative;
+  width: min(100%, 68rem);
+  margin: 0 auto;
+}
+
+.not-found-mascot {
+  position: relative;
+  display: grid;
+  width: 10rem;
+  height: 7rem;
+  margin-top: 2.25rem;
+  place-items: center;
+  border: 1px solid rgb(24 166 128 / 0.6);
+  border-radius: 46% 54% 48% 52%;
+  background: linear-gradient(135deg, rgb(24 166 128 / 0.2), rgb(2 12 10 / 0.74));
+  box-shadow: 0 0 0 0.5rem rgb(24 166 128 / 0.06), 1rem 1.25rem 3rem rgb(0 0 0 / 0.25);
+  animation: not-found-run 3.8s ease-in-out infinite;
+}
+
+.not-found-mascot::before,
+.not-found-mascot::after {
+  position: absolute;
+  top: -0.8rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid rgb(250 87 0 / 0.8);
+  border-bottom: 0;
+  content: '';
+  transform: rotate(35deg);
+}
+
+.not-found-mascot::before {
+  left: 1.25rem;
+  border-right: 0;
+  border-radius: 70% 0 0 0;
+}
+
+.not-found-mascot::after {
+  right: 1.25rem;
+  border-left: 0;
+  border-radius: 0 70% 0 0;
+  transform: rotate(-35deg);
+}
+
+.not-found-face {
+  position: relative;
+  z-index: 1;
+  color: var(--primary-200);
+  font-family: var(--font-display), Inter, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
+.not-found-streak {
+  position: absolute;
+  left: -3.25rem;
+  height: 0.25rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--accent-500));
+  content: '';
+}
+
+.not-found-streak-one {
+  top: 2.15rem;
+  width: 3.5rem;
+}
+
+.not-found-streak-two {
+  top: 3.35rem;
+  width: 2.25rem;
+  opacity: 0.7;
+}
+
+@keyframes not-found-run {
+  0%, 100% { transform: translateX(0) rotate(-2deg); }
+  50% { transform: translateX(0.6rem) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found-mascot {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .not-found-shell {
+    min-height: calc(100vh - 8rem);
+    padding-top: 4rem;
+  }
+
+  .not-found-mascot {
+    margin-left: 1.5rem;
+  }
+}
+
 /*
   Client logo strip. One treatment for every mark: monochrome at rest, true
   colour on hover. Per-logo optical sizing lives on the elements themselves.
