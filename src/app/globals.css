@@ -2,91 +2,300 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    scroll-behavior: smooth;
-}
-
-::selection {
-  background-color: hsl(25deg 100% 50% / 20%);
-  color: #ff5900;
-}
-
+/*
+  Brand tokens. tailwind.config.ts is the source of truth for utility classes;
+  these mirror the same values for plain CSS (blog.css) so both surfaces agree.
+*/
 :root {
+  --primary-50: #ecfdf7;
+  --primary-100: #d0f8ea;
+  --primary-200: #a4efd7;
+  --primary-300: #6ce0c0;
+  --primary-400: #35c9a4;
+  --primary-500: #18a680;
+  --primary-500-rgb: 24 166 128;
+  --primary-600: #0f8a6b;
+  --primary-700: #0d6e57;
+  --primary-800: #0e5747;
+  --primary-900: #0d483c;
+  --primary-950: #032a22;
+
+  --accent-300: #ff9663;
+  --accent-400: #ff7431;
+  --accent-500: #fa5700;
+  --accent-500-rgb: 250 87 0;
+  --accent-600: #d94500;
+
+  /* RGB triplets so alpha variants compose without a second literal. */
+  --surface-950-rgb: 2 12 10;
+  --surface-900-rgb: 4 18 15;
+  --surface-800-rgb: 7 28 23;
+  --surface-700-rgb: 11 42 34;
+
+  --text-primary: #f3faf8;
+  --text-secondary: #c9d5d3;
+  --text-muted: #94b8b2;
+  --text-faint: #7aa39d;
+  --text-subtle: #6a9892;
+  --text-strong: #e3f2ee;
+  --text-warm: #fff8e8;
+
+  --white-rgb: 255 255 255;
+  --black-rgb: 0 0 0;
+
+  --hairline: rgb(125 191 177 / 0.14);
+  --hairline-strong: rgb(125 191 177 / 0.28);
+
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: rgb(24 166 128 / 0.28);
+  color: var(--primary-100);
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #000000;
+  background-color: rgb(var(--black-rgb));
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3CradialGradient id='a' gradientUnits='objectBoundingBox'%3E%3Cstop offset='0' stop-color='%23002920'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='750' x2='1550' y2='750'%3E%3Cstop offset='0' stop-color='%23001510'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3Cpath id='s' fill='url(%23b)' d='M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z'/%3E%3Cg id='g'%3E%3Cuse href='%23s' transform='scale(0.12) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.2) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.25) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(0.3) rotate(-20)'/%3E%3Cuse href='%23s' transform='scale(0.4) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(0.5) rotate(20)'/%3E%3Cuse href='%23s' transform='scale(0.6) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.7) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.835) rotate(-40)'/%3E%3Cuse href='%23s' transform='scale(0.9) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(1.05) rotate(25)'/%3E%3Cuse href='%23s' transform='scale(1.2) rotate(8)'/%3E%3Cuse href='%23s' transform='scale(1.333) rotate(-60)'/%3E%3Cuse href='%23s' transform='scale(1.45) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(1.6) rotate(10)'/%3E%3C/g%3E%3C/defs%3E%3Cg transform='rotate(0 0 0)'%3E%3Cg transform='rotate(0 0 0)'%3E%3Ccircle fill='url(%23a)' r='3000'/%3E%3Cg opacity='0.5'%3E%3Ccircle fill='url(%23a)' r='2000'/%3E%3Ccircle fill='url(%23a)' r='1800'/%3E%3Ccircle fill='url(%23a)' r='1700'/%3E%3Ccircle fill='url(%23a)' r='1651'/%3E%3Ccircle fill='url(%23a)' r='1450'/%3E%3Ccircle fill='url(%23a)' r='1250'/%3E%3Ccircle fill='url(%23a)' r='1175'/%3E%3Ccircle fill='url(%23a)' r='900'/%3E%3Ccircle fill='url(%23a)' r='750'/%3E%3Ccircle fill='url(%23a)' r='500'/%3E%3Ccircle fill='url(%23a)' r='380'/%3E%3Ccircle fill='url(%23a)' r='250'/%3E%3C/g%3E%3Cg transform='rotate(0 0 0)'%3E%3Cuse href='%23g' transform='rotate(10)'/%3E%3Cuse href='%23g' transform='rotate(120)'/%3E%3Cuse href='%23g' transform='rotate(240)'/%3E%3C/g%3E%3Ccircle fill-opacity='0.66' fill='url(%23a)' r='3000'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
 }
 
-a:hover {
-  color: #FA5700;
+/*
+  The fixed radial backdrop causes repaint jank on iOS and is heavy on small
+  screens, where it is mostly cropped away regardless.
+*/
+@media screen and (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+  }
 }
 
-h1 {
-  font-size: 32px;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.hamburger {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
+/* A quieter backdrop keeps the visual hierarchy in the content and panels. */
+body {
+  background-color: #010908;
+  background-attachment: fixed;
+  isolation: isolate;
+  position: relative;
 }
 
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: black;
-  transition: all 0.3s linear;
+/* Reintroduce the brand motif behind a dark veil; it should be felt, not read. */
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgb(1 14 11 / 0.68), rgb(0 5 4 / 0.78));
+  content: '';
+  pointer-events: none;
 }
 
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
-}
-
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.mobile-menu.open {
-  display: flex;
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
-  /* Hide desktop links and show hamburger menu on smaller screens */
-  .lg\\:flex {
-    display: none;
-  }
-
-  .lg\\:hidden {
-    display: block;
+  body {
+    background-attachment: scroll;
   }
 }
 
-.brand-logo svg {
-  fill: #9CA3AF
+@layer components {
+  .button-primary,
+  .button-secondary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.75rem;
+    text-align: center;
+    transition: transform 180ms ease, background-color 180ms ease,
+      border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  }
+
+  .button-primary {
+    background-color: var(--primary-500);
+    color: var(--surface-950);
+    font-weight: 700;
+    box-shadow: 0 12px 32px rgb(24 166 128 / 0.18);
+  }
+
+  .button-primary:hover {
+    background-color: var(--primary-400);
+    box-shadow: 0 16px 38px rgb(24 166 128 / 0.28);
+    transform: translateY(-2px);
+  }
+
+  .button-primary:active,
+  .button-secondary:active {
+    transform: translateY(0);
+  }
+
+  .button-secondary {
+    border: 1px solid rgb(24 166 128 / 0.42);
+    color: var(--text-strong);
+    font-weight: 600;
+  }
+
+  .button-secondary:hover {
+    border-color: var(--primary-400);
+    background-color: rgb(24 166 128 / 0.1);
+    color: var(--primary-200);
+    transform: translateY(-2px);
+  }
+
+  .section-band {
+    background: linear-gradient(180deg, rgb(7 28 23 / 0.42), rgb(2 12 10 / 0.22));
+  }
+
+  .hero-section {
+    isolation: isolate;
+  }
+
+  .hero-section::before {
+    position: absolute;
+    inset: 10% 12% auto;
+    z-index: -1;
+    height: 28rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgb(24 166 128 / 0.11), rgb(24 166 128 / 0.025) 42%, transparent 72%);
+    content: '';
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  .hero-shell {
+    position: relative;
+    padding: 2.5rem 1.25rem;
+  }
+
+  .hero-shell::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid rgb(24 166 128 / 0.1);
+    border-radius: 1.75rem;
+    background: linear-gradient(135deg, rgb(7 28 23 / 0.62), rgb(2 12 10 / 0.18) 60%, transparent);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.025), 0 24px 80px rgb(0 0 0 / 0.14);
+    content: '';
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-shell {
+      padding: 4.5rem 3rem;
+    }
+  }
+
+  .surface {
+    border: 1px solid rgb(125 191 177 / 0.14);
+    background: linear-gradient(135deg, rgb(7 28 23 / 0.78), rgb(2 12 10 / 0.68));
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.025), 0 18px 60px rgb(0 0 0 / 0.12);
+  }
+
+  .surface::before {
+    position: absolute;
+    inset: 0 18% auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgb(250 87 0 / 0.45), rgb(24 166 128 / 0.18), transparent);
+    content: '';
+  }
+
+  .surface-interactive {
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .surface-interactive:hover {
+    border-color: rgb(24 166 128 / 0.5);
+    background: linear-gradient(135deg, rgb(11 42 34 / 0.88), rgb(4 18 15 / 0.76));
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035), 0 22px 70px rgb(0 0 0 / 0.2), 0 0 0 1px rgb(24 166 128 / 0.05);
+    transform: translateY(-3px);
+  }
+
+  .founder-avatar {
+    position: relative;
+    background: var(--surface-800);
+    box-shadow: 0 0 0 4px rgb(24 166 128 / 0.06), 0 12px 28px rgb(0 0 0 / 0.22);
+  }
+
+  .founder-avatar img {
+    filter: grayscale(0.72) saturate(0.32) contrast(1.06) brightness(0.98);
+    transform: scale(1.3) translate(-5%, -1%);
+  }
+
+  .founder-avatar::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(145deg, rgb(255 255 255 / 0.04), transparent 58%, rgb(250 87 0 / 0.06));
+    content: '';
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
 }
-.brand-logo svg:hover {
-  fill: #fff
+
+/*
+  Body copy rhythm for readable service-page copy.
+*/
+.prose-body {
+  line-height: 1.85;
+  color: var(--text-primary);
+  max-width: 68ch;
+}
+
+.prose-body-muted {
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 68ch;
+}
+
+/*
+  Client logo strip. One treatment for every mark: monochrome at rest, true
+  colour on hover. Per-logo optical sizing lives on the elements themselves.
+*/
+.client-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.65;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.client-logo:hover,
+.client-logo:focus-visible {
+  filter: none;
+  opacity: 1;
+}
+
+.client-logo svg {
+  height: 100%;
+  width: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-400);
+  outline-offset: 3px;
+  border-radius: 2px;
 }

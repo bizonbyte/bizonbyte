@@ -1,24 +1,18 @@
-import Footer from '@/app/components/Footer'
-import Link from 'next/link'
-import { Inter } from 'next/font/google'
 import { AppProps } from 'next/app';
-import '@/app/globals.css'
-import '@/app/blog.css'
+import Footer from '@/app/components/Footer';
+import SiteHeader from '@/app/components/SiteHeader';
+import { inter } from '@/app/fonts';
+import '@/app/globals.css';
+import '@/app/blog.css';
 
-const inter = Inter({ subsets: ['latin'] })
- 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className="flex min-h-screen flex-col items-stretch justify-between pt-16">
-      <div className="w-full px-4 md:px-12 lg:px-24">
-        <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
-          <Link href="/">
-            <img src="/logo.svg" alt="Bizon Logo" width={84} height={37} />
-          </Link>
-        </div>
+    <div className={`${inter.className} flex min-h-screen flex-col`}>
+      <SiteHeader />
+      <main className="w-full flex-1 px-4 md:px-8">
         <Component {...pageProps} />
-      </div>
+      </main>
       <Footer />
-    </main>
-  )
+    </div>
+  );
 }

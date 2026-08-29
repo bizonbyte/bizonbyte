@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://bizonbyte.nl/blog</loc><lastmod>2025-05-06T22:08:13.882Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bizonbyte.nl/terms-of-service</loc><lastmod>2025-05-06T22:08:13.883Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bizonbyte.nl</loc><lastmod>2025-05-06T22:08:13.883Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://bizonbyte.nl/blog/ongemiddeld-gids-opvallen</loc><lastmod>2025-05-06T22:08:13.883Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog</loc><lastmod>2026-08-29T07:49:21.335Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/terms-of-service</loc><lastmod>2026-08-29T07:49:21.336Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl</loc><lastmod>2026-08-29T07:49:21.336Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/afwegingen-bij-het-schalen-van-modellen-voor-machinaal-leren-on-prem-vs-hybride-</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/cloudleverancier-blokkade-wanneer-overstapkosten-een-bedrijfsrisico-worden</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/kosten-batenanalyse-van-in-house-versus-uitbestede-aangepaste-software-voor-ai-g</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/ongemiddeld-gids-opvallen</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/post-odido-hack-veilige-pijplijnen-voor-klantgegevens-bouwen</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/schalen-met-low-code-waar-nederlandse-bedrijven-struikelen</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/uitdagingen-voor-integratie-van-infrastructuur-voor-nederlandse-toeleveringskete</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://bizonbyte.nl/blog/waarom-de-meeste-ai-proof-of-concepts-mislukken-in-productie-lessen-uit-12-neder</loc><lastmod>2026-08-29T07:49:21.338Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

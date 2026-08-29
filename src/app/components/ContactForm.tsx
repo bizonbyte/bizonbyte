@@ -1,80 +1,131 @@
 'use client';
+
 import React, { useState } from 'react';
 import Spinner from './Spinner';
 
+const inputClassName =
+  'mt-2 w-full rounded-lg border border-hairline bg-surface-900/70 px-4 py-3 text-sm text-text-primary placeholder:text-text-faint/70 outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-500/20';
+
 export default function ContactForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
-    const [statusMessage, setStatusMessage] = useState('');
-    const [isError, setIsError] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [statusMessage, setStatusMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = async (event: React.SyntheticEvent) => {
-        setIsSubmitting(true);
-        event.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
 
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-            const data = await response.json();
-            if (response.ok) {
-                setStatusMessage('Message sent successfully!');
-                setIsError(false);
-                setFormData({ name: '', email: '', subject: '', message: '' }); // Reset all fields in one line
-            } else {
-                setStatusMessage(data.message || 'Failed to send message.');
-                setIsError(true);
-            }
-        } catch (error) {
-            setStatusMessage('An error occurred.');
-            setIsError(true);
-        }
+      const data = await response.json();
+      if (response.ok) {
+        setStatusMessage('Message sent successfully!');
+        setIsError(false);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatusMessage(data.message || 'Failed to send message.');
+        setIsError(true);
+      }
+    } catch {
+      setStatusMessage('An error occurred.');
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-        setIsSubmitting(false);
-    };
+  return (
+    <form
+      id="contact-form"
+      onSubmit={handleSubmit}
+      className="w-full rounded-xl border border-hairline bg-surface-900/70 p-6 shadow-[0_20px_60px_rgb(0_0_0_/_0.2)] md:p-8"
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="text-sm font-medium text-text-primary">
+          Name
+          <input
+            type="text"
+            name="name"
+            autoComplete="name"
+            required
+            value={formData.name}
+            onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+            className={inputClassName}
+          />
+        </label>
 
-    return (
-        <form id="contact" onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-md w-full">
-            <div className="flex flex-col">
-                <label htmlFor="name" className="mb-1 font-semibold">Name:</label>
-                <input type="text" id="name" name="name" required onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
-            </div>
+        <label className="text-sm font-medium text-text-primary">
+          Email
+          <input
+            type="email"
+            name="email"
+            autoComplete="email"
+            required
+            value={formData.email}
+            onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+            className={inputClassName}
+          />
+        </label>
+      </div>
 
-            <div className="flex flex-col">
-                <label htmlFor="email" className="mb-1 font-semibold">Email:</label>
-                <input type="email" id="email" name="email" required onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
-            </div>
+      <label className="mt-5 block text-sm font-medium text-text-primary">
+        What do you need help with?
+        <input
+          type="text"
+          name="subject"
+          required
+          value={formData.subject}
+          onChange={(event) => setFormData({ ...formData, subject: event.target.value })}
+          className={inputClassName}
+        />
+      </label>
 
-            <div className="flex flex-col">
-                <label htmlFor="subject" className="mb-1 font-semibold">Subject:</label>
-                <input type="text" id="subject" name="subject" required onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" />
-            </div>
+      <label className="mt-5 block text-sm font-medium text-text-primary">
+        A little more context
+        <textarea
+          name="message"
+          required
+          value={formData.message}
+          onChange={(event) => setFormData({ ...formData, message: event.target.value })}
+          className={`${inputClassName} resize-y`}
+          rows={5}
+        />
+      </label>
 
-            <div className="flex flex-col">
-                <label htmlFor="message" className="mb-1 font-semibold">Message:</label>
-                <textarea id="message" name="message" required onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="text-gray-900 border border-gray-300 p-2 rounded-md focus:border-blue-500 focus:outline-none" rows={4}></textarea>
-            </div>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="button-primary mt-6 w-full px-5 py-3 text-sm disabled:cursor-wait disabled:opacity-70 focus-visible:outline-primary-300"
+      >
+        {isSubmitting ? <Spinner /> : 'Send your message'}
+      </button>
 
-            <button type="submit" className="bg-[#00241C] text-white p-2 rounded-md border border-green-900 hover:bg-[#003529] hover:border-green-700 mt-2 transition-colors duration-200">
-                {isSubmitting ? <Spinner /> : 'Send'}
-            </button>
-
-            {statusMessage && (
-                <div className={`mt-2 p-2 rounded-md text-center font-semibold ${isError ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
-                    {statusMessage}
-                </div>
-            )}
-        </form>
-
-    );
+      {statusMessage && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`mt-4 rounded-lg border p-3 text-center text-sm font-medium ${
+            isError
+              ? 'border-red-400/40 bg-red-950/30 text-red-200'
+              : 'border-primary-400/40 bg-primary-950/60 text-primary-200'
+          }`}
+        >
+          {statusMessage}
+        </div>
+      )}
+    </form>
+  );
 }

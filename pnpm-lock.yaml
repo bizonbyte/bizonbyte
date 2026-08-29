@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@dotlottie/player-component':
-        specifier: ^1.0.3
-        version: 1.4.2(postcss@8.5.8)(rollup@3.30.0)(typescript@5.9.3)
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -93,10 +90,6 @@ packages:
 
   '@corex/deepmerge@4.0.43':
     resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
-
-  '@dotlottie/player-component@1.4.2':
-    resolution: {integrity: sha512-cLGsZVEg+i8dpkT8CB0BTHziL9Bq1p/zJV8wIgUO8LAKUHFB6sGssInVNph9iceH6CUFe1w8p8CQi3FOtIFlpQ==}
-    deprecated: This package is superceded by @lottiefiles/dotlottie-wc
 
   '@emnapi/core@1.9.2':
     resolution: {integrity: sha512-UC+ZhH3XtczQYfOlu3lNEkdW/p4dsJ1r/bP7H8+rhao3TTTMO1ATq/4DdIi23XuGoFY+Cz0JmCbdVl0hz9jZcA==}
@@ -1511,9 +1504,6 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lottie-web@5.13.0:
-    resolution: {integrity: sha512-+gfBXl6sxXMPe8tKQm7qzLnUy5DUPJPKIyRHwtpCpyUEYjHYRJC/5gjUvdkuO2c3JllrPtHXH5UJJK8LRYl5yQ==}
-
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -2331,21 +2321,6 @@ snapshots:
   '@alloc/quick-lru@5.2.0': {}
 
   '@corex/deepmerge@4.0.43': {}
-
-  '@dotlottie/player-component@1.4.2(postcss@8.5.8)(rollup@3.30.0)(typescript@5.9.3)':
-    dependencies:
-      '@rollup/plugin-json': 6.1.0(rollup@3.30.0)
-      fflate: 0.7.4
-      lit: 2.8.0
-      lottie-web: 5.13.0
-      tsup: 6.7.0(postcss@8.5.8)(typescript@5.9.3)
-    transitivePeerDependencies:
-      - '@swc/core'
-      - postcss
-      - rollup
-      - supports-color
-      - ts-node
-      - typescript
 
   '@emnapi/core@1.9.2':
     dependencies:
@@ -3877,8 +3852,6 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
-
-  lottie-web@5.13.0: {}
 
   math-intrinsics@1.1.0: {}
 

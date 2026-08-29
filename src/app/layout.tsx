@@ -1,62 +1,48 @@
-'use client'
-import React, { useState, ReactNode } from 'react';
-import type { Metadata } from 'next'
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { ReactNode } from 'react';
+import type { Metadata } from 'next';
 import Footer from './components/Footer';
-import { FaBars } from 'react-icons/fa';
-import { Inter } from 'next/font/google';
-import '@/app/globals.css'
+import SiteHeader from './components/SiteHeader';
+import { fontVariables, inter } from './fonts';
+import '@/app/globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const description =
+  'Bizonbyte is an Amsterdam IT consultancy building custom software for Dutch companies that have outgrown off-the-shelf tools — web applications, integrations and data tooling, deployed in 6–12 weeks.';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://bizonbyte.nl'),
+  title: {
+    default: 'Bizonbyte — Custom software for Dutch companies | Amsterdam',
+    template: '%s — Bizonbyte',
+  },
+  description,
+  icons: { icon: '/favicon.ico' },
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    locale: 'en_NL',
+    url: 'https://bizonbyte.nl',
+    siteName: 'Bizonbyte',
+    title: 'Bizonbyte — Custom software for Dutch companies',
+    description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bizonbyte — Custom software for Dutch companies',
+    description,
+  },
+};
 
 interface Props {
-    children?: ReactNode
-    // any props that come into the component
+  children?: ReactNode;
 }
 
 export default function RootLayout({ children }: Props) {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
   return (
-    <html lang="en">
-      <head>
-        <title>Bizonbyte | Leading AI & Tech Solutions in the Netherlands</title>
-        <meta name='description' content='Using AI and modern technologies, we deliver customized GPT solutions and consulting services. Our dedicated team in the Netherlands specializes in innovative development, steering businesses towards successful digital transformation.' />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module" async></script>
-      </head>
-      <body className={inter.className}>
-        <main className="min-h-screen items-center justify-between">
-          <div className="z-10 bg-[#00000033] w-full flex items-center justify-between text-md px-4 md:px-16 lg:px-24 py-16">
-            {/* Logo */}
-            <Link href="/">
-              <Image src="/logo.svg" alt="Bizon Logo" width={84} height={37} />
-            </Link>
-
-            {/* Desktop Links */}
-            <div className="hidden lg:flex">
-              <Link href="/" className="hover:text-[#FA5700] transition-colors duration-200">Home</Link>
-              <Link href="/blog" className="hover:text-[#FA5700] ml-4 transition-colors duration-200">Blog</Link>
-            </div>
-
-            {/* Burger Menu Icon */}
-            <div className="lg:hidden hamburger" onClick={toggleMenu}>
-              <FaBars size={24} />
-            </div>
-
-            {/* Mobile Menu */}
-            <div className={`mobile-menu ${menuOpen ? 'open' : 'closed'}`}>
-              <Link href="/">Home</Link>
-              <Link href="/blog">Blog</Link>
-              {/* Add other links as needed */}
-            </div>
-          </div>
-          {children}
-          <Footer />
-        </main>
+    <html lang="en" className={fontVariables}>
+      <body className={`${inter.className} font-sans`}>
+        <SiteHeader />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );

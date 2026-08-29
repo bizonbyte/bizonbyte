@@ -6,8 +6,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full self-stretch mt-12 border-t border-white/10 bg-[#00000055] text-gray-300">
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-8 py-10 flex flex-col items-center gap-3">
+    <footer className="w-full self-stretch border-t border-primary-900/45 bg-surface-950/65 text-gray-300">
+      <div className="mx-auto flex w-full max-w-container flex-col items-center gap-3 px-5 py-10 sm:px-8 lg:px-12">
         <div className="text-sm tracking-wide text-gray-300 text-center">
           &copy; {currentYear} Bizonbyte | All Rights Reserved
         </div>
@@ -16,7 +16,7 @@ const Footer = () => {
         </address>
         <Link
           href="/terms-of-service"
-          className="text-sm text-gray-300 hover:text-[#93e8d4] transition-colors duration-200 underline underline-offset-4 decoration-white/25 hover:decoration-[#93e8d4]"
+          className="text-sm text-gray-300 underline decoration-white/25 underline-offset-4 transition-colors duration-200 hover:text-primary-300 hover:decoration-primary-300"
         >
           Terms of Service
         </Link>
@@ -25,7 +25,7 @@ const Footer = () => {
             href="https://twitter.com/bizonbyte"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-9 w-9 rounded-full border border-white/15 bg-white/5 text-gray-300 hover:text-blue-400 hover:border-blue-400/60 hover:bg-blue-500/10 transition-all duration-200 flex items-center justify-center"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-primary-900/45 bg-primary-950/20 text-gray-300 transition-all duration-200 hover:border-primary-400/60 hover:bg-primary-500/10 hover:text-primary-300"
             aria-label="Twitter"
           >
             <FaTwitter size={16} />
@@ -34,7 +34,7 @@ const Footer = () => {
             href="https://instagram.com/bizonbyte"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-9 w-9 rounded-full border border-white/15 bg-white/5 text-gray-300 hover:text-pink-400 hover:border-pink-400/60 hover:bg-pink-500/10 transition-all duration-200 flex items-center justify-center"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-primary-900/45 bg-primary-950/20 text-gray-300 transition-all duration-200 hover:border-primary-400/60 hover:bg-primary-500/10 hover:text-primary-300"
             aria-label="Instagram"
           >
             <FaInstagram size={16} />
@@ -43,7 +43,7 @@ const Footer = () => {
             href="https://github.com/bizonbyte"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-9 w-9 rounded-full border border-white/15 bg-white/5 text-gray-300 hover:text-white hover:border-white/70 hover:bg-white/10 transition-all duration-200 flex items-center justify-center"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-primary-900/45 bg-primary-950/20 text-gray-300 transition-all duration-200 hover:border-primary-400/60 hover:bg-primary-500/10 hover:text-primary-300"
             aria-label="GitHub"
           >
             <FaGithub size={16} />
@@ -52,7 +52,7 @@ const Footer = () => {
             href="https://linkedin.com/company/bizonbyte"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-9 w-9 rounded-full border border-white/15 bg-white/5 text-gray-300 hover:text-blue-400 hover:border-blue-400/60 hover:bg-blue-500/10 transition-all duration-200 flex items-center justify-center"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-primary-900/45 bg-primary-950/20 text-gray-300 transition-all duration-200 hover:border-primary-400/60 hover:bg-primary-500/10 hover:text-primary-300"
             aria-label="LinkedIn"
           >
             <FaLinkedin size={16} />

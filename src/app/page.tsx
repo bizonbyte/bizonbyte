@@ -1,296 +1,281 @@
-'use client'
-import Link from 'next/link'
-import Image from 'next/image'
-import ContactForm from './components/ContactForm'
+import Link from 'next/link';
+import Image from 'next/image';
+import ContactForm from './components/ContactForm';
+import ClientLogos from './components/ClientLogos';
+import Section from './components/Section';
+import Surface from './components/Surface';
+
+const buildItems = [
+  {
+    number: '01',
+    title: 'Custom web applications',
+    description:
+      'Purpose-built tools for your internal workflows — portals, dashboards, and management systems that fit exactly how your team works.',
+  },
+  {
+    number: '02',
+    title: 'Integrations and automation',
+    description:
+      'Connect your existing systems and eliminate manual data entry — from ERP integrations to automated document processing.',
+  },
+  {
+    number: '03',
+    title: 'Data and AI tooling',
+    description:
+      'Where it makes sense: pipelines, dashboards, and AI-powered features that turn your data into decisions your team can act on.',
+  },
+];
+
+const engagementSteps = [
+  {
+    number: '1',
+    timeframe: 'Week 1',
+    title: 'Scope',
+    description:
+      "We map your bottleneck, agree on scope, and confirm the right technical approach. If software isn't the answer, we tell you.",
+  },
+  {
+    number: '2',
+    timeframe: 'Weeks 2–8',
+    title: 'Build',
+    description:
+      'One point of contact — the engineer writing the code. Weekly check-ins, no account managers in between.',
+  },
+  {
+    number: '3',
+    timeframe: 'Week 12',
+    title: 'Deploy',
+    description:
+      'Deployed in your environment. Documented. Your team can run it without us.',
+  },
+];
+
+const contactPoints = [
+  'Direct response within one business day',
+  'You speak to the engineer, not an account manager',
+  'Based in Amsterdam, available throughout the Netherlands',
+];
 
 export default function Home() {
   return (
-    <section className="w-full hero-section">
-                             <div className="grid px-4 md:px-16 py-8 my-8 md:my-16 mx-auto w-full max-w-full md:max-w-[90%] md:w-[90%] lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                  <div className="w-full lg:col-span-12 text-center">
-            <h1 className="mb-8 text-3xl font-extrabold tracking-tight leading-tight md:text-4xl xl:text-5xl text-white max-w-4xl mx-auto">
-              We build custom software for Dutch companies that have outgrown off-the-shelf tools and can&apos;t justify an enterprise system.
-            </h1>
-            <p style={{ lineHeight: '1.85rem' }} className="mb-10 md:text-lg lg:text-xl px-4 py-6 sm:p-8 rounded-[12px] max-w-4xl mx-auto">
-              Bizonbyte is an IT consultancy based in Amsterdam. We design, build, and deploy tailor-made software — from web applications and integrations to data pipelines and AI-powered tools — in 6–12 weeks. No 6-month roadmaps. No offshore handoffs. You talk directly to the engineer building your solution.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="#what-we-build" className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 transition-all duration-200">
-                See what we build
-              </a>
-              <a href="#contact" className="scroll-smooth inline-flex items-center justify-center px-8 py-4 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:text-green-400 hover:bg-[#00241C] hover:border-green-400 focus:ring-4 focus:ring-green-100 transition-all duration-200">
-                Book a free diagnostic call →
-              </a>
-            </div>
-          </div>
-      </div>
-      <section className="py-12 bg-[#00000033]">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          <p className="text-sm uppercase tracking-widest text-gray-500 mb-8 text-center">Trusted by</p>
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8 justify-items-center mx-0 md:mx-8 lg:mx-16">
-            <a href="https://www.ns.nl" target="_blank" rel="noopener noreferrer" className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
-              <svg height="50" width="75" viewBox="-2.04189744 -2.04189744 178.37648488 72.14704288" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M76.19003 32.7088C72.73763 29.33945 68.00393 27.23954 62.8194 27.23954L26.08874 27.23954L39.67292 13.61977L74.23248 13.61977C75.69174 13.6435 77.05609 14.28415 78.01707 15.24513L98.07894 35.36632C101.53134 38.7238 106.25317 40.83558 111.47329 40.83558L148.23955 40.83558L134.63165 54.45535L100.10767 54.45535C98.62468 54.40789 97.28406 53.77911 96.31122 52.78254L76.19003 32.7088zM86.68959 62.43976C90.10639 65.89216 94.85196 68.06325 100.10767 68.06325L140.23141 68.06325L174.29269 34.03756L140.23141 0L121.00001 0L148.23955 27.23954L111.47329 27.23954C110.0259 27.23954 108.67351 26.65821 107.7243 25.73282L87.6387 5.64723C84.19817 2.15924 79.46447 0.01187 74.23248 0L34.04952 0L0 34.03756L34.04952 68.06325L53.29268 68.06325L26.08874 40.83558L62.8194 40.83558C64.27866 40.83558 65.59556 41.41691 66.5684 42.36602L86.68959 62.43976" style={{ fill: "#fff", fillOpacity: 1, fillRule: "evenodd", stroke: "none" }}/></svg>
+    <>
+      <Section spacing="default" className="hero-section relative overflow-hidden pt-16 md:pt-24 lg:pt-32">
+        <div className="hero-shell relative mx-auto max-w-5xl text-center">
+          <p className="text-eyebrow font-semibold uppercase text-primary-300">
+            Amsterdam · Custom software
+          </p>
+          <h1 className="mx-auto mt-6 max-w-[18ch] font-display text-display-xl font-semibold text-white">
+            Software that fits <span className="block text-primary-300">the way you work.</span>
+          </h1>
+          <p className="prose-body mx-auto mt-8 max-w-[62ch] text-lede text-gray-300">
+            Bizonbyte is an IT consultancy based in Amsterdam. We design, build, and deploy tailor-made software — from web applications and integrations to data pipelines and AI-powered tools — in 6–12 weeks. No 6-month roadmaps. No offshore handoffs. You talk directly to the engineer building your solution.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="https://calendly.com/bizonbyte/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-primary text-base focus-visible:outline-primary-300"
+            >
+              Book a free diagnostic call <span aria-hidden="true" className="ml-2">→</span>
             </a>
-            <a href="https://www.klm.com" target="_blank" rel="noopener noreferrer" className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
-              <svg height="50" width="70" viewBox="0 0 350 203.53" xmlns="http://www.w3.org/2000/svg" fill="none"><g fill="#00a1e4"><path d="M109.16 96.38c-.28-7.64-.15-15.3-.07-22.94 43.97.13 87.94.03 131.91.05.01 7.61.01 15.21 0 22.81-43.95.05-87.9-.1-131.84.08zm59.602-96.38h10.98c.09 3.73.08 7.45.06 11.18 3.67-.01 7.35.01 11.02-.02.03 3.66.03 7.32-.08 10.98-3.64 0-7.29.02-10.93 0 0 3.6-.01 7.21.02 10.82-3.62.23-7.24.18-10.86.15-.02-3.66-.02-7.33-.04-11-3.68.05-7.35.03-11.02.04-.06-3.65-.05-7.31-.06-10.96 3.7-.01 7.4-.02 11.09 0-.08-3.73.25-7.48-.18-11.19zm91.286 49.597a19.125 19.125 0 0 1-19.125 19.125 19.125 19.125 0 0 1-19.125-19.125 19.125 19.125 0 0 1 19.125-19.125 19.125 19.125 0 0 1 19.125 19.125zm-43.95 0a19.125 19.125 0 0 1-19.125 19.125 19.125 19.125 0 0 1-19.125-19.125 19.125 19.125 0 0 1 19.125-19.125 19.125 19.125 0 0 1 19.125 19.125zm-43.95 3.43e-4a19.125 19.125 0 0 1-19.125 19.125 19.125 19.125 0 0 1-19.125-19.125 19.125 19.125 0 0 1 19.125-19.125 19.125 19.125 0 0 1 19.125 19.125zm-43.95 0a19.125 19.125 0 0 1-19.125 19.125 19.125 19.125 0 0 1-19.125-19.125 19.125 19.125 0 0 1 19.125-19.125 19.125 19.125 0 0 1 19.125 19.125z"/><path d="M206.63 115.75c18.28-.06 36.56.12 54.84-.09 5.77 15.69 10.82 31.65 16.27 47.46.45-.71 1.09-1.31 1.32-2.14 5.21-15.09 10.54-30.14 15.8-45.22 18.38-.02 36.76-.03 55.14.01v87.66c-11.25.14-22.51.05-33.76.05-.02-20.18.1-40.37-.06-60.56-1.57.88-1.73 2.87-2.4 4.36-6.53 18.75-13.23 37.44-19.76 56.19-10.58 0-21.17.14-31.74-.07-6.63-19.17-13.49-38.25-20.18-57.39-.24-1.07-.84-1.85-1.78-2.35-.03 19.94.01 39.89-.01 59.84-11.23 0-22.46 0-33.69-.01.02-29.24-.01-58.49.01-87.74zm-206.63 0c11.1 0 22.2-.01 33.31.01.02 10.62-.02 21.25.01 31.88 11.01-10.54 21.77-21.33 32.78-31.87 11.19-.03 22.38-.03 33.57 0-12.9 13.11-26.15 25.88-38.95 39.08 16.13 15.64 31.71 31.86 47.98 47.33.14-28.8.02-57.61.06-86.42 11.35-.02 22.7-.02 34.05 0 0 21.85-.02 43.7 0 65.55 18.13-.05 36.25.06 54.37-.06.25 7.41.04 14.83.12 22.24-44.06 0-88.13.04-132.19-.02-10.42-10.55-20.98-20.96-31.45-31.46-.15 10.51.02 21.01-.09 31.52-11.19-.08-22.38.01-33.57-.05z"/></g></svg>
+            <a
+              href="#what-we-build"
+              className="button-secondary text-base focus-visible:outline-primary-300"
+            >
+              See what we build
             </a>
-            <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 603 182" style={{ fill: "#fff", transform: "translateY(-20px)" }}><path d="M374.006 142.184c-35 25.797-85.729 39.561-129.406 39.561-61.242 0-116.376-22.651-158.087-60.325-3.278-2.962-.341-7 3.591-4.693 45.015 26.191 100.673 41.947 158.166 41.947 38.775 0 81.43-8.022 120.65-24.67 5.925-2.516 10.88 3.88 5.086 8.18" style={{ fill: "#f90" }} /><path d="M388.557 125.536c-4.457-5.715-29.573-2.7-40.846-1.363-3.434.42-3.959-2.57-.865-4.719 20.003-14.078 52.827-10.015 56.654-5.296 3.828 4.745-.996 37.648-19.793 53.352-2.884 2.411-5.637 1.127-4.352-2.072 4.22-10.539 13.685-34.16 9.202-39.902" style={{ fill: "#f90" }} /><path d="M348.497 20.066V6.381c0-2.071 1.573-3.46 3.461-3.46h61.269c1.966 0 3.54 1.415 3.54 3.46V18.1c-.027 1.966-1.679 4.535-4.615 8.599l-31.749 45.329c11.798-.289 24.25 1.468 34.947 7.498 2.412 1.363 3.068 3.356 3.251 5.322V99.45c0 1.992-2.202 4.325-4.509 3.12-18.85-9.884-43.887-10.96-64.73.104-2.123 1.154-4.351-1.153-4.351-3.146V85.661c0-2.229.026-6.03 2.254-9.412L384.047 23.5h-32.01c-1.967 0-3.54-1.39-3.54-3.434m-223.498 85.388h-18.64c-1.783-.13-3.199-1.468-3.33-3.172V6.617c0-1.914 1.6-3.435 3.592-3.435h17.382c1.809.079 3.25 1.468 3.382 3.199v12.505h.34c4.536-12.086 13.056-17.722 24.54-17.722 11.666 0 18.954 5.636 24.198 17.722 4.509-12.086 14.76-17.722 25.744-17.722 7.813 0 16.36 3.224 21.577 10.46 5.899 8.049 4.693 19.741 4.693 29.992l-.026 60.378c0 1.913-1.6 3.46-3.592 3.46h-18.614c-1.862-.13-3.356-1.625-3.356-3.46V51.29c0-4.037.367-14.104-.524-17.932-1.39-6.423-5.558-8.232-10.959-8.232-4.51 0-9.228 3.015-11.142 7.839s-1.73 12.898-1.73 18.325v50.704c0 1.913-1.6 3.46-3.592 3.46h-18.614c-1.888-.13-3.356-1.625-3.356-3.46l-.026-50.704c0-10.67 1.757-26.374-11.483-26.374-13.397 0-12.872 15.31-12.872 26.374v50.704c0 1.913-1.6 3.46-3.592 3.46M469.514 1.164c27.66 0 42.629 23.752 42.629 53.954 0 29.18-16.543 52.329-42.629 52.329-27.16 0-41.947-23.753-41.947-53.352 0-29.782 14.97-52.931 41.947-52.931m.158 19.531c-13.738 0-14.603 18.719-14.603 30.386 0 11.692-.184 36.65 14.445 36.65 14.446 0 15.128-20.134 15.128-32.403 0-8.075-.341-17.723-2.78-25.378-2.097-6.66-6.265-9.255-12.19-9.255m78.336 84.759h-18.562c-1.861-.13-3.356-1.625-3.356-3.46l-.026-95.692c.157-1.756 1.704-3.12 3.592-3.12h17.277c1.625.079 2.962 1.18 3.33 2.674v14.63h.34c5.217-13.083 12.532-19.322 25.404-19.322 8.363 0 16.517 3.015 21.76 11.273 4.877 7.655 4.877 20.528 4.877 29.782v60.22c-.21 1.678-1.757 3.015-3.592 3.015h-18.693c-1.704-.13-3.12-1.39-3.303-3.015V50.478c0-10.461 1.206-25.772-11.667-25.772-4.535 0-8.704 3.042-10.775 7.656-2.621 5.846-2.962 11.666-2.962 18.116v51.516c-.026 1.913-1.652 3.46-3.644 3.46" /><use xlinkHref="#a" transform="translate(244.367)" /><path d="M55.288 59.758v-4.037c-13.475 0-27.71 2.884-27.71 18.771 0 8.049 4.168 13.502 11.325 13.502 5.243 0 9.936-3.225 12.898-8.468 3.67-6.45 3.487-12.506 3.487-19.768m18.798 45.434c-1.232 1.101-3.015 1.18-4.405.446-6.187-5.139-7.288-7.524-10.696-12.427-10.225 10.434-17.46 13.554-30.726 13.554-15.678 0-27.895-9.674-27.895-29.048 0-15.127 8.206-25.43 19.872-30.464 10.12-4.457 24.25-5.244 35.052-6.476v-2.412c0-4.43.341-9.674-2.254-13.501-2.281-3.435-6.633-4.85-10.46-4.85-7.106 0-13.45 3.644-14.997 11.194-.315 1.678-1.547 3.33-3.225 3.408l-18.09-1.94c-1.52-.34-3.198-1.573-2.778-3.906C7.652 6.853 27.446.246 45.169.246c9.07 0 20.92 2.412 28.078 9.28 9.07 8.469 8.206 19.768 8.206 32.064v29.048c0 8.73 3.618 12.558 7.026 17.277 1.206 1.678 1.468 3.697-.053 4.955-3.801 3.172-10.565 9.071-14.288 12.375z" id="a" /></svg>
-            </a>
-            <div className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer">
-              <a href="https://www.unive.nl" target="_blank" rel="noopener noreferrer">
-                <svg height="50" width="100" viewBox="0 0 83.873 25.929" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path d="m142.83 300.535.005-.356c.042-2.343 1.446-3.392 2.82-3.392.69 0 1.495.374 1.495 1.43 0 .7-.293 1.25-.873 1.637-.648.432-1.683.66-3.08.676zm3.28-7.806c-3.11 0-5.7.973-7.494 2.812-1.605 1.646-2.488 3.91-2.488 6.374 0 2.627.711 4.693 2.114 6.14 1.545 1.593 3.912 2.401 7.035 2.401 3.904 0 6.695-1.275 7.464-1.669l-1.654-3.832c-1.517.811-3.13 1.24-4.674 1.24-1.94 0-3.186-.798-3.422-2.19l-.067-.398.418-.003c2.983-.02 5.188-.418 6.742-1.218.87-.45 1.538-1.034 1.983-1.74.485-.767.73-1.71.73-2.802 0-1.705-.616-3.01-1.83-3.877-1.149-.822-2.783-1.238-4.857-1.238" style={{ fill: "#ff5a5f", fillRule: "evenodd", strokeWidth: 0.26458332 }} transform="translate(-69.188 -284.792)" />
-                  <path d="M110.026 309.927h6.787v-2.75l-.607-.055c-.69-.076-.935-.373-.935-1.136v-12.728h-7.189v2.847l1.01.088c.69.076.934.373.934 1.137zm-40.573-13.774.762.057c.557.07.923.284.923 1.11v7.64c0 3.75 1.552 5.496 4.882 5.496 2.096 0 3.766-.888 4.703-2.499l.04-.07h.322v2.135h6.36v-2.766l-.767-.086c-.637-.076-.853-.373-.853-1.176v-12.736h-6.69v2.897l.6.055c.68.076.92.375.92 1.143v6.239c0 1.682-.96 2.812-2.388 2.812-1.576 0-1.892-.974-1.892-2.545v-10.601h-6.922zm30.385 14.038h6.921v-2.765l-.761-.057c-.558-.07-.924-.285-.924-1.11v-7.77c0-3.75-1.551-5.496-4.882-5.496-2.095 0-3.766.888-4.702 2.5l-.041.07h-.322v-2.136h-6.36v2.895l.767.086c.638.076.853.373.853 1.176v12.607h6.69v-2.765l-.599-.055c-.68-.077-.921-.376-.921-1.143v-6.37c0-1.682.96-2.812 2.388-2.812 1.576 0 1.892.974 1.892 2.545zm28.642-16.933v2.87l.718.053c.28.028.497.34.497.628a.6.6 0 0 1-.023.16l-2.485 7.8h-.242l-2.244-7.431c-.1-.339-.09-.58.03-.762.115-.174.328-.325.65-.363l.768-.085v-2.87h-8.805v2.851l.966.119c.4.047.633.18.752.468l4.651 13.23h5.913l4.362-12.709c.238-.714.534-.957 1.175-1.033l.701-.056v-2.87zm22.466-8.202c-4.188 0-6.937 2.117-6.243 6.35 4.161 0 6.243-2.09 6.243-6.35" style={{ fill: "#07be54", fillRule: "evenodd", strokeWidth: 0.26458332 }} transform="translate(-69.188 -284.792)" />
-                </svg>
-              </a>
-            </div>
           </div>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.12em] text-text-muted">
+            Amsterdam <span aria-hidden="true" className="px-2 text-accent-400">·</span> 6–12 weeks <span aria-hidden="true" className="px-2 text-accent-400">·</span> Direct engineer contact
+          </p>
         </div>
-      </section>
-      <section id="what-we-build" className="technology-section py-16 my-16">
-        <div className="container mx-auto px-4 md:px-6 xl:px-72">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+      </Section>
 
-            {/* Lottie Animation */}
-            <div className="md:w-2/5" style={{ filter: "sepia(0.6) saturate(3) hue-rotate(340deg) brightness(0.95)" }}>
-              <dotlottie-player 
-                src="https://lottie.host/904a79dc-88e2-41e9-800b-bf230662a6b8/jWwqPjNakM.json" 
-                background="transparent" 
-                speed="0.6" 
-                style={{ width: '100%', height: 'auto' }} 
-                loop 
-                autoplay>
-              </dotlottie-player>
-            </div>
-
-            {/* Text Content */}
-            <div className="md:w-1/2 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">What we actually build</h2>
-              <ul className="text-lg mb-8 text-gray-300 bg-[hsl(0_0%_0%_/_30%)] px-4 py-6 sm:p-8 rounded-[12px] space-y-5 text-left">
-                <li>
-                  <span className="text-white font-semibold">Custom web applications</span>
-                  <p style={{ lineHeight: '1.85rem' }} className="mt-1">Purpose-built tools for your internal workflows — portals, dashboards, and management systems that fit exactly how your team works.</p>
-                </li>
-                <li>
-                  <span className="text-white font-semibold">Integrations and automation</span>
-                  <p style={{ lineHeight: '1.85rem' }} className="mt-1">Connect your existing systems and eliminate manual data entry — from ERP integrations to automated document processing.</p>
-                </li>
-                <li>
-                  <span className="text-white font-semibold">Data and AI tooling</span>
-                  <p style={{ lineHeight: '1.85rem' }} className="mt-1">Where it makes sense: pipelines, dashboards, and AI-powered features that turn your data into decisions your team can act on.</p>
-                </li>
-              </ul>
-              <p className="text-gray-400 text-sm italic">Every project ends with working software in your environment — not a slide deck.</p>
-            </div>
-          </div>
+      <Section spacing="tight" band>
+        <div className="mx-auto max-w-5xl">
+          <ClientLogos />
         </div>
-      </section>
-      <section className="methodologies-section py-16 my-16">
-        <div className="container mx-auto px-4 md:px-6 xl:px-72">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            {/* Text Content */}
-            <div className="md:w-3/5 text-center md:text-left w-full">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">How an engagement works</h2>
-              <div className="relative text-left">
-                {/* Vertical connecting line */}
-                <div className="absolute left-5 top-10 bottom-10 w-px bg-gray-700" aria-hidden="true" />
+      </Section>
 
-                {/* Step 1 */}
-                <div className="relative flex gap-5 pb-10">
-                  <div className="shrink-0 w-10 h-10 rounded-full border border-orange-500/60 bg-[#0d1f0d] flex items-center justify-center z-10 mt-0.5">
-                    <span className="text-orange-400 text-xs font-bold">1</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Week 1 <span className="text-gray-500 font-normal text-sm">— Scope</span></p>
-                    <p style={{ lineHeight: '1.85rem' }} className="text-gray-300">We map your bottleneck, agree on scope, and confirm what the right technical approach is. If software isn&apos;t the answer, we tell you.</p>
-                  </div>
+      <Section id="what-we-build" spacing="default">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-eyebrow font-semibold uppercase text-primary-300">What we build</p>
+          <h2 className="mt-5 max-w-3xl font-display text-display-lg font-semibold text-white">
+            The right-sized system for the bottleneck in front of you.
+          </h2>
+          <p className="prose-body-muted mt-6 max-w-2xl text-lg">
+            We turn the manual, disconnected, or hard-to-scale part of your operation into software your team can use every day.
+          </p>
+
+          <ul className="mt-12 grid gap-5 md:grid-cols-3">
+            {buildItems.map((item) => (
+              <li key={item.number}>
+                <Surface interactive className="h-full p-6 md:p-7">
+                  <span className="font-mono text-sm font-semibold tracking-[0.18em] text-accent-400">
+                    {item.number}
+                  </span>
+                  <h3 className="mt-8 font-display text-display-sm font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="prose-body-muted mt-4 text-base text-gray-300">
+                    {item.description}
+                  </p>
+                </Surface>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-7 text-sm italic text-text-muted">
+            Every project ends with working software in your environment — not a slide deck.
+          </p>
+        </div>
+      </Section>
+
+      <Section spacing="default" band>
+        <div className="mx-auto max-w-5xl">
+          <p className="text-eyebrow font-semibold uppercase text-primary-300">How an engagement works</p>
+          <h2 className="mt-5 max-w-3xl font-display text-display-lg font-semibold text-white">
+            A short path from bottleneck to working software.
+          </h2>
+          <p className="prose-body-muted mt-6 max-w-2xl text-lg">
+            A focused engagement, clear weekly decisions, and a deployment your team can own.
+          </p>
+
+          <ol className="relative mt-12 max-w-4xl">
+            <span
+              className="absolute bottom-10 left-5 top-10 w-px bg-gradient-to-b from-accent-500/70 via-accent-500/40 to-primary-500/50"
+              aria-hidden="true"
+            />
+            {engagementSteps.map((step, index) => (
+              <li
+                key={step.number}
+                className={index < engagementSteps.length - 1 ? 'relative flex gap-6 pb-12' : 'relative flex gap-6'}
+              >
+                <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent-500/60 bg-surface-950 font-mono text-sm font-semibold text-accent-400">
+                  {step.number}
                 </div>
-
-                {/* Step 2 */}
-                <div className="relative flex gap-5 pb-10">
-                  <div className="shrink-0 w-10 h-10 rounded-full border border-orange-500/60 bg-[#0d1f0d] flex items-center justify-center z-10 mt-0.5">
-                    <span className="text-orange-400 text-xs font-bold">2</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Weeks 2–8 <span className="text-gray-500 font-normal text-sm">— Build</span></p>
-                    <p style={{ lineHeight: '1.85rem' }} className="text-gray-300">One point of contact — the engineer writing the code. Weekly check-ins, no account managers in between.</p>
-                  </div>
+                <div className="pt-0.5">
+                  <p className="font-display text-lg font-semibold text-white">
+                    {step.timeframe}{' '}
+                    <span className="font-sans text-sm font-normal text-text-muted">— {step.title}</span>
+                  </p>
+                  <p className="prose-body-muted mt-2 max-w-3xl text-base text-gray-300">
+                    {step.description}
+                  </p>
                 </div>
-
-                {/* Step 3 */}
-                <div className="relative flex gap-5">
-                  <div className="shrink-0 w-10 h-10 rounded-full border border-orange-500/60 bg-[#0d1f0d] flex items-center justify-center z-10 mt-0.5">
-                    <span className="text-orange-400 text-xs font-bold">3</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Week 12 <span className="text-gray-500 font-normal text-sm">— Deploy</span></p>
-                    <p style={{ lineHeight: '1.85rem' }} className="text-gray-300">Deployed in your environment. Documented. Your team can run it without us.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Lottie Animation — filter shifts palette to match the orange theme */}
-            <div className="md:w-1/3" style={{ filter: "sepia(0.6) saturate(3) hue-rotate(340deg) brightness(0.95)" }}>
-              <dotlottie-player src="https://lottie.host/7456caee-747d-4baf-9508-339b285b4a97/3vB6UJ4om2.json" background="transparent" speed="1" style={{ width: "100%", height: "auto" }} loop autoplay>
-              </dotlottie-player>
-            </div>
-          </div>
+              </li>
+            ))}
+          </ol>
         </div>
-      </section>
-      <section className="py-12 bg-[#00000033]">
-        <style jsx global>{`
-  .brand-logo {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: brightness(0) invert(1); /* White color filter */
-    transition: filter 0.3s;
-  }
+      </Section>
 
-  .brand-logo:hover {
-    filter: none; /* Original color on hover */
-  }
-`}</style>
+      <Section spacing="default">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-eyebrow font-semibold uppercase text-primary-300">Work in practice</p>
+          <h2 className="mt-5 text-center font-display text-display-lg font-semibold text-white">
+            One bottleneck. A measurable change.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-text-muted">
+            One example of what we built and what it changed.
+          </p>
 
-        <div className="flex justify-center items-center flex-wrap gap-16 mx-0 md:mx-8 lg:mx-16">
-          <a
-            href="https://openai.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24"
-            style={{ backgroundImage: `url('/brands/openai.svg')` }}
-          ></a>
-          <a
-            href="https://www.djangoproject.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24"
-            style={{ backgroundImage: `url('/brands/django.svg')` }}
-          ></a>
-          <a
-            href="https://www.typescriptlang.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24"
-            style={{ backgroundImage: `url('/brands/typescript.svg')` }}
-          ></a>
-          <a
-            href="https://aws.amazon.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-14 h-14"
-            style={{ backgroundImage: `url('/brands/aws.svg')` }}
-          ></a>
-          <a
-            href="https://kubernetes.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brand-logo opacity-50 hover:opacity-100 hover:transition-all cursor-pointer w-24 h-24"
-            style={{ backgroundImage: `url('/brands/kubernetes.svg')` }}
-          ></a>
-        </div>
-
-      </section>
-      <section className="py-16 my-16">
-        <div className="container mx-auto px-4 md:px-6 xl:px-72">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Work in practice</h2>
-          <p className="text-gray-400 text-center mb-12">One example of what we built and what it changed.</p>
-          <div className="bg-[hsl(0_0%_0%_/_30%)] rounded-[12px] p-8 md:p-10 border border-gray-800">
-            <div className="grid md:grid-cols-3 gap-8 mb-8 text-center">
+          <Surface className="mt-12 p-6 md:p-10">
+            <dl className="grid gap-6 text-center md:grid-cols-3 md:gap-8">
               <div>
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">Industry</p>
-                <p className="text-white font-semibold">Dutch logistics company</p>
+                <dt className="text-eyebrow font-semibold uppercase text-text-faint">Industry</dt>
+                <dd className="mt-2 font-medium text-white">Dutch logistics company</dd>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">Problem</p>
-                <p className="text-white font-semibold">Manual invoice processing</p>
+                <dt className="text-eyebrow font-semibold uppercase text-text-faint">Problem</dt>
+                <dd className="mt-2 font-medium text-white">Manual invoice processing</dd>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">Time to deploy</p>
-                <p className="text-white font-semibold">8 weeks</p>
+                <dt className="text-eyebrow font-semibold uppercase text-text-faint">Time to deploy</dt>
+                <dd className="mt-2 font-medium text-white">8 weeks</dd>
               </div>
-            </div>
-            <div className="border-t border-gray-800 pt-8">
-              <p style={{ lineHeight: '1.85rem' }} className="text-gray-300 text-lg mb-6">
+            </dl>
+
+            <div className="mt-10 border-t border-hairline pt-8">
+              <p className="prose-body max-w-4xl text-lg text-gray-300">
                 The finance team was spending 4+ hours per day extracting data from incoming PDF invoices and entering it into their ERP system. We built a document intelligence pipeline that classifies, extracts, and routes invoice data automatically — handling 94% of invoices without human intervention.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-start">
-                <div className="text-center sm:text-left">
-                  <p className="text-4xl font-extrabold text-green-400">94%</p>
-                  <p className="text-gray-400 text-sm mt-1">of invoices processed without manual input</p>
+              <div className="mt-8 grid gap-6 border-t border-hairline pt-8 sm:grid-cols-2 sm:gap-8">
+                <div>
+                  <p className="font-display text-display-md font-semibold text-primary-300">94%</p>
+                  <p className="mt-1 text-sm text-text-muted">of invoices processed without manual input</p>
                 </div>
-                <div className="hidden sm:block w-px bg-gray-800" />
-                <div className="text-center sm:text-left">
-                  <p className="text-4xl font-extrabold text-green-400">4 hrs → 20 min</p>
-                  <p className="text-gray-400 text-sm mt-1">daily time saved for the finance team</p>
+                <div>
+                  <p className="font-display text-display-md font-semibold text-primary-300">4 hrs → 20 min</p>
+                  <p className="mt-1 text-sm text-text-muted">daily time saved for the finance team</p>
                 </div>
               </div>
             </div>
-            <div className="mt-8 pt-6 border-t border-gray-800">
-              <Link href="/blog/waarom-de-meeste-ai-proof-of-concepts-mislukken-in-productie-lessen-uit-12-neder" className="text-green-400 hover:text-green-300 text-sm transition-colors">
-                Read our article on why most AI proof-of-concepts fail in production — and what the 30% that succeed do differently →
+
+            <div className="mt-8 border-t border-hairline pt-6">
+              <Link
+                href="/blog/waarom-de-meeste-ai-proof-of-concepts-mislukken-in-productie-lessen-uit-12-neder"
+                className="text-sm font-medium text-primary-300 transition-colors hover:text-primary-200"
+              >
+                Read our article on why most AI proof-of-concepts fail in production <span aria-hidden="true">→</span>
               </Link>
             </div>
-          </div>
-          <p className="text-gray-600 text-xs text-center mt-4">Client details anonymised at their request.</p>
+          </Surface>
+          <p className="mt-4 text-center text-xs text-text-faint">Client details anonymised at their request.</p>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 my-0">
-        <div className="container mx-auto px-4 md:px-6 xl:px-72">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Who you&apos;re working with</h2>
-          <div className="flex flex-col md:flex-row items-start gap-8 bg-[hsl(0_0%_0%_/_30%)] rounded-[12px] p-8 md:p-10 border border-gray-800">
-            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-600 shrink-0 mx-auto md:mx-0">
-              <Image src="/founder.jpg" alt="Founder of BizonByte" width={96} height={96} className="w-full h-full object-cover object-top" />
+      <Section spacing="tight">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-eyebrow font-semibold uppercase text-primary-300">Who you&apos;re working with</p>
+          <h2 className="mt-5 text-center font-display text-display-lg font-semibold text-white">
+            A senior engineer, close to the work.
+          </h2>
+          <Surface className="mt-12 flex flex-col items-center gap-8 p-7 md:flex-row md:items-start md:p-10">
+              <div className="founder-avatar h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-primary-700/70">
+              <Image
+                src="/founder.jpg"
+                alt="Dario Mory, founder of Bizonbyte"
+                width={96}
+                height={96}
+                className="h-full w-full object-cover object-top"
+              />
             </div>
             <div className="text-center md:text-left">
-              <p className="text-white font-bold text-xl mb-1">Dario Mory</p>
-              <p className="text-green-400 text-sm mb-4">Founder · Bizonbyte · Amsterdam, Netherlands</p>
-              <p style={{ lineHeight: '1.85rem' }} className="text-gray-300">
+              <p className="font-display text-xl font-semibold text-white">Dario Mory</p>
+              <p className="mt-1 text-sm text-primary-300">Founder · Bizonbyte · Amsterdam</p>
+              <p className="prose-body-muted mt-5 text-gray-300">
                 Previously led software development at KLM. Bizonbyte was founded on a simple idea: mid-market companies deserve software that actually fits their operations, built by people who understand both the technology and the business.
               </p>
-              <div className="mt-4 flex gap-4 justify-center md:justify-start">
-                <a href="https://www.mory.dev/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm">More →</a>
+              <div className="mt-5">
+                <a href="https://www.mory.dev/" target="_blank" rel="noopener noreferrer" className="text-sm text-text-muted transition-colors hover:text-primary-200">
+                  More about Dario <span aria-hidden="true">→</span>
+                </a>
               </div>
             </div>
-          </div>
+          </Surface>
         </div>
-      </section>
+      </Section>
 
-      <section className="contact-section py-16 my-16">
-        <div className="container mx-auto px-4 md:px-6 xl:px-72">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-
-            <div className="md:w-2/5 relative right-0 md:right-24 bottom-0 md:bottom-16">
-              <div className="mb-8 md:mb-0">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Tell us your bottleneck</h2>
-                <p style={{ lineHeight: '1.85rem' }} className="text-gray-300 text-lg mb-6">
-                  We&apos;ll tell you in 30 minutes what the right technical solution is — and what it would cost. No sales deck. No commitment.
-                </p>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>✓ Direct response within one business day</li>
-                  <li>✓ You speak to the engineer, not an account manager</li>
-                  <li>✓ Based in Amsterdam, Netherlands — available throughout the country</li>
-                </ul>
-              </div>
-              <div style={{ filter: "sepia(0.6) saturate(3) hue-rotate(340deg) brightness(0.95)" }}>
-                <dotlottie-player 
-                  src="https://lottie.host/b4b844f5-bdca-480d-b19d-ff04a27d4213/CFrtNTFf04.json" 
-                  background="transparent" 
-                  speed="0.6" 
-                  style={{ width: '100%', height: 'auto' }} 
-                  loop 
-                  autoplay>
-                </dotlottie-player>
-              </div>
-            </div>
-
-            <ContactForm/>
-
+      <Section id="contact" spacing="default" band>
+        <div className="grid items-start gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+          <div>
+            <p className="text-eyebrow font-semibold uppercase text-primary-300">Start with the bottleneck</p>
+            <h2 className="mt-5 font-display text-display-lg font-semibold text-white">Tell us what is slowing you down.</h2>
+            <p className="prose-body-muted mt-6 text-lg text-gray-300">
+              We&apos;ll tell you in 30 minutes what the right technical solution is — and what it would cost. No sales deck. No commitment.
+            </p>
+            <ul className="mt-8 space-y-4 text-sm text-text-muted">
+              {contactPoints.map((point) => (
+                <li key={point} className="flex gap-3">
+                  <span aria-hidden="true" className="font-semibold text-accent-400">+</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+          <ContactForm />
         </div>
-      </section>
-    </section>
-  )
+      </Section>
+    </>
+  );
 }
