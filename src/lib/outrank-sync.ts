@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import type { Article } from 'outrank-next-js-blog';
-import { getOutrankArticleSource } from './outrank';
+import { formatDutchPost, translateArticleToDutch } from './outrank-translate';
 
 const ENGLISH_POSTS_DIR = path.join(process.cwd(), 'posts', 'en');
+const DUTCH_POSTS_DIR = path.join(process.cwd(), 'posts');
 const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'bizonbyte/bizonbyte';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
 
@@ -33,8 +33,12 @@ export function articleFamily(slug: string) {
   return slug.replace(/-\d+$/, '');
 }
 
+export function articleBody(article: SyncableArticle) {
+  return article.content_markdown?.trim() || article.html?.trim() || '';
+}
+
 export function formatEnglishPost(article: SyncableArticle) {
-  const body = article.content_markdown?.trim() || '';
+  const body = articleBody(article);
   const image = article.image_url && !body.startsWith('![')
     ? `![${article.title}](${article.image_url})\n\n`
     : '';
@@ -61,7 +65,7 @@ function githubHeaders() {
   };
 }
 
-async function githubContentSha(relativePath: string) {
+async function githubFile(relativePath: string) {
   const headers = githubHeaders();
   if (!headers) return null;
   const response = await fetch(
@@ -69,14 +73,24 @@ async function githubContentSha(relativePath: string) {
     { headers },
   );
   if (!response.ok) return null;
-  const payload = await response.json() as { sha?: string };
-  return payload.sha || null;
+  return await response.json() as { sha?: string; content?: string; encoding?: string };
+}
+
+async function githubContentSha(relativePath: string) {
+  const file = await githubFile(relativePath);
+  return file?.sha || null;
+}
+
+function decodeGithubContent(file: { content?: string; encoding?: string }) {
+  if (!file.content) return '';
+  return Buffer.from(file.content.replace(/\n/g, ''), 'base64').toString('utf8');
 }
 
 async function commitGithubFile(relativePath: string, content: string, message: string) {
   const headers = githubHeaders();
   if (!headers) return false;
-  const sha = await githubContentSha(relativePath);
+  const current = await githubFile(relativePath);
+  if (current && decodeGithubContent(current) === content) return false;
   const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${relativePath}`, {
     method: 'PUT',
     headers: { ...headers, 'Content-Type': 'application/json' },
@@ -84,7 +98,7 @@ async function commitGithubFile(relativePath: string, content: string, message: 
       message,
       content: Buffer.from(content).toString('base64'),
       branch: GITHUB_BRANCH,
-      sha: sha || undefined,
+      sha: current?.sha || undefined,
     }),
   });
   if (!response.ok) {
@@ -109,33 +123,20 @@ async function deleteGithubFile(relativePath: string, message: string) {
   return true;
 }
 
-function siblingSlugs(slug: string) {
-  if (!fs.existsSync(ENGLISH_POSTS_DIR)) return [];
+function siblingSlugs(directory: string, slug: string) {
+  if (!fs.existsSync(directory)) return [];
   const family = articleFamily(slug);
-  return fs.readdirSync(ENGLISH_POSTS_DIR)
+  return fs.readdirSync(directory)
     .filter((filename) => filename.endsWith('.md'))
     .map((filename) => filename.replace(/\.md$/, ''))
     .filter((candidate) => candidate !== slug && articleFamily(candidate) === family);
 }
 
-export async function resolveSyncArticle(article: SyncableArticle): Promise<Article | SyncableArticle | null> {
-  if (article.content_markdown?.trim() || article.html) return article;
-  return getOutrankArticleSource(article.slug);
-}
-
-export async function syncPublishedEnglishArticle(article: SyncableArticle) {
-  const source = await resolveSyncArticle(article);
-  if (!source?.slug || !source.title) {
-    throw new Error(`Cannot sync Outrank article ${article.slug || '(missing slug)'}`);
-  }
-
-  const markdown = formatEnglishPost(source);
-  const relativePath = `posts/en/${source.slug}.md`;
+function writeLocalFile(relativePath: string, content: string) {
   const localPath = path.join(process.cwd(), relativePath);
-
-  fs.mkdirSync(path.dirname(localPath), { recursive: true });
   try {
-    fs.writeFileSync(localPath, markdown, 'utf8');
+    fs.mkdirSync(path.dirname(localPath), { recursive: true });
+    fs.writeFileSync(localPath, content, 'utf8');
   } catch (error) {
     if (process.env.VERCEL) {
       console.warn('Skipping local write on Vercel', error);
@@ -143,8 +144,28 @@ export async function syncPublishedEnglishArticle(article: SyncableArticle) {
       throw error;
     }
   }
+}
 
-  for (const sibling of siblingSlugs(source.slug)) {
+export function resolveSyncArticle(article: SyncableArticle): SyncableArticle {
+  const body = articleBody(article);
+  if (!article.slug || !article.title || !body) {
+    throw new Error(`Cannot sync Outrank article ${article.slug || '(missing slug, title, or body)'}`);
+  }
+  return {
+    ...article,
+    content_markdown: article.content_markdown?.trim() || body,
+    html: article.html,
+  };
+}
+
+export async function syncPublishedEnglishArticle(article: SyncableArticle) {
+  const source = resolveSyncArticle(article);
+  const markdown = formatEnglishPost(source);
+  const relativePath = `posts/en/${source.slug}.md`;
+
+  writeLocalFile(relativePath, markdown);
+
+  for (const sibling of siblingSlugs(ENGLISH_POSTS_DIR, source.slug)) {
     const siblingPath = path.join(ENGLISH_POSTS_DIR, `${sibling}.md`);
     if (fs.existsSync(siblingPath)) fs.unlinkSync(siblingPath);
     await deleteGithubFile(`posts/en/${sibling}.md`, `Remove older Outrank draft ${sibling}`);
@@ -154,6 +175,35 @@ export async function syncPublishedEnglishArticle(article: SyncableArticle) {
     relativePath,
     markdown,
     `Sync published Outrank article ${source.slug}`,
+  );
+
+  return { slug: source.slug, path: relativePath, committed, source };
+}
+
+export async function syncPublishedDutchArticle(article: SyncableArticle) {
+  const source = resolveSyncArticle(article);
+  let translation;
+  try {
+    translation = await translateArticleToDutch(source);
+  } catch (error) {
+    console.error(`Dutch translation failed for ${source.slug}, retrying once`, error);
+    translation = await translateArticleToDutch(source);
+  }
+
+  const markdown = formatDutchPost(source, translation);
+  const relativePath = `posts/${source.slug}.md`;
+  writeLocalFile(relativePath, markdown);
+
+  for (const sibling of siblingSlugs(DUTCH_POSTS_DIR, source.slug)) {
+    const siblingPath = path.join(DUTCH_POSTS_DIR, `${sibling}.md`);
+    if (fs.existsSync(siblingPath)) fs.unlinkSync(siblingPath);
+    await deleteGithubFile(`posts/${sibling}.md`, `Remove older Dutch Outrank draft ${sibling}`);
+  }
+
+  const committed = await commitGithubFile(
+    relativePath,
+    markdown,
+    `Sync Dutch translation of Outrank article ${source.slug}`,
   );
 
   return { slug: source.slug, path: relativePath, committed };

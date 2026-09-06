@@ -1,23 +1,16 @@
 import BlogPostContent from '@/app/components/BlogPostContent';
-import { getBlogRevalidateSeconds, getEnglishPost, getOutrankArticleSummaries, resolveCanonicalOutrankSlug } from '@/lib/outrank';
-import { getPost, getPostSlugs, type Post } from '@/lib/posts';
+import { getBlogRevalidateSeconds, getCanonicalLocalSlug, getEnglishPost } from '@/lib/outrank';
+import { getPostSlugs, type Post } from '@/lib/posts';
 
 export async function getStaticPaths() {
-  const remote = await getOutrankArticleSummaries();
-  const slugs = new Set([...getPostSlugs('en'), ...remote.map((article) => article.slug)]);
   return {
-    paths: Array.from(slugs).map((slug) => ({ params: { slug } })),
+    paths: getPostSlugs('en').map((slug) => ({ params: { slug } })),
     fallback: 'blocking',
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const local = await getPost('en', params.slug);
-  if (local) {
-    return { props: { post: local }, revalidate: getBlogRevalidateSeconds() };
-  }
-
-  const canonicalSlug = await resolveCanonicalOutrankSlug(params.slug);
+  const canonicalSlug = getCanonicalLocalSlug(params.slug);
   if (canonicalSlug !== params.slug) {
     return { redirect: { destination: `/blog/${canonicalSlug}`, permanent: false } };
   }

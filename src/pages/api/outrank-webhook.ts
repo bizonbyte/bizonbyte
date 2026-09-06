@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { syncPublishedEnglishArticle, type SyncableArticle } from '@/lib/outrank-sync';
+import { articleBody, syncPublishedDutchArticle, syncPublishedEnglishArticle, type SyncableArticle } from '@/lib/outrank-sync';
 import { dedupeOutrankArticles } from '@/lib/outrank';
 
 export const config = {
   api: { bodyParser: { sizeLimit: '4mb' } },
+  maxDuration: 120,
 };
 
 type WebhookArticle = SyncableArticle & {
@@ -35,6 +36,7 @@ function asArticles(body: {
 function toSyncable(article: WebhookArticle): SyncableArticle {
   return {
     ...article,
+    content_markdown: article.content_markdown?.trim() || '',
     html: article.html || article.content_html,
     created_at: article.created_at || new Date().toISOString(),
     updated_at: article.updated_at || article.created_at || new Date().toISOString(),
@@ -52,19 +54,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const articles = dedupeOutrankArticles(
-    asArticles(req.body).map(toSyncable).filter((article) => article.slug && article.title),
+    asArticles(req.body).map(toSyncable).filter((article) => article.slug && article.title && articleBody(article)),
   );
 
   const synced = [];
   for (const article of articles) {
-    const result = await syncPublishedEnglishArticle(article);
+    console.log(`Outrank webhook ${article.slug} markdown=${article.content_markdown?.length || 0} html=${article.html?.length || 0}`);
+    const english = await syncPublishedEnglishArticle(article);
+    let dutch = null;
+    try {
+      dutch = await syncPublishedDutchArticle(english.source);
+    } catch (error) {
+      console.error(`Failed to write Dutch translation for ${english.slug}`, error);
+    }
     try {
       await res.revalidate('/blog');
-      await res.revalidate(`/blog/${result.slug}`);
+      await res.revalidate(`/blog/${english.slug}`);
+      await res.revalidate('/nl/blog');
+      await res.revalidate(`/nl/blog/${english.slug}`);
     } catch (error) {
-      console.error(`Failed to revalidate ${result.slug}`, error);
+      console.error(`Failed to revalidate ${english.slug}`, error);
     }
-    synced.push(result);
+    synced.push({ ...english, dutch });
   }
 
   return res.status(200).json({

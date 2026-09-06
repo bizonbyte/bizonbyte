@@ -1,11 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { BlogClient } from 'outrank-next-js-blog';
 
 const ROOT = process.cwd();
 const POSTS_DIR = path.join(ROOT, 'posts');
 const ENGLISH_POSTS_DIR = path.join(POSTS_DIR, 'en');
-const OUTRANK_API_BASE_URL = 'https://outrank.so';
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 const DEEPSEEK_MODEL = 'deepseek-v4-flash';
 
@@ -39,21 +37,35 @@ function toDate(value) {
   return parsed.toISOString().slice(0, 10);
 }
 
-function featuredImageMarkdown(article) {
-  if (!article.image_url) return '';
-  return `![${article.title}](${article.image_url})\n\n`;
-}
-
 function parseJsonObject(text) {
   const trimmed = text.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
   return JSON.parse(trimmed);
 }
 
+function readLocalEnglishArticle(slug) {
+  const filePath = path.join(ENGLISH_POSTS_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) return null;
+  const frontmatter = Object.fromEntries(
+    match[1].split(/\r?\n/).flatMap((line) => {
+      const pair = line.match(/^(\w+):\s*"(.*)"$/);
+      return pair ? [[pair[1], pair[2].replace(/\\"/g, '"')]] : [];
+    }),
+  );
+  return {
+    slug,
+    title: frontmatter.title || slug,
+    meta_description: frontmatter.description || '',
+    created_at: frontmatter.date,
+    content_markdown: match[2].trim(),
+  };
+}
+
 async function translateArticle(article, apiKey) {
-  const source = article.content_markdown?.trim() || article.html || '';
-  if (!source) {
-    throw new Error(`Article ${article.slug} has no markdown or HTML to translate`);
-  }
+  const source = article.content_markdown?.trim() || '';
+  if (!source) throw new Error(`Article ${article.slug} has no markdown to translate`);
 
   const response = await fetch(DEEPSEEK_API_URL, {
     method: 'POST',
@@ -105,8 +117,10 @@ async function translateArticle(article, apiKey) {
 }
 
 function writeDutchPost(article, translation) {
-  const image = featuredImageMarkdown(article);
-  const body = translation.body.startsWith('![') ? translation.body : `${image}${translation.body}`;
+  const imageMatch = article.content_markdown.match(/^!\[.*?\]\((.*?)\)/);
+  const image = imageMatch && !translation.body.startsWith('![')
+    ? `![${translation.title}](${imageMatch[1]})\n\n`
+    : '';
   const file = `---
 title: ${yamlQuote(translation.title)}
 description: ${yamlQuote(translation.description)}
@@ -114,7 +128,7 @@ date: ${yamlQuote(toDate(article.created_at))}
 author: ${yamlQuote('Bizonbyte Team')}
 ---
 
-${body}
+${image}${translation.body}
 `;
   fs.writeFileSync(path.join(POSTS_DIR, `${article.slug}.md`), file, 'utf8');
 }
@@ -122,53 +136,44 @@ ${body}
 async function main() {
   loadEnvFiles();
 
-  const outrankKey = process.env.OUTRANK_BLOG_API_KEY || process.env.OUTRANK_API_KEY;
   const deepseekKey = process.env.DEEPSEEK_API_KEY;
-  if (!outrankKey) throw new Error('OUTRANK_BLOG_API_KEY is not set');
   if (!deepseekKey) throw new Error('DEEPSEEK_API_KEY is not set');
 
   const force = process.argv.includes('--force');
-  const localEnglish = new Set(listMarkdownSlugs(ENGLISH_POSTS_DIR));
+  const onlySlug = process.argv.find((arg) => arg.startsWith('--slug='))?.slice('--slug='.length);
   const existingDutch = new Set(listMarkdownSlugs(POSTS_DIR));
-  const client = new BlogClient(outrankKey, { baseUrl: OUTRANK_API_BASE_URL });
-  const summaries = await client.getAllArticles(100);
+  const slugs = onlySlug ? [onlySlug] : listMarkdownSlugs(ENGLISH_POSTS_DIR);
 
   let written = 0;
   let skipped = 0;
 
-  for (const summary of summaries) {
-    if (localEnglish.has(summary.slug)) {
-      console.log(`skip ${summary.slug} (local English markdown already exists)`);
+  for (const slug of slugs) {
+    if (existingDutch.has(slug) && !force) {
+      console.log(`skip ${slug} (Dutch file already exists; pass --force to overwrite)`);
       skipped += 1;
       continue;
     }
 
-    if (existingDutch.has(summary.slug) && !force) {
-      console.log(`skip ${summary.slug} (Dutch file already exists; pass --force to overwrite)`);
-      skipped += 1;
-      continue;
-    }
-
-    const article = await client.getArticle(summary.slug);
+    const article = readLocalEnglishArticle(slug);
     if (!article) {
-      console.log(`skip ${summary.slug} (article body missing)`);
+      console.log(`skip ${slug} (local English markdown missing)`);
       skipped += 1;
       continue;
     }
 
-    console.log(`translate ${summary.slug}`);
+    console.log(`translate ${slug}`);
     let translation;
     try {
       translation = await translateArticle(article, deepseekKey);
     } catch (error) {
-      console.error(`retry ${summary.slug} after ${error instanceof Error ? error.message : error}`);
+      console.error(`retry ${slug} after ${error instanceof Error ? error.message : error}`);
       translation = await translateArticle(article, deepseekKey);
     }
     writeDutchPost(article, translation);
     written += 1;
   }
 
-  console.log(JSON.stringify({ written, skipped, total: summaries.length }));
+  console.log(JSON.stringify({ written, skipped, total: slugs.length }));
 }
 
 main().catch((error) => {

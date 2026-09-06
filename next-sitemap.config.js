@@ -3,18 +3,6 @@ const path = require('path');
 
 const siteUrl = 'https://bizonbyte.nl';
 
-function loadEnvFiles() {
-  for (const relative of ['.env.local', '.env']) {
-    const filePath = path.join(__dirname, relative);
-    if (!fs.existsSync(filePath)) continue;
-    for (const line of fs.readFileSync(filePath, 'utf8').split(/\r?\n/)) {
-      const match = line.match(/^([A-Z0-9_]+)=(.*)$/);
-      if (!match || process.env[match[1]]) continue;
-      process.env[match[1]] = match[2].trim().replace(/^["']|["']$/g, '');
-    }
-  }
-}
-
 function hasDutchPost(slug) {
   return fs.existsSync(path.join(__dirname, 'posts', `${slug}.md`));
 }
@@ -79,28 +67,12 @@ function getBlogAlternatePath(pathname) {
   return null;
 }
 
-async function getOutrankSitemapPaths() {
-  loadEnvFiles();
-  const apiKey = process.env.OUTRANK_BLOG_API_KEY || process.env.OUTRANK_API_KEY;
-  if (!apiKey) return [];
-
-  try {
-    const { BlogClient } = require('outrank-next-js-blog');
-    const client = new BlogClient(apiKey, { baseUrl: 'https://outrank.so' });
-    const articles = await client.getAllArticles(100);
-    const kept = new Map();
-    for (const article of articles) {
-      const family = article.slug.replace(/-\d+$/, '');
-      const current = kept.get(family);
-      const articleTime = new Date(article.updated_at || article.created_at).getTime();
-      const currentTime = current ? new Date(current.updated_at || current.created_at).getTime() : 0;
-      if (!current || articleTime > currentTime) kept.set(family, article);
-    }
-    return [...kept.values()].map((article) => `/blog/${article.slug}`);
-  } catch (error) {
-    console.error('Failed to add Outrank slugs to sitemap', error);
-    return [];
-  }
+function getLocalEnglishSitemapPaths() {
+  const directory = path.join(__dirname, 'posts', 'en');
+  if (!fs.existsSync(directory)) return [];
+  return fs.readdirSync(directory)
+    .filter((filename) => filename.endsWith('.md'))
+    .map((filename) => `/blog/${filename.replace(/\.md$/, '')}`);
 }
 
 function alternateRefsForPath(pathname) {
@@ -145,7 +117,7 @@ module.exports = {
     // ],
     // Default transformation function
     additionalPaths: async (config) => {
-      const paths = await getOutrankSitemapPaths();
+      const paths = getLocalEnglishSitemapPaths();
       return Promise.all(paths.map((loc) => config.transform(config, loc)));
     },
     transform: async (config, path) => {
