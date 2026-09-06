@@ -4,13 +4,15 @@ import { getPost, getPostSlugs } from '@/lib/posts';
 export async function getStaticPaths() {
   return {
     paths: getPostSlugs('nl').map((slug) => ({ params: { slug } })),
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const post = await getPost('nl', params.slug);
-  if (!post) return { notFound: true };
+  if (!post) {
+    return { redirect: { destination: '/nl/blog', permanent: false } };
+  }
   return { props: { post } };
 }
 

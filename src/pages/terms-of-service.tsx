@@ -9,6 +9,7 @@ const TermsOfService = () => {
       <Head>
         <title>Terms of Service — bizonbyte.nl</title>
         <meta name="description" content="Terms for using bizonbyte.nl and bizonbyte services." />
+        <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={`${siteUrl}/terms-of-service`} />
         <link rel="alternate" hrefLang="en-NL" href={`${siteUrl}/terms-of-service`} />
         <link rel="alternate" hrefLang="nl-NL" href={`${siteUrl}/nl/algemene-voorwaarden`} />

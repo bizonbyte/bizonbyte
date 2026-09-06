@@ -11,12 +11,26 @@ const legacyEnglishBlogRedirects = [
 ];
 
 const nextConfig = {
+  transpilePackages: ['outrank-next-js-blog'],
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+    ],
+  },
   async redirects() {
-    return legacyEnglishBlogRedirects.map(([legacySlug, englishSlug]) => ({
-      source: `/blog/${legacySlug}`,
-      destination: `/blog/${englishSlug}`,
-      permanent: true,
-    }));
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.bizonbyte.nl' }],
+        destination: 'https://bizonbyte.nl/:path*',
+        permanent: true,
+      },
+      ...legacyEnglishBlogRedirects.map(([legacySlug, englishSlug]) => ({
+        source: `/blog/${legacySlug}`,
+        destination: `/blog/${englishSlug}`,
+        permanent: true,
+      })),
+    ];
   },
 }
 

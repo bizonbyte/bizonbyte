@@ -9,6 +9,7 @@ export default function DutchTermsOfService() {
       <Head>
         <title>Algemene voorwaarden — bizonbyte.nl</title>
         <meta name="description" content="Algemene voorwaarden voor het gebruik van bizonbyte.nl en de diensten van bizonbyte." />
+        <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={`${siteUrl}/nl/algemene-voorwaarden`} />
         <link rel="alternate" hrefLang="en-NL" href={`${siteUrl}/terms-of-service`} />
         <link rel="alternate" hrefLang="nl-NL" href={`${siteUrl}/nl/algemene-voorwaarden`} />

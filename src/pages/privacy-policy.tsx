@@ -9,6 +9,7 @@ export default function PrivacyPolicy() {
       <Head>
         <title>Privacy & cookies — bizonbyte.nl</title>
         <meta name="description" content="Information about contact data, cookies, and optional analytics on bizonbyte.nl." />
+        <meta name="robots" content="noindex, follow" />
         <link rel="canonical" href={`${siteUrl}/privacy-policy`} />
         <link rel="alternate" hrefLang="en-NL" href={`${siteUrl}/privacy-policy`} />
         <link rel="alternate" hrefLang="nl-NL" href={`${siteUrl}/nl/privacy-policy`} />

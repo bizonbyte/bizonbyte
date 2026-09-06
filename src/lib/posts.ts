@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
@@ -29,7 +30,7 @@ const englishPostsDirectory = path.join(postsDirectory, 'en');
 
 const sanitizeSchema = {
   ...defaultSchema,
-  tagNames: [...(defaultSchema.tagNames || []), 'video', 'source'],
+  tagNames: [...(defaultSchema.tagNames || []), 'video', 'source', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption'],
   attributes: {
     ...defaultSchema.attributes,
     video: [
@@ -38,8 +39,34 @@ const sanitizeSchema = {
       'webkit-playsinline', 'preload', 'style',
     ],
     source: [...(defaultSchema.attributes?.source || []), 'src', 'type'],
+    div: [...(defaultSchema.attributes?.div || []), ['className', 'blog-table-wrap']],
+    table: [...(defaultSchema.attributes?.table || []), 'align'],
+    th: [...(defaultSchema.attributes?.th || []), 'align', 'colspan', 'rowspan'],
+    td: [...(defaultSchema.attributes?.td || []), 'align', 'colspan', 'rowspan'],
   },
 };
+
+function rehypeWrapTables() {
+  return (tree: { children?: unknown[] }) => {
+    const wrap = (node: { tagName?: string; children?: unknown[] }) => {
+      if (!node.children) return;
+      node.children = node.children.flatMap((child) => {
+        const element = child as { tagName?: string; children?: unknown[] };
+        if (element.tagName === 'table') {
+          return [{
+            type: 'element',
+            tagName: 'div',
+            properties: { className: ['blog-table-wrap'] },
+            children: [element],
+          }];
+        }
+        wrap(element);
+        return [child];
+      });
+    };
+    wrap(tree);
+  };
+}
 
 function getDirectory(locale: Locale) {
   return locale === 'en' ? englishPostsDirectory : postsDirectory;
@@ -112,9 +139,11 @@ export async function getPost(locale: Locale, slug: string): Promise<Post | null
   const { data, content } = matter(fileContents);
   const processedContent = await unified()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeWrapTables)
     .use(rehypeStringify)
     .process(content);
   const summary = getSummary(`${slug}.md`, locale);

@@ -1,20 +1,32 @@
 import BlogPostContent from '@/app/components/BlogPostContent';
-import { getPost, getPostSlugs } from '@/lib/posts';
+import { getBlogRevalidateSeconds, getEnglishPost, getOutrankArticleSummaries, resolveCanonicalOutrankSlug } from '@/lib/outrank';
+import { getPost, getPostSlugs, type Post } from '@/lib/posts';
 
 export async function getStaticPaths() {
+  const remote = await getOutrankArticleSummaries();
+  const slugs = new Set([...getPostSlugs('en'), ...remote.map((article) => article.slug)]);
   return {
-    paths: getPostSlugs('en').map((slug) => ({ params: { slug } })),
-    fallback: false,
+    paths: [...slugs].map((slug) => ({ params: { slug } })),
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const post = await getPost('en', params.slug);
+  const local = await getPost('en', params.slug);
+  if (local) {
+    return { props: { post: local }, revalidate: getBlogRevalidateSeconds() };
+  }
+
+  const canonicalSlug = await resolveCanonicalOutrankSlug(params.slug);
+  if (canonicalSlug !== params.slug) {
+    return { redirect: { destination: `/blog/${canonicalSlug}`, permanent: false } };
+  }
+
+  const post = await getEnglishPost(params.slug);
   if (!post) return { notFound: true };
-  return { props: { post } };
+  return { props: { post }, revalidate: getBlogRevalidateSeconds() };
 }
 
-export default function EnglishPost({ post }: { post: Awaited<ReturnType<typeof getPost>> }) {
-  if (!post) return null;
+export default function EnglishPost({ post }: { post: Post }) {
   return <BlogPostContent locale="en" post={post} />;
 }

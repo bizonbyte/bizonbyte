@@ -1,13 +1,17 @@
 import Head from 'next/head';
 import BlogIndexContent from '@/app/components/BlogIndexContent';
 import { getLanguageAlternates, siteUrl } from '@/lib/locale';
-import { getPostSummaries } from '@/lib/posts';
+import { getBlogRevalidateSeconds, getEnglishBlogSummaries } from '@/lib/outrank';
+import type { PostSummary } from '@/lib/posts';
 
 export async function getStaticProps() {
-  return { props: { posts: getPostSummaries('en') } };
+  return {
+    props: { posts: await getEnglishBlogSummaries() },
+    revalidate: getBlogRevalidateSeconds(),
+  };
 }
 
-export default function BlogIndex({ posts }: { posts: ReturnType<typeof getPostSummaries> }) {
+export default function BlogIndex({ posts }: { posts: PostSummary[] }) {
   const alternates = getLanguageAlternates('/blog');
   return (
     <>

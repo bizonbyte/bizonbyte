@@ -27,12 +27,21 @@ export default function BlogIndexContent({ locale, posts }: { locale: Locale; po
               <Link href={`${prefix}/${post.slug}`} className="blog-card">
                 {post.thumbnail && (
                   <div className="blog-card-media">
-                    <Image
-                      src={post.thumbnail.src}
-                      alt={post.thumbnail.alt || post.title}
-                      fill
-                      sizes="(min-width: 768px) 864px, 100vw"
-                    />
+                    {post.thumbnail.src.startsWith('/') ? (
+                      <Image
+                        src={post.thumbnail.src}
+                        alt={post.thumbnail.alt || post.title}
+                        fill
+                        sizes="(min-width: 768px) 864px, 100vw"
+                      />
+                    ) : (
+                      // Outrank featured images come from third-party hosts.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={post.thumbnail.src}
+                        alt={post.thumbnail.alt || post.title}
+                      />
+                    )}
                   </div>
                 )}
                 <div className="blog-card-content">
