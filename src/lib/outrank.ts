@@ -46,7 +46,7 @@ function articleFamily(slug: string) {
   return slug.replace(/-\d+$/, '');
 }
 
-function newerArticle(left: ArticleSummary, right: ArticleSummary) {
+function newerArticle(left: Pick<ArticleSummary, 'created_at' | 'updated_at'>, right: Pick<ArticleSummary, 'created_at' | 'updated_at'>) {
   return new Date(right.updated_at || right.created_at).getTime() - new Date(left.updated_at || left.created_at).getTime();
 }
 
