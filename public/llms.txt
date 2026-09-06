@@ -1,0 +1,24 @@
+# bizonbyte.nl
+
+> bizonbyte.nl is an Amsterdam IT consultancy building custom software for Dutch companies that have outgrown off-the-shelf tools — web applications, integrations, and data tooling, deployed in 6–12 weeks.
+
+Based in Amsterdam, Netherlands. We deliver pragmatic, production-ready software solutions without agency bloat.
+Site: https://bizonbyte.nl. Contact: contact@bizonbyte.nl.
+
+## Services & Expertise
+
+- [Custom Software Development](https://bizonbyte.nl/services): Bespoke web platforms, client portals, and workflow automation.
+- [System Integration](https://bizonbyte.nl/services#integrations): Connecting ERPs, accounting systems, payment gateways, and third-party APIs.
+- [Case Studies](https://bizonbyte.nl/cases): Verified production deliverables for Dutch SMEs, logistics operations, and digital scale-ups.
+
+## Content & Knowledge
+
+- [Blog](https://bizonbyte.nl/blog): Practical essays on build vs buy decisions, technical architecture, and software delivery timelines.
+
+## Optional
+
+- [RSS Feed](https://bizonbyte.nl/rss.xml)
+- [Sitemap](https://bizonbyte.nl/sitemap.xml)
+
+## Attribution
+bizonbyte.nl (https://bizonbyte.nl).
