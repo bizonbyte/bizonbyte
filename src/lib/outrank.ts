@@ -46,11 +46,11 @@ function articleFamily(slug: string) {
   return slug.replace(/-\d+$/, '');
 }
 
-function newerArticle(left: Pick<ArticleSummary, 'created_at' | 'updated_at'>, right: Pick<ArticleSummary, 'created_at' | 'updated_at'>) {
-  return new Date(right.updated_at || right.created_at).getTime() - new Date(left.updated_at || left.created_at).getTime();
+function newerArticle(left: { created_at?: string; updated_at?: string }, right: { created_at?: string; updated_at?: string }) {
+  return new Date(right.updated_at || right.created_at || 0).getTime() - new Date(left.updated_at || left.created_at || 0).getTime();
 }
 
-export function dedupeOutrankArticles<T extends Pick<ArticleSummary, 'slug' | 'created_at' | 'updated_at'>>(articles: T[]) {
+export function dedupeOutrankArticles<T extends { slug: string; created_at?: string; updated_at?: string }>(articles: T[]) {
   const kept = new Map<string, T>();
   for (const article of articles) {
     const family = articleFamily(article.slug);
@@ -59,7 +59,7 @@ export function dedupeOutrankArticles<T extends Pick<ArticleSummary, 'slug' | 'c
       kept.set(family, article);
     }
   }
-  return [...kept.values()];
+  return Array.from(kept.values());
 }
 
 export function getCanonicalOutrankSlug(slug: string, articles: ArticleSummary[]) {

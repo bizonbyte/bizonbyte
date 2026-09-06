@@ -142,8 +142,8 @@ export async function getPost(locale: Locale, slug: string): Promise<Post | null
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
-    .use(rehypeSanitize, sanitizeSchema)
-    .use(rehypeWrapTables)
+    .use(rehypeSanitize, sanitizeSchema as never)
+    .use(rehypeWrapTables as never)
     .use(rehypeStringify)
     .process(content);
   const summary = getSummary(`${slug}.md`, locale);

@@ -6,7 +6,7 @@ export async function getStaticPaths() {
   const remote = await getOutrankArticleSummaries();
   const slugs = new Set([...getPostSlugs('en'), ...remote.map((article) => article.slug)]);
   return {
-    paths: [...slugs].map((slug) => ({ params: { slug } })),
+    paths: Array.from(slugs).map((slug) => ({ params: { slug } })),
     fallback: 'blocking',
   };
 }
