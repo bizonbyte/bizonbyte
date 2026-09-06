@@ -34,7 +34,16 @@ export function articleFamily(slug: string) {
 }
 
 export function articleBody(article: SyncableArticle) {
-  return article.content_markdown?.trim() || article.html?.trim() || '';
+  return stripOutrankCredit(article.content_markdown?.trim() || article.html?.trim() || '');
+}
+
+export function stripOutrankCredit(body: string) {
+  return body
+    .replace(/\n+\*?Produced via \[the Outrank tool\]\([^)]+\)\*?\s*$/i, '')
+    .replace(/\n+\*?Geproduceerd via \[de Outrank-tool\]\([^)]+\)\*?\s*$/i, '')
+    .replace(/\n+<p><em>Produced via <a [^>]+>the Outrank tool<\/a><\/em><\/p>\s*$/i, '')
+    .replace(/\n+<p><em>Geproduceerd via <a [^>]+>de Outrank-tool<\/a><\/em><\/p>\s*$/i, '')
+    .trim();
 }
 
 export function formatEnglishPost(article: SyncableArticle) {
@@ -153,7 +162,8 @@ export function resolveSyncArticle(article: SyncableArticle): SyncableArticle {
   }
   return {
     ...article,
-    content_markdown: article.content_markdown?.trim() || body,
+    slug: articleFamily(article.slug),
+    content_markdown: stripOutrankCredit(article.content_markdown?.trim() || body),
     html: article.html,
   };
 }

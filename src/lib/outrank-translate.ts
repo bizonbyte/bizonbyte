@@ -1,4 +1,4 @@
-import type { SyncableArticle } from './outrank-sync';
+import { stripOutrankCredit, type SyncableArticle } from './outrank-sync';
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 const DEEPSEEK_MODEL = 'deepseek-v4-flash';
@@ -77,7 +77,7 @@ export async function translateArticleToDutch(article: SyncableArticle): Promise
   return {
     title: translated.title.trim(),
     description: (translated.description || article.meta_description || '').trim(),
-    body: translated.body.trim(),
+    body: stripOutrankCredit(translated.body.trim()),
   };
 }
 

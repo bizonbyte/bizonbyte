@@ -24,6 +24,16 @@ const nextConfig = {
         destination: 'https://bizonbyte.nl/:path*',
         permanent: true,
       },
+      {
+        source: '/blog/agentic-ai-workflows-1',
+        destination: '/blog/agentic-ai-workflows',
+        permanent: true,
+      },
+      {
+        source: '/nl/blog/agentic-ai-workflows-1',
+        destination: '/nl/blog/agentic-ai-workflows',
+        permanent: true,
+      },
       ...legacyEnglishBlogRedirects.map(([legacySlug, englishSlug]) => ({
         source: `/blog/${legacySlug}`,
         destination: `/blog/${englishSlug}`,

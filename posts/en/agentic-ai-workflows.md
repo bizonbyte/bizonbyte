@@ -203,5 +203,3 @@ The hardest question is when not to use agents at all. If a deterministic rules 
 Agentic systems are useful when they help a team do real work that used to require manual coordination. They are a poor fit when the organization wants a demo, but not the discipline that production demands.
 
 If you are trying to move an AI workflow from prototype to something your team can trust, work with Dario Mory. He helps teams design the evaluation, guardrails, rollback behavior, and delivery mechanics that agentic systems need before they can carry production traffic.
-
-*Produced via [the Outrank tool](https://outrank.so)*

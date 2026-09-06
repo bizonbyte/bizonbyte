@@ -4,6 +4,7 @@ import { dedupeOutrankArticles } from '@/lib/outrank';
 
 export const config = {
   api: { bodyParser: { sizeLimit: '4mb' } },
+  maxDuration: 60,
 };
 
 type WebhookArticle = SyncableArticle & {

@@ -55,6 +55,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+  Site-wide scale: desktop should match ~78% browser zoom
+  (smaller type, more margin) without changing mobile layout.
+*/
+@media screen and (min-width: 768px) {
+  html {
+    zoom: 0.78;
+  }
+}
+
 ::selection {
   background-color: rgb(24 166 128 / 0.28);
   color: var(--primary-100);
