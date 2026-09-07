@@ -155,7 +155,7 @@ Het patroon achter die stallingen is bekend. Legacy-integraties zijn rommelig, e
 - **Audit en rollback:** Elke belangrijke actie heeft een log en een terugdraaipad nodig.
 - **Genoemde eigenaar:** Iemand moet eigenaar zijn van kwaliteit, kosten en escalatie.
 
-Een praktisch detail van technische teams waarmee ik heb gewerkt: de uitrol breekt meestal bij de naden tussen de AI-laag en het bestaande systeem, niet in de prompt zelf. Daarom geldt [denk in kleinere commits](https://www.mory.dev/posts/teaching-engineers-to-think-in-smaller-commits/) hier. Rol de workflow uit in smalle secties, valideer elke grens en hard de integratie voordat je de scope van de agent uitbreidt.
+Een praktisch detail van technische teams waarmee ik heb gewerkt: de uitrol breekt meestal bij de naden tussen de AI-laag en het bestaande systeem, niet in de prompt zelf. Daarom geldt denken in kleinere commits hier. Rol de workflow uit in smalle secties, valideer elke grens en hard de integratie voordat je de scope van de agent uitbreidt.
 
 <a id="agentic-workflows-integreren-in-bestaande-systemen"></a>
 ## Agentic workflows integreren in bestaande systemen
@@ -177,7 +177,7 @@ De uitrolchecklist is eenvoudig te zeggen en moeilijk te faken:
 
 Een referentie-implementatie kan helpen, maar alleen als die past bij de stack die je al draait. Een praktisch voorbeeld is [KLM luchthaven slotbeheer automatisering](https://www.mory.dev/projects/klm-airport-slot-management-automation/), dat laat zien hoe workflowautomatisering bestaande systeemgrenzen, goedkeuringspaden en operationele beperkingen moet respecteren.
 
-Een productiegericht voorbeeld is [Dario Mory](https://mory.dev), die zich richt op het van prototype naar productie brengen met evaluatiepijplijnen, guardrails en beheersing van eenheidskosten. Dat soort implementatiewerk doet er alleen toe wanneer het past bij het systeem dat er al is.
+Een productiegericht voorbeeld is Dario Mory, die zich richt op het van prototype naar productie brengen met evaluatiepijplijnen, guardrails en beheersing van eenheidskosten. Dat soort implementatiewerk doet er alleen toe wanneer het past bij het systeem dat er al is.
 
 De volgorde doet ertoe. Zet observeerbaarheid eerst, daarna begrensde autoriteit, daarna evaluatie. Elke laag maakt de volgende nuttiger. Als je die volgorde omdraait, krijg je vaak een systeem dat er geavanceerd uitziet maar niet kan worden vertrouwd.
 
@@ -201,5 +201,3 @@ De moeilijkste vraag is wanneer je helemaal geen agenten moet gebruiken. Als een
 | Herhaaldelijk operationeel werk met meerdere stappen | Agent met begrensde autoriteit | Automatisering betaalt zich uit wanneer de loop beperkt is |
 
 Agentische systemen zijn nuttig wanneer ze een team helpen echt werk te doen dat voorheen handmatige coördinatie vereiste. Ze zijn een slechte keuze wanneer de organisatie een demo wil, maar niet de discipline die productie vereist.
-
-Als je een AI-workflow van prototype naar iets wilt brengen dat je team kan vertrouwen, werk dan met Dario Mory. Hij helpt teams de evaluatie, guardrails, rollback-gedrag en implementatiemechanica te ontwerpen die agentische systemen nodig hebben voordat ze productieverkeer kunnen dragen.

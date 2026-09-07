@@ -1,4 +1,5 @@
 import BlogPostContent from '@/app/components/BlogPostContent';
+import { getLocalePath, type Locale } from '@/lib/locale';
 import { getBlogRevalidateSeconds, getCanonicalLocalSlug, getEnglishPost } from '@/lib/outrank';
 import { getPostSlugs, type Post } from '@/lib/posts';
 
@@ -17,9 +18,13 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
   const post = await getEnglishPost(params.slug);
   if (!post) return { notFound: true };
-  return { props: { post }, revalidate: getBlogRevalidateSeconds() };
+
+  const dutchSlug = getLocalePath(`/blog/${params.slug}`, 'nl').replace('/nl/blog/', '');
+  const availableLocales: Locale[] = getPostSlugs('nl').includes(dutchSlug) ? ['en', 'nl'] : ['en'];
+
+  return { props: { post, availableLocales }, revalidate: getBlogRevalidateSeconds() };
 }
 
-export default function EnglishPost({ post }: { post: Post }) {
-  return <BlogPostContent locale="en" post={post} />;
+export default function EnglishPost({ post, availableLocales }: { post: Post; availableLocales: Locale[] }) {
+  return <BlogPostContent locale="en" post={post} availableLocales={availableLocales} />;
 }

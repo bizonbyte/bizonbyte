@@ -68,13 +68,19 @@ export function getAlternateLocalePath(pathname: string) {
     : getLocalePath(pathname, 'nl');
 }
 
-export function getLanguageAlternates(pathname: string) {
+export function getLanguageAlternates(pathname: string, available: Locale[] = ['en', 'nl']) {
   const englishPath = getLocalePath(pathname, 'en');
   const dutchPath = getLocalePath(pathname, 'nl');
+  const hasEnglish = available.includes('en');
+  const hasDutch = available.includes('nl');
 
-  return {
-    'en-NL': `${siteUrl}${englishPath}`,
-    'nl-NL': `${siteUrl}${dutchPath}`,
-    'x-default': `${siteUrl}${englishPath}`,
-  };
+  // Only advertise a translation that exists. A blog post is written in one
+  // language first and translated in a later commit, so pointing hreflang at
+  // the other side unconditionally sends crawlers to a redirect.
+  const alternates: Record<string, string> = {};
+  if (hasEnglish) alternates['en-NL'] = `${siteUrl}${englishPath}`;
+  if (hasDutch) alternates['nl-NL'] = `${siteUrl}${dutchPath}`;
+  alternates['x-default'] = `${siteUrl}${hasEnglish ? englishPath : dutchPath}`;
+
+  return alternates;
 }

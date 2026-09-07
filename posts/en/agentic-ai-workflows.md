@@ -155,7 +155,7 @@ The pattern behind those stalls is familiar. Legacy integrations are messy, owne
 - **Audit and rollback:** Every important action needs a log and a reversal path.
 - **Named owner:** Someone has to own quality, cost, and escalation.
 
-A practical detail from engineering teams I've worked with, the rollout usually breaks at the seams between the AI layer and the existing system, not in the prompt itself. That is why [think in smaller commits](https://www.mory.dev/posts/teaching-engineers-to-think-in-smaller-commits/) applies here. Ship the workflow in narrow slices, validate each boundary, and harden the integration before you expand the agent's scope.
+A practical detail from engineering teams I've worked with, the rollout usually breaks at the seams between the AI layer and the existing system, not in the prompt itself. That is why thinking in smaller commits applies here. Ship the workflow in narrow slices, validate each boundary, and harden the integration before you expand the agent's scope.
 
 <a id="integrating-agentic-workflows-into-existing-systems"></a>
 ## Integrating Agentic Workflows into Existing Systems
@@ -177,7 +177,7 @@ The rollout checklist is simple to say and hard to fake:
 
 A reference implementation can help, but only if it fits the stack you already run. A practical example is [KLM airport slot management automation](https://www.mory.dev/projects/klm-airport-slot-management-automation/), which shows how workflow automation has to respect existing system boundaries, approval paths, and operational constraints.
 
-One production-minded example is [Dario Mory](https://mory.dev), which focuses on taking prototypes to production with evaluation pipelines, guardrails, and unit cost control. That kind of delivery work only matters when it fits the system already in place.
+One production-minded example is Dario Mory, which focuses on taking prototypes to production with evaluation pipelines, guardrails, and unit cost control. That kind of delivery work only matters when it fits the system already in place.
 
 The order matters. Put observability in first, then bounded authority, then evaluation. Each layer makes the next one more useful. If you reverse that order, you often end up with a system that looks advanced but cannot be trusted.
 
@@ -201,5 +201,3 @@ The hardest question is when not to use agents at all. If a deterministic rules 
 | Repeated multi-step operational work | Agent with bounded authority | Automation pays off when the loop is constrained |
 
 Agentic systems are useful when they help a team do real work that used to require manual coordination. They are a poor fit when the organization wants a demo, but not the discipline that production demands.
-
-If you are trying to move an AI workflow from prototype to something your team can trust, work with Dario Mory. He helps teams design the evaluation, guardrails, rollback behavior, and delivery mechanics that agentic systems need before they can carry production traffic.

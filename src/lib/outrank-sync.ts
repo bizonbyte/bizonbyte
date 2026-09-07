@@ -38,11 +38,13 @@ export function articleBody(article: SyncableArticle) {
 }
 
 export function stripOutrankCredit(body: string) {
+  // Outrank appends a credit line to every article. It is a literal
+  // cross-network fingerprint, so strip it before the post is written.
+  // Matched loosely on purpose: the exact wording and markup have changed
+  // before, and a missed variant ships the fingerprint to production.
   return body
-    .replace(/\n+\*?Produced via \[the Outrank tool\]\([^)]+\)\*?\s*$/i, '')
-    .replace(/\n+\*?Geproduceerd via \[de Outrank-tool\]\([^)]+\)\*?\s*$/i, '')
-    .replace(/\n+<p><em>Produced via <a [^>]+>the Outrank tool<\/a><\/em><\/p>\s*$/i, '')
-    .replace(/\n+<p><em>Geproduceerd via <a [^>]+>de Outrank-tool<\/a><\/em><\/p>\s*$/i, '')
+    .replace(/(?:\r?\n)+\s*(?:\*|_){0,2}\s*(?:Produced|Geproduceerd)\s+via\s+[^\n]*Outrank[^\n]*$/i, '')
+    .replace(/(?:\r?\n)+\s*<p>[\s\S]*?Outrank[\s\S]*?<\/p>\s*$/i, '')
     .trim();
 }
 

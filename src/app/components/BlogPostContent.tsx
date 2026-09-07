@@ -7,13 +7,13 @@ import { useEffect, useState } from 'react';
 import { getLanguageAlternates, siteUrl, type Locale } from '@/lib/locale';
 import type { Post } from '@/lib/posts';
 
-export default function BlogPostContent({ locale, post }: { locale: Locale; post: Post }) {
+export default function BlogPostContent({ locale, post, availableLocales }: { locale: Locale; post: Post; availableLocales?: Locale[] }) {
   const router = useRouter();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const dutch = locale === 'nl';
   const pathname = `${dutch ? '/nl/blog' : '/blog'}/${post.slug}`;
-  const alternates = getLanguageAlternates(pathname);
+  const alternates = getLanguageAlternates(pathname, availableLocales);
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
