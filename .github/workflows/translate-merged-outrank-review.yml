@@ -1,0 +1,67 @@
+name: Translate merged Outrank review
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  translate:
+    if: >-
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'outrank/review/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Find merged English article
+        id: article
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          filename="$(gh api "repos/$GH_REPOSITORY/pulls/$PR_NUMBER/files" --paginate --jq '.[] | select(.status != "removed") | select(.filename | startswith("posts/en/")) | .filename' | head -n 1)"
+          if [ -z "$filename" ]; then
+            echo "No merged English Outrank article found."
+            exit 0
+          fi
+          slug="${filename#posts/en/}"
+          slug="${slug%.md}"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
+      - name: Translate Dutch article
+        if: steps.article.outputs.slug != ''
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          SLUG: ${{ steps.article.outputs.slug }}
+        run: node scripts/translate-outrank-articles.mjs --slug="$SLUG" --force
+
+      - name: Commit Dutch translation
+        if: steps.article.outputs.slug != ''
+        env:
+          SLUG: ${{ steps.article.outputs.slug }}
+        shell: bash
+        run: |
+          if git diff --quiet -- "posts/$SLUG.md"; then
+            echo "Dutch translation is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "posts/$SLUG.md"
+          git commit -m "Translate reviewed Outrank article $SLUG"
+          git push origin HEAD:main

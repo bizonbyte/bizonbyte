@@ -11,6 +11,11 @@ const legacyEnglishBlogRedirects = [
 ];
 
 const nextConfig = {
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/outrank-webhook': ['./prompts/outrank-post-process.md'],
+    },
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**' },

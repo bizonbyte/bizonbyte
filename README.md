@@ -33,6 +33,12 @@ Google Analytics uses measurement ID `G-4R7V57RQV0` and is denied by default unt
 
 Before sending real mail, add the Loops DNS records shown in the Loops dashboard for `envelope.bizonbyte.nl`: the MX, SPF, DMARC, three DKIM CNAME records, and `_loops-verification` TXT record. Verify the domain in Loops, then add the same environment variables to the production host.
 
+## Outrank publishing pipeline
+
+The Outrank webhook runs a final DeepSeek V4 Flash editorial pass before publishing English content. DeepSeek can make evidence-backed corrections and citation edits by calling Parallel Search once. Set `DEEPSEEK_API_KEY`, `PARALLEL_API_KEY`, `OUTRANK_TARGET_DOMAIN`, `OUTRANK_TIER`, and (if needed) `OUTRANK_POST_PROCESS_TIMEOUT_MS` in the production environment. The default target domain is `bizonbyte.nl`, the default tier is `2`, and the final-pass timeout is 30 seconds.
+
+Articles whose final pass still reports blocking flags are opened as English-only GitHub review PRs under the `outrank/review/` branch prefix. After such a PR is merged, `.github/workflows/translate-merged-outrank-review.yml` generates and commits the Dutch translation. The production `GITHUB_TOKEN` needs contents and pull-request write access, and the repository Actions configuration needs `DEEPSEEK_API_KEY` as a secret with permission to write repository contents.
+
 The focused outbound page is available at `/logistics-automation` for Dutch logistics outreach. UTM parameters can be appended to that URL and are available to GA4 after consent.
 
 ## Learn More

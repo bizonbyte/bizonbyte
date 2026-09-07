@@ -1,5 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { articleBody, syncPublishedDutchArticle, syncPublishedEnglishArticle, type SyncableArticle } from '@/lib/outrank-sync';
+import {
+  articleBody,
+  createOutrankReviewPr,
+  prepareProcessedEnglishArticle,
+  resolveSyncArticle,
+  syncPublishedDutchArticle,
+  syncPublishedEnglishArticle,
+  type SyncableArticle,
+} from '@/lib/outrank-sync';
 import { dedupeOutrankArticles } from '@/lib/outrank';
 
 export const config = {
@@ -60,7 +68,42 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const synced = [];
   for (const article of articles) {
     console.log(`Outrank webhook ${article.slug} markdown=${article.content_markdown?.length || 0} html=${article.html?.length || 0}`);
-    const english = await syncPublishedEnglishArticle(article);
+
+    const source = resolveSyncArticle(article);
+    let publishSource = source;
+    let processed = null;
+    try {
+      processed = await prepareProcessedEnglishArticle(source);
+      publishSource = processed.source;
+    } catch (error) {
+      console.error(`Outrank final pass failed for ${source.slug}; publishing sanitised source`, error);
+    }
+
+    if (processed && !processed.result.readyToPublish) {
+      try {
+        const review = await createOutrankReviewPr(
+          processed.source,
+          processed.markdown,
+          processed.result,
+        );
+        synced.push({
+          slug: source.slug,
+          status: 'review_required',
+          path: 'posts/en/' + source.slug + '.md',
+          pull_request_number: review.number,
+          pull_request_url: review.url,
+          changes: processed.result.changes,
+          flags: processed.result.flags,
+          search_id: processed.result.searchId,
+        });
+        continue;
+      } catch (error) {
+        console.error(`Outrank review PR failed for ${source.slug}; publishing sanitised source`, error);
+        publishSource = source;
+      }
+    }
+
+    const english = await syncPublishedEnglishArticle(publishSource);
     let dutch = null;
     try {
       dutch = await syncPublishedDutchArticle(english.source);
