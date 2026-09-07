@@ -82,7 +82,7 @@ async function translateArticle(article, apiKey) {
         {
           role: 'system',
           content:
-            'Je vertaalt blogartikelen van het Engels naar professioneel Nederlands (nl-NL) voor Nederlandse bedrijven. Behoud markdown-structuur, koppen, lijsten, links, codeblokken en afbeeldings-URL\'s. Vertaal geen URL\'s, code of bestandspaden. Schrijf alsof een Nederlandstalige consultant het zelf heeft geschreven. Antwoord alleen met JSON: {"title","description","body"}.',
+            'Je vertaalt blogartikelen van het Engels naar professioneel Nederlands (nl-NL) voor Nederlandse bedrijven. Behoud markdown-structuur, koppen, lijsten, links, codeblokken en afbeeldings-URL\'s. Vertaal geen URL\'s, code of bestandspaden. Behoud afbeeldings-URL\'s byte voor byte, in het bijzonder de URL van de eerste hero-afbeelding. Schrijf alsof een Nederlandstalige consultant het zelf heeft geschreven. Antwoord alleen met JSON: {"title","description","body"}.',
         },
         {
           role: 'user',
@@ -116,11 +116,21 @@ async function translateArticle(article, apiKey) {
   };
 }
 
+function preserveHeroImage(article, translation) {
+  const imageMatch = article.content_markdown.match(/^!\[[^\]]*\]\(([^)\r\n]+)\)/);
+  const body = translation.body.trim();
+  if (!imageMatch) return body;
+
+  const hero = `![${translation.title}](${imageMatch[1]})`;
+  const translatedHeroPattern = /^!\[[^\]]*\]\([^)\r\n]+\)/;
+  if (translatedHeroPattern.test(body)) {
+    return body.replace(translatedHeroPattern, hero);
+  }
+  return `${hero}\n\n${body}`;
+}
+
 function writeDutchPost(article, translation) {
-  const imageMatch = article.content_markdown.match(/^!\[.*?\]\((.*?)\)/);
-  const image = imageMatch && !translation.body.startsWith('![')
-    ? `![${translation.title}](${imageMatch[1]})\n\n`
-    : '';
+  const body = preserveHeroImage(article, translation);
   const file = `---
 title: ${yamlQuote(translation.title)}
 description: ${yamlQuote(translation.description)}
@@ -128,7 +138,7 @@ date: ${yamlQuote(toDate(article.created_at))}
 author: ${yamlQuote('Bizonbyte Team')}
 ---
 
-${image}${translation.body}
+${body}
 `;
   fs.writeFileSync(path.join(POSTS_DIR, `${article.slug}.md`), file, 'utf8');
 }
