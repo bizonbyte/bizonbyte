@@ -1,11 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { dispatchOutrankArticle } from '@/lib/arty-final-pass-dispatch';
+import { captureException } from '@/lib/observability';
 import {
   articleBody,
-  createOutrankReviewPr,
-  prepareProcessedEnglishArticle,
+  formatEnglishPost,
   resolveSyncArticle,
-  syncPublishedDutchArticle,
-  syncPublishedEnglishArticle,
   type SyncableArticle,
 } from '@/lib/outrank-sync';
 import { dedupeOutrankArticles } from '@/lib/outrank';
@@ -65,64 +64,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     asArticles(req.body).map(toSyncable).filter((article) => article.slug && article.title && articleBody(article)),
   );
 
-  const synced = [];
+  const queued = [];
   for (const article of articles) {
     console.log(`Outrank webhook ${article.slug} markdown=${article.content_markdown?.length || 0} html=${article.html?.length || 0}`);
 
-    const source = resolveSyncArticle(article);
-    let publishSource = source;
-    let processed = null;
     try {
-      processed = await prepareProcessedEnglishArticle(source);
-      publishSource = processed.source;
+      const source = resolveSyncArticle(article);
+      const markdown = formatEnglishPost(source);
+      const job = await dispatchOutrankArticle(source, markdown);
+      queued.push({
+        slug: source.slug,
+        status: 'queued',
+        request_id: job.requestId,
+        target_path: job.targetPath,
+      });
     } catch (error) {
-      console.error(`Outrank final pass failed for ${source.slug}; publishing sanitised source`, error);
+      const slug = article.slug || '(unknown)';
+      console.error(`Could not queue Outrank article ${slug}`, error);
+      captureException(error, { component: 'outrank-webhook', slug });
+      return res.status(503).json({
+        error: 'Article processing could not be queued',
+        queued,
+      });
     }
-
-    if (processed && !processed.result.readyToPublish) {
-      try {
-        const review = await createOutrankReviewPr(
-          processed.source,
-          processed.markdown,
-          processed.result,
-        );
-        synced.push({
-          slug: source.slug,
-          status: 'review_required',
-          path: 'posts/en/' + source.slug + '.md',
-          pull_request_number: review.number,
-          pull_request_url: review.url,
-          changes: processed.result.changes,
-          flags: processed.result.flags,
-          search_id: processed.result.searchId,
-        });
-        continue;
-      } catch (error) {
-        console.error(`Outrank review PR failed for ${source.slug}; publishing sanitised source`, error);
-        publishSource = source;
-      }
-    }
-
-    const english = await syncPublishedEnglishArticle(publishSource);
-    let dutch = null;
-    try {
-      dutch = await syncPublishedDutchArticle(english.source);
-    } catch (error) {
-      console.error(`Failed to write Dutch translation for ${english.slug}`, error);
-    }
-    try {
-      await res.revalidate('/blog');
-      await res.revalidate(`/blog/${english.slug}`);
-      await res.revalidate('/nl/blog');
-      await res.revalidate(`/nl/blog/${english.slug}`);
-    } catch (error) {
-      console.error(`Failed to revalidate ${english.slug}`, error);
-    }
-    synced.push({ ...english, dutch });
   }
 
-  return res.status(200).json({
-    message: 'Webhook processed successfully',
-    synced,
+  return res.status(202).json({
+    message: 'Article final pass queued',
+    queued,
   });
 }

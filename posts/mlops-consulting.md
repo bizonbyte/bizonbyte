@@ -5,7 +5,7 @@ date: "2026-09-07"
 author: "Bizonbyte Team"
 ---
 
-![MLOps-consultinggids voor betrouwbare ML-pijplijnen](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/02eff7f0-9e87-479e-ac5a-eea9a73fe837/mlops-consulting-ml-pipelines.jpg)
+![Een bizon die een betrouwbare MLOps-pijplijn bewaakt van modelontwikkeling tot productie](/blog/mlops-consulting-cover.png)
 
 De **MLOps-markt** zal naar verwachting groeien van **USD 4,39 miljard in 2026** tot **USD 89,91 miljard in 2034**, met een **CAGR van 45,8%** in die periode ([Fortune Business Insights](https://www.fortunebusinessinsights.com/mlops-market-108986)). Die groei verandert de vraag van "Moeten we machine learning operationaliseren?" naar "Hoe houden we ML betrouwbaar nadat het in productie is?"
 

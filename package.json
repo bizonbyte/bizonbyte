@@ -13,6 +13,7 @@
     "sync:outrank": "node scripts/sync-outrank-articles.mjs"
   },
   "dependencies": {
+    "@sentry/node": "^9.0.0",
     "gray-matter": "^4.0.3",
     "next": "14.0.4",
     "next-sitemap": "^4.2.3",

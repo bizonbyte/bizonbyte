@@ -35,9 +35,9 @@ Before sending real mail, add the Loops DNS records shown in the Loops dashboard
 
 ## Outrank publishing pipeline
 
-The Outrank webhook runs a final DeepSeek V4 Flash editorial pass before publishing English content. DeepSeek can make evidence-backed corrections and citation edits by calling Parallel Search once. Set `DEEPSEEK_API_KEY`, `PARALLEL_API_KEY`, `OUTRANK_TARGET_DOMAIN`, `OUTRANK_TIER`, and (if needed) `OUTRANK_POST_PROCESS_TIMEOUT_MS` in the production environment. The default target domain is `bizonbyte.nl`, the default tier is `2`, and the final-pass timeout is 30 seconds.
+The Outrank webhook queues a final article-quality pass in the private processing repository before publishing English content. Set `ARTY_DISPATCH_PAT`, `ARTY_BOT_REPOSITORY`, `OUTRANK_TARGET_REPOSITORY`, `OUTRANK_TARGET_DOMAIN`, `OUTRANK_TIER`, and (optionally) `SENTRY_DSN` in the production environment. The dispatch PAT needs permission to trigger a repository dispatch in the private processing repository; it is used only server-side and is never committed.
 
-Articles whose final pass still reports blocking flags are opened as English-only GitHub review PRs under the `outrank/review/` branch prefix. After such a PR is merged, `.github/workflows/translate-merged-outrank-review.yml` generates and commits the Dutch translation. The production `GITHUB_TOKEN` needs contents and pull-request write access, and the repository Actions configuration needs `DEEPSEEK_API_KEY` as a secret with permission to write repository contents.
+Clean articles are merged automatically; articles with blocking flags remain as English-only GitHub review PRs under the `outrank/review/` branch prefix. After the PR is merged, `.github/workflows/translate-merged-outrank-review.yml` generates and commits the Dutch translation using its existing `DEEPSEEK_API_KEY` Actions secret. The webhook returns `202 Accepted` after the processing job is queued; it does not publish unprocessed fallback content.
 
 The focused outbound page is available at `/logistics-automation` for Dutch logistics outreach. UTM parameters can be appended to that URL and are available to GA4 after consent.
 
