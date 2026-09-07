@@ -188,9 +188,3 @@ For a real-world example of this kind of applied engineering focus, see [this AI
 > If a model is important enough to influence revenue or risk, it's important enough to monitor like production software.
 
 The shortest path to ROI is usually not a fancier model. It's a system that fails less often, fails more visibly, and recovers faster.
-
----
-
-If you want help turning an ML prototype into a reliable production system, [Dario Mory](https://mory.dev) offers hands-on AI engineering and software delivery support focused on evaluation, fallback behavior, observability, and high-traffic reliability. His work is built for teams that need ML to survive real operations, not just impress in demos. Visit his site to explore how that approach can fit your product or platform.
-
-*Composed with [Outrank tool](https://outrank.so)*
