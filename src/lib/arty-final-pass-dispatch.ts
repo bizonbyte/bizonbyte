@@ -2,7 +2,6 @@ import crypto from 'crypto';
 import type { SyncableArticle } from './outrank-sync';
 
 const DEFAULT_ARTY_REPOSITORY = 'dariomory/arty-bot';
-const DEFAULT_TARGET_REPOSITORY = 'bizonbyte/bizonbyte';
 
 function githubHeaders(token: string) {
   return {
@@ -30,21 +29,16 @@ export async function dispatchOutrankArticle(article: SyncableArticle, markdown:
   const token = process.env.ARTY_DISPATCH_PAT || process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   if (!token) throw new Error('ARTY_DISPATCH_PAT is not set');
 
-  const targetRepository = process.env.OUTRANK_TARGET_REPOSITORY || DEFAULT_TARGET_REPOSITORY;
   const id = requestId(article, markdown);
   const payload = {
     event_type: 'bizonbyte_article_final_pass',
     client_payload: {
       request_id: id,
       source: 'bizonbyte-outrank',
-      target_repo: targetRepository,
-      target_branch: 'main',
       target_path: `posts/en/${article.slug}.md`,
       slug: article.slug,
       title: article.title,
-      target_domain: (process.env.OUTRANK_TARGET_DOMAIN || 'bizonbyte.nl').trim(),
       tier: configuredTier(article),
-      language: 'English',
       source_updated_at: article.updated_at || article.created_at || '',
       article_markdown_base64: Buffer.from(markdown, 'utf8').toString('base64'),
     },
