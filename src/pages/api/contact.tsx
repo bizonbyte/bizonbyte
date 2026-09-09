@@ -155,7 +155,7 @@ export default async function handler(
 
   if (!sentViaLoops) {
     try {
-      const fallbackRecipient = ownerEmail.includes('@') ? ownerEmail : 'info@hackrev.com'
+      const fallbackRecipient = ownerEmail.includes('@') ? ownerEmail : 'admin@bizonbyte.nl'
       const response = await fetch(`https://formsubmit.co/ajax/${fallbackRecipient}`, {
         method: 'POST',
         headers: {
@@ -163,6 +163,7 @@ export default async function handler(
           Accept: 'application/json',
           Origin: 'https://bizonbyte.nl',
           Referer: 'https://bizonbyte.nl/',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         },
         body: JSON.stringify({
           name,
@@ -177,6 +178,26 @@ export default async function handler(
       if (!response.ok || result.success === 'false') {
         console.error('FormSubmit fallback failed:', result)
         throw new Error(result.message || `FormSubmit failed with ${response.status}`)
+      }
+
+      // Sync lead event to Loops if API key is present
+      if (process.env.LOOPS_API_KEY) {
+        fetch('https://app.loops.so/api/v1/events/send', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${process.env.LOOPS_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            eventName: 'contact_form_submission',
+            eventProperties: {
+              name,
+              subject: subject || 'New contact inquiry',
+              message,
+            },
+          }),
+        }).catch((err) => console.warn('Loops event sync failed:', err))
       }
     } catch (error: any) {
       console.error('Contact form owner notification failed:', error)
