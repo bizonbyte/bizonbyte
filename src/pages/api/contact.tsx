@@ -178,10 +178,10 @@ export default async function handler(
         console.error('FormSubmit fallback failed:', result)
         throw new Error(result.message || `FormSubmit failed with ${response.status}`)
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Contact form owner notification failed:', error)
       return res.status(502).json({
-        message: 'We could not send your message. Please try again or email us directly.',
+        message: error?.message || 'We could not send your message.',
       })
     }
   }
