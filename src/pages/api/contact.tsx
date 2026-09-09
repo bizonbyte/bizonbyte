@@ -130,33 +130,58 @@ export default async function handler(
 
   const ownerTransactionalId = process.env.LOOPS_OWNER_TRANSACTIONAL_ID
   const confirmationTransactionalId = process.env.LOOPS_CONFIRMATION_TRANSACTIONAL_ID
-  const ownerEmail = process.env.CONTACT_TO_EMAIL
+  const ownerEmail = process.env.CONTACT_TO_EMAIL || 'info@hackrev.com'
 
-  if (!process.env.LOOPS_API_KEY || !ownerTransactionalId || !ownerEmail) {
-    console.error('Contact form is missing its Loops configuration.')
-    return res.status(503).json({
-      message: 'The contact form is temporarily unavailable. Please email us directly.',
-    })
+  let sentViaLoops = false
+  if (process.env.LOOPS_API_KEY && ownerTransactionalId && ownerEmail) {
+    try {
+      await sendTransactionalEmail(
+        ownerTransactionalId,
+        ownerEmail,
+        {
+          name,
+          email,
+          subject: subject || 'Website contact form',
+          message,
+          requestId,
+        },
+        requestId
+      )
+      sentViaLoops = true
+    } catch (error) {
+      console.warn('Loops notification failed, falling back to FormSubmit:', error)
+    }
   }
 
-  try {
-    await sendTransactionalEmail(
-      ownerTransactionalId,
-      ownerEmail,
-      {
-        name,
-        email,
-        subject: subject || 'Website contact form',
-        message,
-        requestId,
-      },
-      requestId
-    )
-  } catch (error) {
-    console.error('Contact form owner notification failed:', error)
-    return res.status(502).json({
-      message: 'We could not send your message. Please try again or email us directly.',
-    })
+  if (!sentViaLoops) {
+    try {
+      const fallbackRecipient = ownerEmail.includes('@') ? ownerEmail : 'info@hackrev.com'
+      const response = await fetch(`https://formsubmit.co/ajax/${fallbackRecipient}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject: subject || 'New contact inquiry — Bizonbyte',
+          message,
+          requestId,
+        }),
+      })
+
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok || result.success === 'false') {
+        console.error('FormSubmit fallback failed:', result)
+        throw new Error(result.message || `FormSubmit failed with ${response.status}`)
+      }
+    } catch (error) {
+      console.error('Contact form owner notification failed:', error)
+      return res.status(502).json({
+        message: 'We could not send your message. Please try again or email us directly.',
+      })
+    }
   }
 
   if (confirmationTransactionalId) {
