@@ -231,7 +231,7 @@ The teams that keep AI features alive don't rely on heroics. They build habits t
 
 Prompts and indexes should have code owners. Weekly review meetings should include product, ML, and SRE voices in the same room, because each group sees a different kind of failure. Evaluation suites should be treated as documentation that evolves with the feature, not as a one-time audit artifact.
 
-The same discipline helps teams avoid oversized change sets. The article on [thinking in smaller commits](https://www.mory.dev/posts/teaching-engineers-to-think-in-smaller-commits/) maps well to AI work, because smaller changes make it easier to see whether a prompt edit, a retrieval tweak, or a fallback change improved the system.
+The same discipline helps teams avoid oversized change sets. Thinking in smaller commits maps well to AI work, because smaller changes make it easier to see whether a prompt edit, a retrieval tweak, or a fallback change improved the system.
 
 <a id="prepare-for-the-specific-ways-ai-fails"></a>
 ### Prepare for the specific ways AI fails

@@ -116,8 +116,6 @@ That matters because workflow failures are often structural, missing steps, wron
 
 You can't ship that discipline without replay. Offline harnesses catch regressions before users do, and shadow runs let you compare candidate changes against live traffic without putting them in charge. If the orchestration layer changes and no replay harness notices, the evaluation layer is too shallow.
 
-**Recommended reading:** [The Multi LLM Stack](https://www.mory.dev/posts/the-multi-llm-stack/)
-
 <a id="safety-governance-and-bounded-authority"></a>
 ## Safety, Governance, and Bounded Authority
 

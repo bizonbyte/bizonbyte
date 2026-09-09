@@ -116,8 +116,6 @@ Dat is belangrijk omdat workflowfouten vaak structureel zijn: ontbrekende stappe
 
 Je kunt die discipline niet leveren zonder replay. Offline harnesses vangen regressies op voordat gebruikers ze zien, en shadow runs laten je kandidaatwijzigingen vergelijken met live verkeer zonder ze de leiding te geven. Als de orchestratielaag verandert en geen replayharness het opmerkt, is de evaluatielaag te ondiep.
 
-**Aanbevolen leesvoer:** [The Multi LLM Stack](https://www.mory.dev/posts/the-multi-llm-stack/)
-
 <a id="veiligheid-governance-en-begrensde-autoriteit"></a>
 ## Veiligheid, governance en begrensde autoriteit
 
