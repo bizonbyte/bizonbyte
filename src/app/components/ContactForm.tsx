@@ -26,7 +26,18 @@ export default function ContactForm({ locale = 'en' }: { locale?: Locale }) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      // 1. Submit to FormSubmit directly from client (verified & delivered to inbox)
+      const formSubmitPromise = fetch('https://formsubmit.co/ajax/admin@bizonbyte.nl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // 2. Submit to /api/contact to log the event in Loops
+      const apiContactPromise = fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,8 +45,10 @@ export default function ContactForm({ locale = 'en' }: { locale?: Locale }) {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json().catch(() => ({}));
-      if (response.ok) {
+      const [fsRes] = await Promise.all([formSubmitPromise, apiContactPromise]);
+      const fsData = await fsRes.json().catch(() => ({}));
+
+      if (fsRes.ok && fsData.success !== 'false') {
         trackEvent('contact_form_submit_success');
         setStatusMessage(dutch
           ? 'Bedankt — we hebben je bericht ontvangen en reageren binnen één werkdag.'
@@ -43,8 +56,8 @@ export default function ContactForm({ locale = 'en' }: { locale?: Locale }) {
         setIsError(false);
         setFormData({ name: '', email: '', subject: '', message: '', website: '' });
       } else {
-        trackEvent('contact_form_submit_error', { status: response.status });
-        setStatusMessage(data.message || (dutch ? 'Het bericht kon niet worden verzonden.' : 'Failed to send message.'));
+        trackEvent('contact_form_submit_error', { status: fsRes.status });
+        setStatusMessage(fsData.message || (dutch ? 'Het bericht kon niet worden verzonden.' : 'Failed to send message.'));
         setIsError(true);
       }
     } catch {

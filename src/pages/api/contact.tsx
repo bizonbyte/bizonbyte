@@ -128,96 +128,27 @@ export default async function handler(
     return res.status(400).json({ message: 'Please tell us a little about your project.' })
   }
 
-  const ownerTransactionalId = process.env.LOOPS_OWNER_TRANSACTIONAL_ID
-  const confirmationTransactionalId = process.env.LOOPS_CONFIRMATION_TRANSACTIONAL_ID
-  const ownerEmail = process.env.CONTACT_TO_EMAIL || 'info@hackrev.com'
-
-  let sentViaLoops = false
-  if (process.env.LOOPS_API_KEY && ownerTransactionalId && ownerEmail) {
+  // Record lead in Loops if configured
+  if (process.env.LOOPS_API_KEY) {
     try {
-      await sendTransactionalEmail(
-        ownerTransactionalId,
-        ownerEmail,
-        {
-          name,
-          email,
-          subject: subject || 'Website contact form',
-          message,
-          requestId,
-        },
-        requestId
-      )
-      sentViaLoops = true
-    } catch (error) {
-      console.warn('Loops notification failed, falling back to FormSubmit:', error)
-    }
-  }
-
-  if (!sentViaLoops) {
-    try {
-      const fallbackRecipient = ownerEmail.includes('@') ? ownerEmail : 'admin@bizonbyte.nl'
-      const response = await fetch(`https://formsubmit.co/ajax/${fallbackRecipient}`, {
+      await fetch('https://app.loops.so/api/v1/events/send', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${process.env.LOOPS_API_KEY}`,
           'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Origin: 'https://bizonbyte.nl',
-          Referer: 'https://bizonbyte.nl/',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         },
         body: JSON.stringify({
-          name,
           email,
-          subject: subject || 'New contact inquiry — Bizonbyte',
-          message,
-          requestId,
+          eventName: 'contact_form_submission',
+          eventProperties: {
+            name,
+            subject: subject || 'New contact inquiry',
+            message,
+          },
         }),
       })
-
-      const result = await response.json().catch(() => ({}))
-      if (!response.ok || result.success === 'false') {
-        console.error('FormSubmit fallback failed:', result)
-        throw new Error(result.message || `FormSubmit failed with ${response.status}`)
-      }
-
-      // Sync lead event to Loops if API key is present
-      if (process.env.LOOPS_API_KEY) {
-        fetch('https://app.loops.so/api/v1/events/send', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${process.env.LOOPS_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            eventName: 'contact_form_submission',
-            eventProperties: {
-              name,
-              subject: subject || 'New contact inquiry',
-              message,
-            },
-          }),
-        }).catch((err) => console.warn('Loops event sync failed:', err))
-      }
-    } catch (error: any) {
-      console.error('Contact form owner notification failed:', error)
-      return res.status(502).json({
-        message: error?.message || 'We could not send your message.',
-      })
-    }
-  }
-
-  if (confirmationTransactionalId) {
-    try {
-      await sendTransactionalEmail(
-        confirmationTransactionalId,
-        email,
-        { name, requestId },
-        requestId
-      )
-    } catch (error) {
-      // The owner notification succeeded, so do not make the visitor resubmit.
-      console.error('Contact form confirmation email failed:', error)
+    } catch (err) {
+      console.warn('Loops event sync failed:', err)
     }
   }
 
