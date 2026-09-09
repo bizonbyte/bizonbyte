@@ -161,6 +161,8 @@ export default async function handler(
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Origin: 'https://bizonbyte.nl',
+          Referer: 'https://bizonbyte.nl/',
         },
         body: JSON.stringify({
           name,
