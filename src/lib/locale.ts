@@ -25,7 +25,6 @@ const blogSlugPairs: Record<string, string> = {
   'schalen-met-low-code-waar-nederlandse-bedrijven-struikelen': 'scaling-with-low-code-where-dutch-companies-stumble',
   'post-odido-hack-veilige-pijplijnen-voor-klantgegevens-bouwen': 'post-odido-hack-building-secure-customer-data-pipelines',
   'afwegingen-bij-het-schalen-van-modellen-voor-machinaal-leren-on-prem-vs-hybride-': 'trade-offs-in-scaling-machine-learning-models-on-prem-vs-hybrid',
-  'ongemiddeld-gids-opvallen': 'remarkable-a-no-nonsense-guide-to-standing-out',
 };
 
 const englishToDutchBlogSlugs = Object.entries(blogSlugPairs).reduce<Record<string, string>>((result, [dutchSlug, englishSlug]) => {
