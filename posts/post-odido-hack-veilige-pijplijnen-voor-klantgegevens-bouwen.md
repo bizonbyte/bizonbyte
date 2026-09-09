@@ -12,9 +12,9 @@ Deze verschuiving heeft onmiddellijke gevolgen voor elke organisatie die op grot
 
 ## Wat de AP-audits betekenen voor uw architectuur
 
-De preventieve controles van het AP richten zich op drie specifieke gebieden: testen van serverbeveiliging, updateverificatie en naleving van dataminimalisatie. Dit zijn geen abstracte regelgevende hokjes, ze zijn direct gekoppeld aan technische architectuurbeslissingen die veel organisaties jarenlang hebben uitgesteld.
+De preventieve controles van het AP richten zich op drie specifieke gebieden: testen van serverbeveiliging, updateverificatie en naleving van [dataminimalisatie](https://eur-lex.europa.eu/eli/reg/2016/679/oj). Dit zijn geen abstracte regelgevende hokjes, ze zijn direct gekoppeld aan technische architectuurbeslissingen die veel organisaties jarenlang hebben uitgesteld.
 
-Serverbeveiliging testen betekent dat uw infrastructuur defense-in-depth moet aantonen. Bescherming in één laag is niet langer voldoende. Updateverificatie vereist gedocumenteerd patchbeheer met bewijssporen. Maar het is de derde vereiste - ervoor zorgen dat organisaties "niet meer gegevens opslaan dan nodig is" - die de belangrijkste architecturale veranderingen zal afdwingen.
+Serverbeveiliging testen betekent dat uw infrastructuur [defense-in-depth](https://www.ncsc.nl/) moet aantonen. Bescherming in één laag is niet langer voldoende — de [gelaagde maatregelen](https://www.nist.gov/cyberframework) moeten ook aantoonbaar zijn. Updateverificatie vereist gedocumenteerd patchbeheer met bewijssporen. Maar het is de derde vereiste - ervoor zorgen dat organisaties "niet meer gegevens opslaan dan nodig is" - die de belangrijkste architecturale veranderingen zal afdwingen.
 
 De meeste datapijplijnen voor klanten zijn gebouwd in een tijdperk waarin opslag goedkoop was en data goud waard. De heersende logica was eenvoudig: verzamel alles en zoek later uit wat waardevol is. Deze aanpak is nu een risico. Elk onnodig dataveld vertegenwoordigt een inbreuk op de regelgeving.
 
@@ -22,7 +22,7 @@ De AP merkte expliciet op dat "er ook onderzoeken nodig zijn naar organisaties d
 
 ## Het probleem van ICT-leveranciers
 
-Hier is de ongemakkelijke waarheid die de aankondiging van de AP onderstreept: u blijft verantwoordelijk voor gegevens, zelfs wanneer een derde partij deze verwerkt. De inbreuk bij Odido was niet afkomstig van hun interne systemen - de aanvalsvector liep via het ecosysteem van hun leveranciers. Toch draagt Odido de last van de regelgeving en de reputatieschade.
+Hier is de ongemakkelijke waarheid die de aankondiging van de AP onderstreept: u blijft verantwoordelijk voor gegevens, zelfs wanneer een [derde partij deze verwerkt](https://www.enisa.europa.eu/). De inbreuk bij Odido was niet afkomstig van hun interne systemen - de aanvalsvector liep via het ecosysteem van hun leveranciers. Toch draagt Odido de last van de regelgeving en de reputatieschade.
 
 Dit creëert een echt dilemma voor Nederlandse bedrijven. Alles intern bouwen is onbetaalbaar en levert vaak slechtere beveiligingsresultaten op dan gespecialiseerde leveranciers kunnen bieden. Maar het uitbesteden van gegevensverwerking betekent dat je moet accepteren dat je beveiligingsposture slechts zo sterk is als je zwakste leverancier.
 

@@ -63,7 +63,7 @@ Daarom verschilt MLOps-consulting ook van algemene data science-hulp. Een consul
 
 Het marktsignaal is moeilijk te negeren. De MLOps-markt zal naar verwachting snel groeien, wat laat zien dat organisaties machine learning-operations niet langer als een experiment behandelen. Ze begroten voor de systemen, controles en routines die modellen na implementatie betrouwbaar houden.
 
-![Een infographic die de snelle groei en productiefasen van MLOps-consultingdiensten illustreert.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/20b81906-6f77-47a8-9519-36ef36fff309/mlops-consulting-market-growth-nl.jpg)
+![Een infographic die de snelle groei en productiefasen van MLOps-consultingdiensten illustreert.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/20b81906-6f77-47a8-9519-36ef36fff309/mlops-consulting-market-growth.jpg)
 
 <a id="de-markt-verschoof-van-niche-naar-operationeel-budget"></a>
 ### De markt verschoof van niche naar operationeel budget
@@ -82,7 +82,7 @@ Daarom richt consulting zich vaak op de volledige operationele levenscyclus en n
 <a id="kerncomponenten-van-mlops-consulting"></a>
 ## Kerncomponenten van MLOps-consulting
 
-![Een diagram dat de vier kerncomponenten van MLOps-consulting illustreert: pijplijnontwerp, herleidbaarheid, monitoring en teambekwaamheid.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/4e89ed9e-112c-43bb-9b19-5c467b4bb10b/mlops-consulting-core-components-nl.jpg)
+![Een diagram dat de vier kerncomponenten van MLOps-consulting illustreert: pijplijnontwerp, herleidbaarheid, monitoring en teambekwaamheid.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/4e89ed9e-112c-43bb-9b19-5c467b4bb10b/mlops-consulting-core-components.jpg)
 
 De meeste trajecten vallen uiteen in vier samenhangende capabilities. Door ze als afzonderlijke werkstromen te behandelen ontstaan meestal hiaten, want een model kan niet betrouwbaar zijn als de pijplijn breekbaar is, en monitoring kan niet helpen als niemand kan herleiden wat er is veranderd.
 
@@ -113,7 +113,7 @@ Een sterk traject optimaliseert niet één vak in de stack. Het verbindt alle vi
 <a id="het-ontwerpen-van-betrouwbare-ml-pijplijnen-en-herleidbare-workflows"></a>
 ## Het ontwerpen van betrouwbare ML-pijplijnen en herleidbare workflows
 
-![Een stroomdiagram in vijf stappen dat het proces illustreert van het ontwerpen van betrouwbare machine learning-pijplijnen en herleidbare workflows in MLOps.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/3e161aab-c55e-4dd4-9729-385a13a62922/mlops-consulting-ml-pipelines-nl.jpg)
+![Een stroomdiagram in vijf stappen dat het proces illustreert van het ontwerpen van betrouwbare machine learning-pijplijnen en herleidbare workflows in MLOps.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/3e161aab-c55e-4dd4-9729-385a13a62922/mlops-consulting-ml-pipelines.jpg)
 
 Betrouwbare ML-pijplijnen zijn opzettelijk voorspelbaar. Ze doorlopen elke keer hetzelfde pad voor data, training en release, zodat teams kunnen zien waar een fout begint in plaats van achteraf te raden. Dat is belangrijk omdat ad-hocscripts kunnen blijven werken totdat een afhankelijkheid verandert, een dataset verschuift of de runtime-omgeving afwijkt.
 
@@ -141,7 +141,7 @@ De beste workflows maken overdrachten voorspelbaar. Als een data scientist vertr
 <a id="het-implementeren-van-productiemonitoring-en-modeloperaties"></a>
 ## Het implementeren van productiemonitoring en modeloperaties
 
-![Een diagram dat een productieklare observability-stack illustreert voor het monitoren en beheren van machine learning-operaties en -prestaties.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/30be6b39-8b5e-422b-9eaf-5e0accb22f1c/mlops-consulting-observability-stack-nl.jpg)
+![Een diagram dat een productieklare observability-stack illustreert voor het monitoren en beheren van machine learning-operaties en -prestaties.](https://cdnimg.co/0259b017-1989-49cd-be8b-bf38663476c4/30be6b39-8b5e-422b-9eaf-5e0accb22f1c/mlops-consulting-observability-stack.jpg)
 
 Monitoring is waar veel ML-projecten ofwel betrouwbare diensten worden, ofwel vervallen. Een dashboard alleen is niet genoeg, want een dashboard toont alleen een momentopname. Echte monitoring vergelijkt productiegedrag met een basislijn en vertelt engineers wanneer het systeem is afgedwaald, teruggevallen of begint te falen onder verkeersdruk.
 

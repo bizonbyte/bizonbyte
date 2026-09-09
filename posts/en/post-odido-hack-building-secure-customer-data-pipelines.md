@@ -12,9 +12,9 @@ That shift has immediate implications for every organisation processing customer
 
 ## What the AP audits mean for your architecture
 
-The AP’s preventive checks focus on three specific areas: server-security testing, update verification, and compliance with data minimisation. These are not abstract regulatory boxes. They connect directly to architectural decisions many organisations have deferred for years.
+The AP’s preventive checks focus on three specific areas: server-security testing, update verification, and compliance with [data minimisation](https://eur-lex.europa.eu/eli/reg/2016/679/oj). These are not abstract regulatory boxes. They connect directly to architectural decisions many organisations have deferred for years.
 
-Server-security testing means your infrastructure must demonstrate defence in depth. Protection at a single layer is no longer enough. Update verification requires documented patch management with an evidence trail. But it is the third requirement — ensuring organisations “do not store more data than necessary” — that will force the most significant architectural changes.
+Server-security testing means your infrastructure must demonstrate [defence in depth](https://www.ncsc.nl/). Protection at a single layer is no longer enough — the [layered controls](https://www.nist.gov/cyberframework) have to be documented as well as present. Update verification requires documented patch management with an evidence trail. But it is the third requirement — ensuring organisations “do not store more data than necessary” — that will force the most significant architectural changes.
 
 Most customer-data pipelines were built in an era when storage was cheap and data was considered valuable by default. The prevailing logic was simple: collect everything and work out what matters later. That approach is now a liability. Every unnecessary data field represents regulatory exposure.
 
@@ -22,7 +22,7 @@ The AP explicitly noted that investigations are also needed into organisations t
 
 ## The ICT-provider problem
 
-Here is the uncomfortable truth underlined by the AP announcement: you remain responsible for data even when a third party processes it. The Odido breach did not originate in its internal systems — the attack vector ran through its supplier ecosystem. Odido still carries the regulatory burden and reputational damage.
+Here is the uncomfortable truth underlined by the AP announcement: you remain responsible for data even when a [third party processes it](https://www.enisa.europa.eu/). The Odido breach did not originate in its internal systems — the attack vector ran through its supplier ecosystem. Odido still carries the regulatory burden and reputational damage.
 
 This creates a real dilemma for Dutch companies. Building everything internally is unaffordable and often produces weaker security than specialised providers can offer. But outsourcing data processing means accepting that your security posture is only as strong as your weakest supplier.
 

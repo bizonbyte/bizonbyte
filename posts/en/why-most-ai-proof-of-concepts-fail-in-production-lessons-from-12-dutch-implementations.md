@@ -23,13 +23,13 @@ This gap is not a lack of technical competence. It is a fundamental misunderstan
 
 ### 1. Infrastructure assumptions are wrong
 
-Development environments are forgiving. Production environments are not. A financial-services provider in Amsterdam built a fraud-detection model that performed well on data-science workstations. When it was deployed on their existing on-premise infrastructure, latency reached three seconds per prediction — far too slow for real-time transaction screening.
+Development environments are forgiving. Production environments are not, and [the gap between them](https://kubernetes.io/docs/concepts/) is where most of the surprises live. A financial-services provider in Amsterdam built a fraud-detection model that performed well on data-science workstations. When it was deployed on their existing on-premise infrastructure, latency reached three seconds per prediction — far too slow for real-time transaction screening.
 
 The team had assumed cloud deployment from the beginning. Security requirements required local hosting. Nobody tested inference speed on the actual target hardware until three months into the project.
 
 ### 2. The data pipeline is fragile
 
-Every AI system is only as dependable as the data pipeline feeding it. In a healthcare analysis project, the proof-of-concept read from one well-maintained database. Production required integration with seven different systems, each with its own update schedule, data format, and occasional downtime.
+Every AI system is only as dependable as the [data pipeline feeding it](https://developers.google.com/machine-learning/guides/rules-of-ml). In a healthcare analysis project, the proof-of-concept read from one well-maintained database. Production required integration with seven different systems, each with its own update schedule, data format, and occasional downtime.
 
 The model did not fail. The data pipeline failed — repeatedly. In production, it becomes surprisingly difficult to distinguish between “the model is wrong” and “the model received bad data”.
 
@@ -37,7 +37,7 @@ The model did not fail. The data pipeline failed — repeatedly. In production, 
 
 Technology is often the easy part. A Dutch manufacturing company built an effective predictive-maintenance system. The model accurately identified equipment likely to fail within 72 hours. But the maintenance team’s planning system could not process ad-hoc work orders. Union agreements required schedule changes to be announced 48 hours in advance. The insight existed, but nobody could act on it.
 
-Production AI systems do not exist in isolation. They must connect to existing processes, tools, and human workflows. These integration points are rarely considered during proof-of-concept development.
+Production AI systems do not exist in isolation, and [the tooling around them](https://mlflow.org/) has to account for that. They must connect to existing processes, tools, and human workflows. These integration points are rarely considered during proof-of-concept development.
 
 ### 4. Monitoring and maintenance are missing
 
@@ -55,7 +55,7 @@ The implementations that reached production shared characteristics that separate
 
 **They designed for failure.** Successful production systems include graceful-degradation paths. When the model cannot make a reliable prediction, the system falls back to rule-based logic or human review. This preserves operational continuity when the AI component performs poorly.
 
-**They defined meaningful success measures.** Proof-of-concept reporting often focuses on model accuracy. Production measures also need to cover latency, throughput, system availability, and business outcomes. A model that is 98% accurate but unavailable 10% of the time may be less valuable than a model with 90% accuracy and 99.9% uptime.
+**They defined meaningful [success measures](https://sre.google/workbook/implementing-slos/).** Proof-of-concept reporting often focuses on model accuracy. Production measures also need to cover latency, throughput, system availability, and business outcomes. A model that is 98% accurate but unavailable 10% of the time may be less valuable than a model with 90% accuracy and 99.9% uptime.
 
 ## The trade-off
 

@@ -6,7 +6,7 @@ author: "Bizonbyte Team"
 
 Machine-learning models that perform brilliantly during development often collapse under production load. The infrastructure decision you make today — on-premises, cloud, or hybrid — determines not only your operating costs, but also your ability to iterate, scale, and compete over the next five years.
 
-For European organisations dealing with GDPR, data-residency requirements, and increasingly complex ML workloads, this is not a simple cost comparison. It is a strategic architectural decision with lasting consequences.
+For European organisations dealing with [GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj), data-residency requirements, and increasingly complex ML workloads, this is not a simple cost comparison. It is a strategic architectural decision with lasting consequences.
 
 ![A vast industrial warehouse split down the middle — one half containing rows of humming server racks bathed in cool blue light, the other half dissolving into an infinite cloudscape of floating data centres, with a single engineer standing at the threshold between both worlds, clipboard in hand](/blog/trade-offs-in-scaling-machine-learning-models-on-p-img-1-a-vast-industrial-warehouse-split-down-the-mi.png)
 
@@ -16,7 +16,7 @@ On-premises infrastructure offers something cloud providers cannot: absolute con
 
 But control comes at a price most organisations underestimate.
 
-GPU clusters for training modern ML models require significant investment. An NVIDIA DGX system capable of training large models costs more than €200,000. Add cooling, power infrastructure, redundancy, and specialist staff to maintain it, and the five-year total cost of ownership often exceeds €1 million for a single training cluster.
+GPU clusters for training modern ML models require significant investment. An [NVIDIA DGX system](https://www.nvidia.com/en-us/data-center/dgx-platform/) capable of training large models costs more than €200,000. Add cooling, power infrastructure, redundancy, and specialist staff to maintain it, and the five-year total cost of ownership often exceeds €1 million for a single training cluster.
 
 The hidden cost is not the hardware but utilisation. Most on-premises ML clusters sit idle 60–70% of the time. You pay for peak capacity while using average capacity. Training jobs arrive in bursts. Inference load fluctuates with user demand. Your expensive GPUs spend most of their lives waiting.
 
@@ -44,7 +44,7 @@ This approach requires more advanced engineering. You need container orchestrati
 
 ![An architectural blueprint-style diagram showing a medieval castle (representing on-premises) connected via a series of drawbridges and aqueducts to floating sky platforms (representing cloud), with small figures moving cargo between them along clearly marked pathways — some routes highlighted in green as efficient, others in amber as costly](/blog/trade-offs-in-scaling-machine-learning-models-on-p-img-2-an-architectural-blueprint-style-diagram-show.png)
 
-Kubernetes has become the standard orchestration layer for hybrid ML deployments. Tools such as Kubeflow and MLflow provide abstractions that hide infrastructure differences from data-science teams. Engineers configure where workloads run; the platform handles execution.
+[Kubernetes](https://kubernetes.io/docs/concepts/) has become the standard orchestration layer for hybrid ML deployments. Tools such as [Kubeflow](https://www.kubeflow.org/) and [MLflow](https://mlflow.org/) provide abstractions that hide infrastructure differences from data-science teams. Engineers configure where workloads run; the platform handles execution.
 
 The operational overhead is real but manageable. Organisations with mature DevOps practices usually adapt existing workflows. Organisations without DevOps face a steeper learning curve.
 

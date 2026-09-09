@@ -6,7 +6,7 @@ author: "Bizonbyte Team"
 
 Machine Learning-modellen die briljant presteren tijdens de ontwikkeling storten vaak in onder productiebelasting. De infrastructuurbeslissing die u vandaag neemt - op locatie, in de cloud of hybride - bepaalt niet alleen uw operationele kosten, maar ook uw vermogen om de komende vijf jaar te itereren, te schalen en te concurreren.
 
-Voor Europese organisaties die worstelen met GDPR, vereisten voor gegevensverblijven en steeds complexere ML-workloads, is dit geen eenvoudige kostenvergelijking. Het is een strategische architectuurbeslissing met blijvende gevolgen.
+Voor Europese organisaties die worstelen met [GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj), vereisten voor gegevensverblijven en steeds complexere ML-workloads, is dit geen eenvoudige kostenvergelijking. Het is een strategische architectuurbeslissing met blijvende gevolgen.
 
 ![A vast industrial warehouse split down the middle—one half containing rows of humming server racks bathed in cool blue light, the other half dissolving into an infinite cloudscape of floating data centres, with a single engineer standing at the threshold between both worlds, clipboard in hand](/blog/trade-offs-in-scaling-machine-learning-models-on-p-img-1-a-vast-industrial-warehouse-split-down-the-mi.png)
 
@@ -16,7 +16,7 @@ Infrastructuur op locatie biedt iets wat cloudproviders niet kunnen: absolute co
 
 Maar controle heeft een prijs die de meeste organisaties onderschatten.
 
-GPU-clusters voor het trainen van moderne ML-modellen vereisen aanzienlijke investeringen. Een NVIDIA DGX systeem dat grote modellen kan trainen kost meer dan €200.000. Tel daar koeling, stroominfrastructuur, redundantie en gespecialiseerd personeel om het te onderhouden bij op, en je totale eigendomskosten over vijf jaar bedragen vaak meer dan € 1 miljoen voor een enkel trainingscluster.
+GPU-clusters voor het trainen van moderne ML-modellen vereisen aanzienlijke investeringen. Een [NVIDIA DGX systeem](https://www.nvidia.com/en-us/data-center/dgx-platform/) dat grote modellen kan trainen kost meer dan €200.000. Tel daar koeling, stroominfrastructuur, redundantie en gespecialiseerd personeel om het te onderhouden bij op, en je totale eigendomskosten over vijf jaar bedragen vaak meer dan € 1 miljoen voor een enkel trainingscluster.
 
 De verborgen kosten zijn niet de hardware, maar de bezettingsgraad. De meeste on-premise ML clusters zijn 60-70% van de tijd niet actief. U betaalt voor piekcapaciteit terwijl u gemiddelde capaciteit gebruikt. Trainingstaken komen in pieken. Inferentiebelasting fluctueert met de vraag van gebruikers. Uw dure GPU's brengen het grootste deel van hun leven wachtend door.
 
@@ -45,7 +45,7 @@ Deze aanpak vereist meer geavanceerde engineering. Je hebt containerorkestratie 
 
 ![An architectural blueprint-style diagram showing a medieval castle (representing on-premises) connected via a series of drawbridges and aqueducts to floating sky platforms (representing cloud), with small figures moving cargo between them along clearly marked pathways—some routes highlighted in green as efficient, others in amber as costly](/blog/trade-offs-in-scaling-machine-learning-models-on-p-img-2-an-architectural-blueprint-style-diagram-show.png)
 
-Kubernetes is uitgegroeid tot de standaard orkestratielaag voor hybride ML-implementaties. Tools zoals Kubeflow en MLflow bieden abstracties die infrastructurele verschillen maskeren voor data science teams. Ingenieurs configureren waar de workloads draaien; het platform zorgt voor de uitvoering.
+[Kubernetes](https://kubernetes.io/docs/concepts/) is uitgegroeid tot de standaard orkestratielaag voor hybride ML-implementaties. Tools zoals [Kubeflow](https://www.kubeflow.org/) en [MLflow](https://mlflow.org/) bieden abstracties die infrastructurele verschillen maskeren voor data science teams. Ingenieurs configureren waar de workloads draaien; het platform zorgt voor de uitvoering.
 
 De operationele overhead is reëel, maar beheersbaar. Organisaties met volwassen DevOps-praktijken passen meestal hun bestaande workflows aan. Organisaties zonder DevOps krijgen te maken met een steilere leercurve.
 

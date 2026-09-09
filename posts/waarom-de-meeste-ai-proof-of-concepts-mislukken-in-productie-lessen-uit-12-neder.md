@@ -22,16 +22,16 @@ Deze kloof is geen gebrek aan technische competentie. Het is een fundamenteel mi
 
 ### 1. Infrastructuuraannames die niet kloppen
 
-Ontwikkelomgevingen zijn vergevingsgezind. Productieomgevingen zijn dat niet. Een financiële dienstverlener in Amsterdam bouwde een fraudedetectiemodel dat uitstekend presteerde op data science werkstations. Toen het werd ingezet op hun bestaande infrastructuur op locatie, liep de latentie op tot 3 seconden per voorspelling - veel te traag voor het realtime screenen van transacties.
+Ontwikkelomgevingen zijn vergevingsgezind. Productieomgevingen zijn dat niet, en [het gat ertussen](https://kubernetes.io/docs/concepts/) levert de meeste verrassingen op. Een financiële dienstverlener in Amsterdam bouwde een fraudedetectiemodel dat uitstekend presteerde op data science werkstations. Toen het werd ingezet op hun bestaande infrastructuur op locatie, liep de latentie op tot 3 seconden per voorspelling - veel te traag voor het realtime screenen van transacties.
 
 Het team was vanaf het begin uitgegaan van cloudimplementatie. Beveiligingseisen vereisten een lokale hosting. Tot drie maanden na aanvang van het project had niemand de inferentiesnelheid getest op de werkelijke doelhardware.
 
 
 ### 2. Datapijplijn kwetsbaarheid
 
-Elk AI-systeem is zo betrouwbaar als zijn datapijplijn. In een analyseproject voor de gezondheidszorg haalde de PoC gegevens uit één enkele, goed onderhouden database. De productie vereiste integratie met zeven verschillende systemen, elk met een eigen updateschema, gegevensindeling en af en toe downtime.
+Elk AI-systeem is zo betrouwbaar als zijn [datapijplijn](https://developers.google.com/machine-learning/guides/rules-of-ml). In een analyseproject voor de gezondheidszorg haalde de PoC gegevens uit één enkele, goed onderhouden database. De productie vereiste integratie met zeven verschillende systemen, elk met een eigen updateschema, gegevensindeling en af en toe downtime.
 
-Het model faalde niet. De gegevenspijplijn faalde - herhaaldelijk. En in productie wordt het verrassend moeilijk om onderscheid te maken tussen "het model is fout" en "het model heeft slechte gegevens ontvangen".
+Het model faalde niet. De [gegevenspijplijn](https://mlflow.org/) faalde - herhaaldelijk. En in productie wordt het verrassend moeilijk om onderscheid te maken tussen "het model is fout" en "het model heeft slechte gegevens ontvangen".
 
 ### 3. Organisatorische integratie blinde vlekken
 
@@ -56,7 +56,7 @@ De implementaties die productie bereikten, hadden gemeenschappelijke kenmerken d
 
 **Ze bouwden voor mislukkingen.** Succesvolle productiesystemen bevatten sierlijke degradatiepaden. Wanneer het model geen betrouwbare voorspelling kon doen, viel het systeem terug op regelgebaseerde logica of menselijke beoordeling. Deze aanpak zorgde voor operationele continuïteit, zelfs als de AI-component ondermaats presteerde.
 
-**Ze definieerden succescijfers die ertoe doen.** PoC-gegevens richten zich vaak op de nauwkeurigheid van het model. Productiecijfers moeten ook betrekking hebben op latentie, doorvoer, systeembeschikbaarheid en bedrijfsresultaten. Een 98% nauwkeurig model dat 10% van de tijd niet beschikbaar is, kan minder waardevol zijn dan een 90% nauwkeurig model met 99,9% uptime.
+**Ze definieerden [succescijfers die ertoe doen](https://sre.google/workbook/implementing-slos/).** PoC-gegevens richten zich vaak op de nauwkeurigheid van het model. Productiecijfers moeten ook betrekking hebben op latentie, doorvoer, systeembeschikbaarheid en bedrijfsresultaten. Een 98% nauwkeurig model dat 10% van de tijd niet beschikbaar is, kan minder waardevol zijn dan een 90% nauwkeurig model met 99,9% uptime.
 
 ## De afweging
 

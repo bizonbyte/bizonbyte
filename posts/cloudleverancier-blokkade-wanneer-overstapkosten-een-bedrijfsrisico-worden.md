@@ -14,11 +14,11 @@ Cloud vendor lock-in ontstaat zelden door één enkele beslissing. Het stapelt z
 
 Cloudproviders rekenen niets voor het uploaden van gegevens. Ze rekenen geld om het eruit te halen. Deze asymmetrie is niet toevallig - het is een bedrijfsmodel. Egress fees, de kosten voor het verplaatsen van gegevens buiten het netwerk van een provider, kunnen een theoretische migratie veranderen in een budgetschokkende exercitie.
 
-Neem een middelgroot Nederlands logistiek bedrijf met 500 terabytes aan operationele gegevens die zijn opgeslagen bij een grote cloud provider. Met typische egress-tarieven van €0,05-0,09 per gigabyte, zou het simpelweg downloaden van hun eigen gegevens tussen de €25.000 en €45.000 kosten. En dat is vóór een uur engineeringwerk, vóór testen en vóór de onvermijdelijke probleemoplossing.
+Neem een middelgroot Nederlands logistiek bedrijf met 500 terabytes aan operationele gegevens die zijn opgeslagen bij een grote cloud provider. Met [typische egress-tarieven](https://aws.amazon.com/ec2/pricing/on-demand/) van €0,05-0,09 per gigabyte, zou het simpelweg downloaden van hun eigen gegevens tussen de €25.000 en €45.000 kosten. En dat is vóór een uur engineeringwerk, vóór testen en vóór de onvermijdelijke probleemoplossing.
 
-Maar egress fees zijn slechts het zichtbare deel van de ijsberg. De diepere kosten liggen eronder verborgen:
+Maar egress fees zijn slechts het zichtbare deel van de ijsberg — en precies waar de [EU Data Act](https://digital-strategy.ec.europa.eu/en/policies/data-act) op ingrijpt. De diepere kosten liggen eronder verborgen:
 
-**Herschrijven van applicaties**: Diensten die gebouwd zijn op propriëtaire API's worden niet vertaald. Een functie geschreven voor AWS Lambda zal niet werken op Azure Functions zonder aanpassing. Code die Google's BigQuery syntax gebruikt zal niet worden uitgevoerd op Amazon Redshift.
+**Herschrijven van applicaties**: Diensten die gebouwd zijn op propriëtaire API's worden niet vertaald. Een functie geschreven voor [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) zal niet werken op [Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview) zonder aanpassing. Code die Google's BigQuery syntax gebruikt zal niet worden uitgevoerd op Amazon Redshift.
 
 **Operationele kennis**: Je team heeft jaren besteed aan het beheersen van één ecosysteem. Die expertise is niet overdraagbaar. Omscholing of aanwerving brengt echte kosten en productiviteitsverlies met zich mee.
 

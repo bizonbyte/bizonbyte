@@ -11,11 +11,11 @@ Voor Nederlandse en Europese bedrijven in het middensegment van de markt komt di
 
 ## De ware kosten van intern bouwen
 
-De zichtbare kosten zijn duidelijk: salarissen, secundaire arbeidsvoorwaarden, toolinglicenties, cloudinfrastructuur. Voor een bescheiden AI-workflowteam - laten we zeggen, twee ML-engineers, een data-engineer en een parttime architect - kijk je in Nederland naar €400K-€600K per jaar, zonder rekening te houden met werving en selectie, onboarding of het onvermijdelijke verloop.
+De zichtbare kosten zijn duidelijk: salarissen, secundaire arbeidsvoorwaarden, [toolinglicenties](https://mlflow.org/), [cloudinfrastructuur](https://aws.amazon.com/ec2/pricing/on-demand/). Voor een bescheiden AI-workflowteam - laten we zeggen, twee ML-engineers, een data-engineer en een parttime architect - kijk je in Nederland naar €400K-€600K per jaar, zonder rekening te houden met werving en selectie, onboarding of het onvermijdelijke verloop.
 
 Maar de onzichtbare kosten zijn belangrijker.
 
-**Time-to-capability** duurt meestal 12-18 maanden voordat een intern team productieklare AI-systemen aflevert. Dat is geen incompetentie, maar de realiteit van het aannemen van personeel, het vaststellen van ontwikkelpraktijken, het leren van uw specifieke domeincontext en het navigeren door de onvermijdelijke valse starts. Tijdens deze periode kunnen uw concurrenten al aan het optimaliseren zijn.
+**Time-to-capability** duurt meestal 12-18 maanden voordat een intern team [productieklare AI-systemen](https://developers.google.com/machine-learning/guides/rules-of-ml) aflevert. Dat is geen incompetentie, maar de realiteit van het aannemen van personeel, het vaststellen van ontwikkelpraktijken, het leren van uw specifieke domeincontext en het navigeren door de onvermijdelijke valse starts. Tijdens deze periode kunnen uw concurrenten al aan het optimaliseren zijn.
 
 *de *kanskosten** stapelen zich stilletjes op. Uw beste interne talent wordt naar AI-initiatieven getrokken, waardoor elders gaten ontstaan. Uw technisch leiderschap besteedt cycli aan het managen van een nieuwe discipline in plaats van het versterken van bestaande kerncompetenties.
 
@@ -25,7 +25,7 @@ Het voordeel is echt eigenaarschap. Uw team vergaart diepgaande domeinkennis. Je
 
 ## De echte calculus van outsourcing
 
-Externe ontwikkeling lijkt op papier eenvoudiger: vaste prijs, gedefinieerd toepassingsgebied, overgedragen risico. De werkelijkheid is rommeliger.
+Externe ontwikkeling lijkt op papier eenvoudiger: vaste prijs, gedefinieerd toepassingsgebied, overgedragen risico — al draagt u onder [de AVG](https://eur-lex.europa.eu/eli/reg/2016/679/oj) de verantwoordelijkheid voor persoonsgegevens niet mee over. De werkelijkheid is rommeliger.
 
 Kwaliteitsverschillen zijn extreem. De markt bevat briljante gespecialiseerde bedrijven en middelmatige carrosseriebedrijven met vergelijkbare prijzen. Om ze van elkaar te kunnen onderscheiden is technische verfijning nodig die je misschien juist uitbesteedt omdat je die intern niet hebt.
 

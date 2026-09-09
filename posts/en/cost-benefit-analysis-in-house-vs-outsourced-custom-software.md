@@ -11,11 +11,11 @@ For mid-market companies in the Netherlands and Europe, the choice often becomes
 
 ## The true cost of building in-house
 
-The visible costs are clear: salaries, benefits, tooling licences, and cloud infrastructure. For a modest AI workflow team — say, two machine-learning engineers, a data engineer, and a part-time architect — a Dutch company may spend €400,000–€600,000 per year before recruitment, onboarding, or inevitable attrition.
+The visible costs are clear: salaries, benefits, [tooling licences](https://mlflow.org/), and [cloud infrastructure](https://aws.amazon.com/ec2/pricing/on-demand/). For a modest AI workflow team — say, two machine-learning engineers, a data engineer, and a part-time architect — a Dutch company may spend €400,000–€600,000 per year before recruitment, onboarding, or inevitable attrition.
 
 But the hidden costs matter more.
 
-**Time-to-capability** often means waiting 12–18 months before an internal team delivers production-ready AI systems. That is not incompetence. It is the reality of hiring people, establishing development practices, learning your specific domain, and navigating inevitable false starts. During that period, competitors may already be improving their operations.
+**Time-to-capability** often means waiting 12–18 months before an internal team delivers [production-ready AI systems](https://developers.google.com/machine-learning/guides/rules-of-ml). That is not incompetence. It is the reality of hiring people, establishing development practices, learning your specific domain, and navigating inevitable false starts. During that period, competitors may already be improving their operations.
 
 **Opportunity costs** accumulate quietly. Your best internal talent is pulled into AI initiatives, creating gaps elsewhere. Technical leadership spends cycles managing a new discipline instead of strengthening existing core capabilities.
 
@@ -25,7 +25,7 @@ The benefit is real ownership. Your team develops deep domain knowledge. You hav
 
 ## The real calculus of outsourcing
 
-External development looks simpler on paper: fixed price, defined scope, and transferred risk. Reality is less tidy.
+External development looks simpler on paper: fixed price, defined scope, and transferred risk — though under [the GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj) the responsibility for personal data does not transfer with it. Reality is less tidy.
 
 Quality differences are substantial. The market contains excellent specialist companies and mediocre body shops with similar price tags. Telling them apart requires technical judgement — the very capability you may be outsourcing because you do not have it internally.
 

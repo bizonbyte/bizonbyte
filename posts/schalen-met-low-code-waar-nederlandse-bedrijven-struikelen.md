@@ -28,13 +28,13 @@ Low-code neemt de wrijving bewust weg. Een bedrijfsanalist kan in een middag een
 
 ![An aerial view of a Dutch polder landscape where water channels have been extended haphazardly — some running parallel, some crossing, some dead-ending — with small pumping stations scattered without apparent coordination](/blog/scaling-with-low-code-where-dutch-firms-stumble-img-2-an-aerial-view-of-a-dutch-polder-landscape-wh.png)
 
-Een financiële dienstverlener in Amsterdam ontdekte dit na drie jaar enthousiaste adoptie van het Power Platform. Ze hadden zevenentachtig Power Apps gebouwd, elk op zich zinvol, elk voor het oplossen van een echt probleem. Maar de apps hadden verschillende conventies ontwikkeld voor gebruikersidentiteit, verschillende patronen voor gegevensopslag, verschillende aannames over API-contracten. Om ze met elkaar te verbinden tot coherente workflows moest een vertaallaag worden gebouwd die complexer was dan de oorspronkelijke applicaties.
+Een financiële dienstverlener in Amsterdam ontdekte dit na drie jaar enthousiaste adoptie van het Power Platform. Ze hadden zevenentachtig Power Apps gebouwd, zonder de [adoptiegovernance](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/methodology) die daaraan vooraf had moeten gaan, elk op zich zinvol, elk voor het oplossen van een echt probleem. Maar de apps hadden verschillende conventies ontwikkeld voor gebruikersidentiteit, verschillende patronen voor gegevensopslag, verschillende aannames over API-contracten. Om ze met elkaar te verbinden tot coherente workflows moest een vertaallaag worden gebouwd die complexer was dan de oorspronkelijke applicaties.
 
 De les is niet dat low-code slechte architectuur veroorzaakt. De les is dat low-code eerder en explicieter architectuurdiscipline vereist dan traditionele ontwikkeling. Het platform zal die discipline niet voor je opleggen.
 
 ## De vraag over de leveranciersvergrendeling is reëel maar wordt verkeerd begrepen
 
-Nederlandse bedrijven noemen vaak vendor lock-in als hun grootste zorg over low-code schalen. Deze zorg is legitiem, maar meestal te vaag uitgedrukt om nuttig te zijn.
+Nederlandse bedrijven noemen vaak vendor lock-in als hun grootste zorg over low-code schalen — een zorg die de [EU Data Act](https://digital-strategy.ec.europa.eu/en/policies/data-act) deels wegneemt en deels niet. Deze zorg is legitiem, maar meestal te vaag uitgedrukt om nuttig te zijn.
 
 Lock-in bestaat op een spectrum. Aan de ene kant: je visuele logica en UI-componenten zijn propriëtair en kunnen niet worden geëxtraheerd. Aan de andere kant: uw gegevens staan in standaardformaten, uw integraties gebruiken gedocumenteerde API's en als u van platform verandert, moet u interfaces opnieuw bouwen maar geen informatie herstellen.
 

@@ -28,13 +28,13 @@ Low-code deliberately removes that friction. A business analyst can create a new
 
 ![An aerial view of a Dutch polder landscape where water channels have been extended haphazardly — some running parallel, some crossing, some dead-ending — with small pumping stations scattered without apparent coordination](/blog/scaling-with-low-code-where-dutch-firms-stumble-img-2-an-aerial-view-of-a-dutch-polder-landscape-wh.png)
 
-An Amsterdam financial services provider discovered this after three years of enthusiastic Power Platform adoption. They had built eighty-seven Power Apps, each individually sensible and each solving a real problem. But the apps had developed different conventions for user identity, different data-storage patterns, and different assumptions about API contracts. Connecting them into coherent workflows required a translation layer more complex than the original applications.
+An Amsterdam financial services provider discovered this after three years of enthusiastic Power Platform adoption. They had built eighty-seven Power Apps, each individually sensible — with none of the [adoption governance](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/methodology) that is supposed to come first and each solving a real problem. But the apps had developed different conventions for user identity, different data-storage patterns, and different assumptions about API contracts. Connecting them into coherent workflows required a translation layer more complex than the original applications.
 
 The lesson is not that low-code creates bad architecture. The lesson is that low-code requires architectural discipline earlier and more explicitly than traditional development. The platform will not impose that discipline for you.
 
 ## The vendor lock-in question is real, but misunderstood
 
-Dutch companies often name vendor lock-in as their biggest concern when scaling low-code. The concern is legitimate, but it is usually expressed too vaguely to be useful.
+Dutch companies often name vendor lock-in as their biggest concern when scaling low-code — a concern the [EU Data Act](https://digital-strategy.ec.europa.eu/en/policies/data-act) partly addresses and partly does not. The concern is legitimate, but it is usually expressed too vaguely to be useful.
 
 Lock-in exists on a spectrum. At one end, your visual logic and UI components are proprietary and cannot be extracted. At the other, your data is in standard formats, your integrations use documented APIs, and changing platforms means rebuilding interfaces rather than recovering information.
 

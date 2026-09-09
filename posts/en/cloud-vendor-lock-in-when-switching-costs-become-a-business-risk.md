@@ -13,13 +13,13 @@ Cloud vendor lock-in rarely comes from one decision. It accumulates through hund
 
 ## The real cost of “free” migration
 
-Cloud providers do not charge you to upload data. They charge you to take it out. This asymmetry is not accidental — it is a business model. Egress fees, the cost of moving data outside a provider’s network, can turn a theoretical migration into a budget shock.
+Cloud providers do not charge you to upload data. They charge you to take it out — an asymmetry the [EU Data Act](https://digital-strategy.ec.europa.eu/en/policies/data-act) was written to unwind. This asymmetry is not accidental — it is a business model. Egress fees, the cost of moving data outside a provider’s network, can turn a theoretical migration into a budget shock.
 
-Consider a mid-sized Dutch logistics company with 500 terabytes of operational data stored with a major cloud provider. At typical egress rates of €0.05–€0.09 per gigabyte, simply downloading its own data could cost €25,000–€45,000. That is before engineering time, testing, and inevitable troubleshooting.
+Consider a mid-sized Dutch logistics company with 500 terabytes of operational data stored with a major cloud provider. At [typical egress rates](https://aws.amazon.com/ec2/pricing/on-demand/) of €0.05–€0.09 per gigabyte, simply downloading its own data could cost €25,000–€45,000. That is before engineering time, testing, and inevitable troubleshooting.
 
 But egress fees are only the visible part of the iceberg. The deeper costs sit underneath:
 
-**Rewriting applications:** services built on proprietary APIs do not translate automatically. A function written for AWS Lambda will not run on Azure Functions without changes. Code using Google BigQuery syntax will not execute on Amazon Redshift.
+**Rewriting applications:** services built on proprietary APIs do not translate automatically. A function written for [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) will not run on [Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview) without changes. Code using Google BigQuery syntax will not execute on Amazon Redshift.
 
 **Operational knowledge:** your team has spent years mastering one ecosystem. That expertise is not transferable by default. Retraining or hiring brings real costs and lost productivity.
 

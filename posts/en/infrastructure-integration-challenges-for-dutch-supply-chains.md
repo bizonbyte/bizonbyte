@@ -7,7 +7,7 @@ author: "Bizonbyte Team"
 
 The Netherlands handles roughly 30% of European logistics flows. Rotterdam, Schiphol, and a dense network of inland waterways make it a natural distribution hub. Yet beneath this physical efficiency sits a fragmented digital landscape that costs Dutch supply-chain operators millions in lost productivity and delayed decisions.
 
-Most Dutch logistics companies did not choose their current IT architecture. They inherited it through acquisitions, organic growth, and decades of vendor lock-in. The result is a patchwork of warehouse-management systems, transport-management platforms, customs tools, and ERP backends that barely communicate.
+Most Dutch logistics companies did not choose their current IT architecture. They inherited it through acquisitions, organic growth, and decades of [vendor lock-in](https://digital-strategy.ec.europa.eu/en/policies/data-act). The result is a patchwork of warehouse-management systems, transport-management platforms, customs tools, and ERP backends that barely communicate.
 
 This is not a theoretical problem. It is why your warehouse team enters shipping data three times before it reaches the finance system. It is why customers cannot get accurate delivery estimates. It is what keeps the IT budget tied up in maintenance instead of innovation.
 
@@ -27,17 +27,17 @@ Consider a mid-sized logistics provider with three warehouses. It may have:
 - Customer portals that promise real-time visibility.
 - Customs systems that need regulatory-compliance data.
 
-Each connection was created at a different time, by different suppliers or internal teams, using different approaches. Some use SFTP file drops. Others use SOAP web services. A few have REST APIs. One critical integration may run on a scheduled stored procedure that only the original developer understood — and that developer left years ago.
+Each connection was created at a different time, by different suppliers or internal teams, using different approaches — which is precisely the [supply-chain exposure](https://www.enisa.europa.eu/) regulators now ask about. Some use SFTP file drops. Others use SOAP web services. A few have REST APIs. One critical integration may run on a scheduled stored procedure that only the original developer understood — and that developer left years ago.
 
 This technical debt grows. Every new customer requirement, regulatory change, or operational improvement has to navigate the maze. Work that should take weeks takes months. Work that should cost thousands costs tens of thousands.
 
 ## Why standard solutions fall short
 
-Enterprise integration platforms promise to solve this. Large vendors provide ready-made connectors, visual workflow designers, and managed infrastructure. For some organisations, these work well.
+[Enterprise integration platforms](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/methodology) promise to solve this. Large vendors provide ready-made connectors, visual workflow designers, and managed infrastructure. For some organisations, these work well.
 
 But Dutch supply-chain operators face specific challenges that generic solutions struggle to handle.
 
-**Regulatory complexity:** Dutch customs must comply with national requirements and EU-wide regulation. The new EU Customs Data Hub, Import Control System 2 (ICS2), and changing sustainability-reporting requirements create a moving target that ready-made connectors cannot always keep up with.
+**Regulatory complexity:** Dutch customs must comply with national requirements and EU-wide regulation. The new [EU Customs Data Hub](https://taxation-customs.ec.europa.eu/customs-4/eu-customs-reform_en), Import Control System 2 (ICS2), and changing sustainability-reporting requirements create a moving target that ready-made connectors cannot always keep up with.
 
 **Partner diversity:** A typical Dutch logistics company works with dozens of carriers, hundreds of customers, and multiple port authorities. Each has its own data formats, connection preferences, and change schedule. Standardisation sounds attractive until your largest customer insists on its own format — and their business matters more than architectural purity.
 
